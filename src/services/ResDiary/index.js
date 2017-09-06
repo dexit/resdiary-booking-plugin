@@ -35,7 +35,7 @@ class ResDiary {
   async getClosedDates() {
     const {data} = await axios.get(`${this.api}/ClosedDates`, this.config);
 
-    return Promise.resolve(data);
+    return data;
   }
 
 }
