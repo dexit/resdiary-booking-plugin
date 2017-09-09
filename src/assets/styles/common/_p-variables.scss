@@ -1,0 +1,30 @@
+//Breakpoints
+$mobile-medium: 360px;
+$mobile-large: 480px;
+$tablet-small: 600px;
+$tablet-medium: 800px;
+$desktop: 1025px;
+$widescreen-small: 1366px;
+$widescreen-medium: 1440px;
+$widescreen-large: 1600px;
+$largescreen: 1920px;
+$max-width: 1200px;
+$landscape: orientation landscape;
+$portrait: orientation portrait;
+// $header-height-mobile: 55.5px;
+$header-height-desktop: 141px;
+
+// Colors
+$grey-font: #2b2b2b;
+
+@mixin list-unstyle {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin background-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -1,0 +1,75 @@
+#resdiary-reservations {
+  footer {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 15px;
+
+    @include breakpoint ($tablet-medium) {
+      padding-bottom: 30px;
+    }
+
+    button {
+      appearance: none;
+      border: none;
+      font-family: inherit;
+      padding: 0;
+
+      @include breakpoint (0 ($tablet-medium - 1)) {
+        max-width: 200px;
+        min-height: 40px;
+        width: 50%;
+      }
+    }
+  }
+}
+
+#prev-button {
+  @include breakpoint ($tablet-medium) {
+    margin-right: 30px;
+  }
+
+  &::before {
+    content: '< ';
+  }
+}
+
+#next-button {
+  @include breakpoint ($tablet-medium) {
+    margin-left: 30px;
+  }
+  @include breakpoint ($tablet-medium) {
+    order: 1;
+  }
+
+  &::after {
+    content: ' >';
+  }
+}
+
+#error-message {
+  border: 2px solid #ff0000;
+  color: #ff0000;
+  font-size: 80%;
+  margin: 0;
+  padding: 5px 25px;
+  text-align: center;
+
+  @include breakpoint (0 ($tablet-medium - 1)) {
+    width: 100%;
+  }
+  @include breakpoint ($tablet-medium) {
+    margin: 0 0 0 auto;
+  }
+}
+
+#error-description {
+  &::before {
+    content: ' (';
+  }
+
+  &::after {
+    content: ')';
+  }
+}

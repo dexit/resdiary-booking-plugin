@@ -1,0 +1,50 @@
+#submit-reference,
+#make-reservation {
+  padding: 10% 0;
+  text-align: center;
+
+  > div {
+    margin: 0 auto;
+    max-width: 600px;
+  }
+
+  p {
+    margin-top: 0;
+  }
+
+  ul {
+    @include breakpoint ($tablet-medium) {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  li {
+    @include breakpoint ($tablet-medium) {
+      position: relative;
+    }
+
+    &:not(:first-child) {
+      margin: 20px 0 0;
+
+      @include breakpoint ($tablet-medium) {
+        margin: 0 0 0 30px;
+      }
+    }
+  }
+
+  a {
+    appearance: none;
+    background-color: #000000;
+    border: none;
+    border-radius: 0;
+    color: #ffffff;
+    padding: 15px 30px;
+    display: block;
+
+    @include breakpoint (0 ($tablet-medium - 1)) {
+      max-width: 400px;
+      width: 100%;
+    }
+  }
+}

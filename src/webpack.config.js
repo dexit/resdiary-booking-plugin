@@ -8,6 +8,7 @@ const config = {
   output:
     {
       path: `${__dirname.slice(0, -3)}dist/`,
+      publicPath: '/',
       filename: 'resdiary-booking-plugin.min.js',
     },
   plugins: debug ? [
@@ -32,14 +33,15 @@ const config = {
         }
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use:
           [
-            'style-loader',
+            {
+              loader: 'style-loader'
+            },
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1,
                 sourceMap: debug
               }
             },
@@ -49,14 +51,39 @@ const config = {
                 sourceMap: debug,
                 config: {
                   ctx: {
-                    cssnano: {},
-                    autoprefixer: {},
-                    'postcss-nested': {}
+                    autoprefixer: {
+                      browsers: [
+                        'last 2 versions',
+                        'android 4',
+                        'opera 12'
+                      ]
+                    }
                   }
                 }
               }
-            }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: debug
+              }
+            },
+            {
+              loader: 'sass-resources-loader',
+              options: {
+                resources: [
+                  './node_modules/breakpoint-sass/stylesheets/_breakpoint.scss',
+
+                ]
+              }
+            },
           ]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: {
+          loader: 'file-loader'
+        }
       }
     ]
   },
@@ -73,8 +100,8 @@ if (debug) {
       '/wp-admin/admin-ajax': {
         target: {
           host: 'incipio',
-          protocol: 'http:',
-          port: 80
+          protocol: 'https:',
+          port: 443
         },
         changeOrigin: true,
         secure: false
@@ -82,14 +109,14 @@ if (debug) {
       '/proxy': {
         target: {
           host: 'incipio',
-          protocol: 'http:',
-          port: 80
+          protocol: 'https:',
+          port: 443
         },
         changeOrigin: true,
         secure: false
       }
     },
-
+    publicPath: '/',
     historyApiFallback: true
   };
 

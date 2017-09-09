@@ -1,0 +1,69 @@
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+  font-family: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  outline: 0;
+
+  &::after,
+  &::before {
+    box-sizing: inherit;
+  }
+}
+
+.container {
+  // max-width: $max-width;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.container-content {
+  margin: 0 auto;
+  max-width: 900px;
+  width: 90%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+//FIXME: shouldn't use general styling like this. What if they want standard styled list in blog posts?
+ul {
+  @include list-unstyle;
+}
+
+p {
+  line-height: 1.5;
+  // @include breakpoint (0 $desktop - 1) {
+  //   font-size: 12px;
+  // }
+
+  @include breakpoint (0 $desktop) {
+    font-size: 14px;
+  }
+}
+
+.leaves {
+  opacity: .6;
+}
+
+.single,
+.info,
+.blog {
+  section {
+    @include background-image;
+  }
+
+  hr {
+    background-color: $grey-font;
+    height: 5px;
+    max-width: 1000px;
+    // transform: rotate(-3deg);
+  }
+}

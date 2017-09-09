@@ -1,0 +1,219 @@
+#resdiary-reservations {
+  border-bottom: 1px solid #000000;
+  margin: 0 auto;
+  max-width: 1050px;
+  width: 90%;
+
+  header {
+    border-bottom: 1px solid #000000;
+    padding-bottom: 15px;
+    text-align: center;
+
+    p {
+      margin: 0 0 15px 0;
+    }
+  }
+
+  h1 {
+    line-height: 1;
+    margin: 0 0 10px 0;
+  }
+}
+
+@import 'common/_p-variables';
+
+@import 'common/_p-global';
+
+@import 'partials/p-progress-bar';
+
+@import 'partials/p-progress-bar';
+
+@import 'partials/p-make-reservation';
+
+@import 'partials/p-reservation-details';
+
+@import 'partials/p-form-footer';
+
+#amend-reservation,
+#confirm-reservation {
+  display: flex;
+  justify-content: center;
+  padding: 5% 0;
+
+  > div {
+    max-width: 600px;
+  }
+}
+
+#amend-reservation {
+  p {
+    text-align: center;
+  }
+}
+
+#proposed-reservation {
+  background-color: #000000;
+  color: #ffffff;
+  display: inline-block;
+  padding: 20px 30px;
+  text-align: center;
+
+  @include breakpoint ($tablet-medium) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  li {
+    @include breakpoint ($tablet-medium) {
+      line-height: 1;
+    }
+
+    &:not(:first-child) {
+      @include breakpoint ($tablet-medium) {
+        border-left: 1px solid #ffffff;
+        margin-left: 10px;
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+#card-details,
+#personal-details {
+  @include breakpoint ($tablet-medium) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  > div {
+    padding-top: 20px;
+
+    @include breakpoint ($tablet-medium) {
+      width: calc(50% - 5px);
+    }
+
+    &:first-child {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &:last-child {
+      > * {
+        &:first-child {
+          margin-top: 0;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  input {
+    &:not(:first-child) {
+      margin-top: 10px;
+    }
+  }
+
+  textarea {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.text-container {
+  padding-top: 20px;
+  text-align: center;
+
+  > * {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.terms {
+  max-width: 600px;
+}
+
+#booking-reference {
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: bold;
+  justify-content: center;
+
+  > * {
+    margin: 0 5px;
+  }
+
+  dt {
+    &:after {
+      content: ':';
+    }
+  }
+}
+
+#booking-details {
+  display: flex;
+  flex-wrap: wrap;
+
+  dt {
+    font-weight: bold;
+    margin-top: 10px;
+    width: 35%;
+
+    &:after {
+      content: ':';
+    }
+  }
+
+  dd {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    margin: 0;
+    margin-top: 10px;
+    min-width: 65%;
+  }
+
+  button {
+    margin-left: 10px;
+  }
+}
+
+#reservation-overlay {
+  align-items: center;
+  background-color: rgba(0, 0, 0, .8);
+  bottom: 0;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+
+  > div {
+    border: 1px solid #ffffff;
+    max-width: 800px;
+    padding: 2.5% 10%;
+    position: relative;
+  }
+
+  header {
+    align-items: center;
+    bottom: calc(100% + 40px);
+    display: flex;
+    justify-content: space-between;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+}

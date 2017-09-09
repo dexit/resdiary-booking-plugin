@@ -1,30 +1,53 @@
 import React, {Component} from 'react';
+import {string} from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import {ResDiaryinit} from '../actions';
+import {getClosedDates} from '../actions';
 import {connect} from 'react-redux';
-
-
-const Home = () => <div>Home Page</div>;
-const Calendar = () => <div>Calendar Page</div>;
+import ResDiary from '../services/ResDiary';
+import Header from '../components/Header';
+import BookingOptions from '../routes/BookingOptions';
+import ReservationDetails from '../routes/ReservationDetails';
+import ConfirmReservation from '../routes/ConfirmReservation';
+import PersonalDetails from '../routes/PesonalDetails';
+import CardDetails from '../routes/CardDetails';
+import ReservationConfirmed from '../routes/ReservationConfirmed';
+import AmendBooking from '../routes/AmendBooking';
+import YourReservation from '../routes/YourReservation/index';
+import Footer from '../components/Footer';
 
 class ResDiaryBookingPlugin extends Component {
+
+  static propTypes = {
+    restaurant: string.isRequired
+  };
+
   constructor(props) {
     super(props);
-    const {ResDiaryinit, tokenRequest, proxy, restaurant} = props;
-
-    ResDiaryinit(tokenRequest, proxy, restaurant);
+    const {restaurant, getClosedDates} = props;
+    ResDiary.setRestaurant(restaurant);
+    getClosedDates();
   }
 
   render() {
     return (
       <BrowserRouter>
-        <Switch>
-          <Route path='/reservations' component={Home} />
-          <Route path='/reservations/calendar' component={Calendar} />
-        </Switch>
+        <div>
+          <Header/>
+          <Switch>
+            <Route exact path='/reservations' component={BookingOptions}/>
+            <Route path='/reservations/reservation-details' component={ReservationDetails}/>
+            <Route path='/reservations/confirm-reservation' component={ConfirmReservation}/>
+            <Route path='/reservations/personal-details' component={PersonalDetails}/>
+            <Route path='/reservations/card-details' component={CardDetails}/>
+            <Route path='/reservations/reservation-confirmed' component={ReservationConfirmed}/>
+            <Route path='/reservations/amend-booking' component={AmendBooking}/>
+            <Route path='/reservations/your-reservation' component={YourReservation}/>
+          </Switch>
+          <Footer/>
+        </div>
       </BrowserRouter>
     );
   }
 }
 
-export default connect(null, {ResDiaryinit})(ResDiaryBookingPlugin);
+export default connect(null, {getClosedDates})(ResDiaryBookingPlugin);
