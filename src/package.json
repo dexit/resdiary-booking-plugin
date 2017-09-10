@@ -10,13 +10,18 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.16.2",
+    "moment": "^2.18.1",
+    "prop-types": "^15.5.10",
+    "qs": "^6.5.1",
     "react": "^15.6.1",
+    "react-day-picker": "^6.1.0",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
-    "redux-promise-middleware": "^4.4.1"
+    "redux-promise-middleware": "^4.4.1",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.3",

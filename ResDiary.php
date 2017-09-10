@@ -9,12 +9,12 @@ class ResDiary {
 
 	private static function checkUrl( $method, $url ) {
 		$url_list = array(
-			'GET' => 'ClosedDates'
+			'GET' => array( 'ClosedDates', 'Setup' )
 		);
 
 		preg_match( '/([^\/]+$)/', $url, $resource );
 
-		if ( isset( $url_list[ $method ] ) && $url_list[ $method ] === $resource[0] ) {
+		if ( isset( $url_list[ $method ] ) && in_array( $resource[0], $url_list[ $method ] ) ) {
 			return true;
 		}
 
@@ -39,10 +39,10 @@ class ResDiary {
 		) );
 
 		if ( is_wp_error( $response ) ) {
-			error_log( $response->get_error_message() );
+			error_log( $response->get_error_message() . __LINE__ );
 			wp_send_json_error( null, 500 );
 		} elseif ( $response['response']['code'] !== 200 ) {
-			error_log( json_encode( $response['body'] ) );
+			error_log( json_encode( $response['body'] ) . __LINE__ );
 			wp_send_json_error( null, 500 );
 		} else {
 			$token = 'Bearer ' . trim( $response['body'], '"' );
@@ -58,19 +58,20 @@ class ResDiary {
 	private static function handleResponse( $response, $data ) {
 
 		if ( is_wp_error( $response ) ) {
-			error_log( $response->get_error_message() );
+			error_log( $response->get_error_message() . __LINE__ );
 			wp_send_json_error( $response->get_error_message(), 500 );
 		} elseif ( $response['response']['code'] === 401 ) {
-			error_log( json_encode( $response['body'] ) );
+			error_log( json_encode( $response['body'] ) . __LINE__ );
 			if ( self::$count < 1 ) {
 				self::$count ++;
+				delete_transient( 'resdiary_token' );
 				self::makeRequest( $data );
 			} else {
 				wp_send_json_error( null, 500 );
 			}
 
 		} elseif ( $response['response']['code'] !== 200 ) {
-			error_log( json_encode( $response['body'] ) );
+			error_log( json_encode( $response['body'] ) . __LINE__ );
 			wp_send_json_error( json_decode( $response['body'] ), $response['response']['code'] );
 		} else {
 			wp_send_json_success( json_decode( $response['body'] ), $response['response']['code'] );
@@ -86,7 +87,7 @@ class ResDiary {
 				'Content-type'  => 'application/json;charset=utf-8',
 				'Authorization' => $token
 			);
-			$body     = $data['data'] || array();
+			$body     = $data['data'];
 			$response = null;
 
 			if ( $data['method'] === 'POST' ) {
@@ -97,9 +98,8 @@ class ResDiary {
 				) );
 
 			} else {
-				$response = wp_remote_get( self::$api . $data['url'], array(
-					'headers' => $headers,
-					'body'    => $body
+				$response = wp_remote_get( self::$api . $data['url'] . '?' . http_build_query( $body ), array(
+					'headers' => $headers
 				) );
 			}
 

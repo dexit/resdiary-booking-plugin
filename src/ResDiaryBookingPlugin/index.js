@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {string} from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import {getClosedDates} from '../actions';
+import {getClosedDates, getRestaurantSetup} from '../actions';
 import {connect} from 'react-redux';
 import ResDiary from '../services/ResDiary';
 import Header from '../components/Header';
@@ -23,8 +23,9 @@ class ResDiaryBookingPlugin extends Component {
 
   constructor(props) {
     super(props);
-    const {restaurant, getClosedDates} = props;
+    const {restaurant, getClosedDates, getRestaurantSetup} = props;
     ResDiary.setRestaurant(restaurant);
+    getRestaurantSetup();
     getClosedDates();
   }
 
@@ -50,4 +51,4 @@ class ResDiaryBookingPlugin extends Component {
   }
 }
 
-export default connect(null, {getClosedDates})(ResDiaryBookingPlugin);
+export default connect(null, {getClosedDates, getRestaurantSetup})(ResDiaryBookingPlugin);
