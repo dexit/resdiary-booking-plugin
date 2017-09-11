@@ -9,7 +9,8 @@ class ResDiary {
 
 	private static function checkUrl( $method, $url ) {
 		$url_list = array(
-			'GET' => array( 'ClosedDates', 'Setup' )
+			'GET'  => array( 'ClosedDates', 'Setup' ),
+			'POST' => array( 'AvailabilitySearch' )
 		);
 
 		preg_match( '/([^\/]+$)/', $url, $resource );
@@ -71,7 +72,7 @@ class ResDiary {
 			}
 
 		} elseif ( $response['response']['code'] !== 200 ) {
-			error_log( json_encode( $response['body'] ) . __LINE__ );
+//      error_log( json_encode( $response['body'] ) . __LINE__ );
 			wp_send_json_error( json_decode( $response['body'] ), $response['response']['code'] );
 		} else {
 			wp_send_json_success( json_decode( $response['body'] ), $response['response']['code'] );
@@ -89,16 +90,18 @@ class ResDiary {
 			);
 			$body     = $data['data'];
 			$response = null;
+			error_log( json_encode( $body ) . __LINE__ );
 
 			if ( $data['method'] === 'POST' ) {
 
 				$response = wp_remote_post( self::$api . $data['url'], array(
 					'headers' => $headers,
-					'body'    => $body
+					'body'    => json_encode( $body )
 				) );
 
 			} else {
-				$response = wp_remote_get( self::$api . $data['url'] . '?' . http_build_query( $body ), array(
+				$url      = $body ? $data['url'] . '?' . http_build_query( $body ) : $data['url'];
+				$response = wp_remote_get( self::$api . $url, array(
 					'headers' => $headers
 				) );
 			}

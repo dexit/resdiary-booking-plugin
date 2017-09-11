@@ -4,8 +4,4 @@ import promiseMiddleware from 'redux-promise-middleware';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
-
-export default createStore(
-  reducers,
-  composeWithDevTools(applyMiddleware(thunk, promiseMiddleware()))
-);
+export default createStore(reducers, composeWithDevTools(applyMiddleware(thunk, promiseMiddleware())));

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {getAvailability} from '../../actions';
 import moment from 'moment';
 import Calendar from './Calendar';
 
@@ -7,18 +8,39 @@ class ReservationDetails extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {selectedDay: null, peopleValue: null, sittingValue: null};
   }
 
-  handleDayClick = (e, w, r) => {
-    console.log('e,w,r', e, w, r);
+  handleDayClick = (day, {selected, disabled}) => {
+    if (disabled) return;
+
+    this.setState({selectedDay: day});
   };
 
   disabledDays = () => {
-
     if (this.props.daysInAdvance) {
-      return [...this.props.closedDates, {after: moment().add(this.props.daysInAdvance, 'days').toDate()}]
+      return [...this.props.closedDates,
+        {after: moment().add(this.props.daysInAdvance, 'days').toDate()},
+        {before: new Date()}
+      ];
     }
-    return this.props.closedDates
+    return [...this.props.closedDates, {before: new Date()}];
+  };
+
+  handleSubmit = () => {
+    const data = {
+      VisitDate: this.state.selectedDay,
+      PartySize: parseInt(this.state.peopleValue)
+    };
+    this.props.getAvailability(data);
+  };
+
+  handlePeopleChange = (e) => {
+    this.setState({peopleValue: e.currentTarget.value});
+  };
+
+  handleSittingChange = (e) => {
+    this.setState({sittingValue: e.currentTarget.value});
   };
 
   render() {
@@ -28,6 +50,16 @@ class ReservationDetails extends Component {
           handleDayClick={this.handleDayClick}
           disabledDays={this.disabledDays()}
           toMonth={moment().add(this.props.daysInAdvance, 'days').toDate()}
+          minPartySize={this.props.minPartySize}
+          maxPartySize={this.props.maxPartySize}
+          services={this.props.services}
+          onSubmit={this.handleSubmit}
+          selectedDay={this.state.selectedDay}
+          formValues={this.props.formValues}
+          handlePeopleChange={this.handlePeopleChange}
+          handleSittingChange={this.handleSittingChange}
+          people={this.state.peopleValue}
+          sitting={this.state.sittingValue}
         />
       </section>
     );
@@ -37,11 +69,14 @@ class ReservationDetails extends Component {
 const mapStateToProps = state => {
   return {
     closedDates: state.calendar,
-    daysInAdvance: state.restaurant.AcceptBookingsDaysInAdvance
-  }
+    daysInAdvance: state.restaurant.AcceptBookingsDaysInAdvance,
+    minPartySize: state.restaurant.MinOnlinePartySize,
+    maxPartySize: state.restaurant.MaxOnlinePartySize,
+    services: state.restaurant.Services || []
+  };
 };
 
-export default connect(mapStateToProps, null)(ReservationDetails);
+export default connect(mapStateToProps, {getAvailability})(ReservationDetails);
 
 {/*<div>*/}
 {/*<nav>*/}

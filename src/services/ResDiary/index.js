@@ -33,6 +33,22 @@ class ResDiary {
     return data;
   }
 
+  async getAvailability({VisitDate, PartySize, BookingId}) {
+    const reqData = {
+      method: 'POST',
+      url: `/Restaurant/${this.restauarant}/AvailabilitySearch`,
+      data: {VisitDate, PartySize, channelCode: 'ONLINE'}
+    };
+
+    if (BookingId) {
+      reqData.data.BookingId = BookingId
+    }
+
+    const {data: {data}} = await axios.post(this.api, qs.stringify(reqData));
+
+    return data;
+  }
+
 }
 
 export default new ResDiary();
