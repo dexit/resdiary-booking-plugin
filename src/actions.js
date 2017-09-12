@@ -1,5 +1,13 @@
-import {GET_AVAILABILITY, GET_CLOSED_DATES, GET_RESTAURANT_SETUP, HIDE_ERROR, SHOW_ERROR} from './constants';
 import ResDiary from './services/ResDiary';
+import {
+  GET_AVAILABILITY,
+  GET_CLOSED_DATES,
+  GET_RESTAURANT_SETUP,
+  HIDE_ERROR,
+  SET_TERMS,
+  SET_TIMESLOT,
+  SHOW_ERROR
+} from './constants';
 
 export const getClosedDates = () => {
 
@@ -53,4 +61,12 @@ export const getAvailability = (data) => {
         console.log(err);
       });
   }
+};
+
+export const setTimeSlot = (timeSlot) => dispatch => {
+  dispatch({type: SET_TIMESLOT, payload: timeSlot});
+};
+
+export const setTerms = (checked) => dispatch => {
+  dispatch({type: SET_TERMS, payload: checked});
 };

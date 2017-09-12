@@ -33,20 +33,25 @@ class ResDiary {
     return data;
   }
 
-  async getAvailability({VisitDate, PartySize, BookingId}) {
+  async getAvailability({VisitDate, PartySize, BookingId, Areas}) {
     const reqData = {
       method: 'POST',
       url: `/Restaurant/${this.restauarant}/AvailabilitySearch`,
       data: {VisitDate, PartySize, channelCode: 'ONLINE'}
     };
+    const apiCalls = [];
 
     if (BookingId) {
-      reqData.data.BookingId = BookingId
+      reqData.data.BookingId = BookingId;
     }
 
-    const {data: {data}} = await axios.post(this.api, qs.stringify(reqData));
+    for (let area of Areas) {
+      apiCalls.push(axios.post(this.api, qs.stringify({...reqData, AreaID: area.Id})));
+    }
 
-    return data;
+    const areaData = await Promise.all(apiCalls);
+
+    return Areas.map((area, i) => ({...area, ...areaData[i].data.data}));
   }
 
 }

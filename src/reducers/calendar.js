@@ -1,4 +1,4 @@
-import {GET_CLOSED_DATES_FULFILLED, GET_CLOSED_DATES_REJECTED} from '../../constants';
+import {GET_CLOSED_DATES_FULFILLED, GET_CLOSED_DATES_REJECTED} from '../constants';
 
 const getIndex = day => ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].indexOf(day);
 

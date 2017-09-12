@@ -31,19 +31,24 @@
       }
     }
 
-    &:last-child {
-      @include breakpoint (0 ($tablet-medium - 1)) {
-        margin-top: 20px;
-      }
-      @include breakpoint ($tablet-medium) {
-        width: calc(60% - 10px);
-      }
+  }
+
+  > div {
+    @include breakpoint (0 ($tablet-medium - 1)) {
+      margin-top: 20px;
+    }
+    @include breakpoint ($tablet-medium) {
+      width: calc(60% - 10px);
     }
   }
 
-  nav {
+  .react-tabs__tab-list {
     border-bottom: 1px solid #000000;
     display: flex;
+  }
+
+  .react-tabs__tab {
+    cursor: pointer;
   }
 
   // #info {
@@ -79,13 +84,18 @@
 }
 
 #available-times {
-  dt {
-    font-weight: bold;
-    margin-bottom: 10px;
+
+  div {
 
     &:not(:first-of-type) {
       margin-top: 20px;
     }
+
+    dt {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
   }
 
   dd {

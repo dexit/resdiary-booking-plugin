@@ -51,4 +51,4 @@ const Calendar = props => {
   );
 };
 
-export default reduxForm({form: 'reservationDetails'})(Calendar)
+export default reduxForm({form: 'reservationDetails', destroyOnUnmount: false})(Calendar)

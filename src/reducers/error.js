@@ -1,4 +1,4 @@
-import {HIDE_ERROR, SHOW_ERROR} from '../../constants';
+import {HIDE_ERROR, SHOW_ERROR} from '../constants';
 
 const error = (state = {error: false}, {type}) => {
   switch (type) {

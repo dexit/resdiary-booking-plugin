@@ -90,7 +90,6 @@ class ResDiary {
 			);
 			$body     = $data['data'];
 			$response = null;
-			error_log( json_encode( $body ) . __LINE__ );
 
 			if ( $data['method'] === 'POST' ) {
 

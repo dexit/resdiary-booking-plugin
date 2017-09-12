@@ -1,14 +1,22 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import moment from 'moment';
+import {setTerms} from '../../actions';
 
-const ConfirmReservation = props => {
+const ConfirmReservation = ({timeSlot, people, setTerms, termsAgreed}) => {
+
+  const handleChange = e => {
+    setTerms(e.target.checked);
+  };
+
   return (
     <section id="confirm-reservation">
       <div>
         <ul id="proposed-reservation">
-          <li id="date">Tuesday 12th February 2018</li>
-          <li id="people"><span>22</span> people</li>
-          <li id="time"><span>18:00</span>HRS</li>
-          <li id="area">Pub Table</li>
+          <li id="date">{moment(timeSlot.time).format('dddd Do MMMM YYYY')}</li>
+          <li id="people"><span>{people}</span> people</li>
+          <li id="time"><span>{moment(timeSlot.time).format('HH mm')}</span>HRS</li>
+          <li id="area">{timeSlot.area.name}</li>
         </ul>
         <div className="text-container">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
@@ -18,7 +26,7 @@ const ConfirmReservation = props => {
             deserunt mollit anim id est laborum.
           </p>
           <p>
-            <input type="checkbox" name="terms" value="agree"/>
+            <input type="checkbox" name="terms" value="agree" onChange={handleChange} checked={termsAgreed}/>
             <label htmlFor="terms">I accept the terms and conditions</label>
           </p>
         </div>
@@ -27,4 +35,12 @@ const ConfirmReservation = props => {
   );
 };
 
-export default ConfirmReservation;
+const mapStateToProps = state => {
+  return {
+    people: state.form.reservationDetails.values.people,
+    timeSlot: state.timeSlot,
+    termsAgreed: state.termsAgreed
+  };
+};
+
+export default connect(mapStateToProps, {setTerms})(ConfirmReservation);
