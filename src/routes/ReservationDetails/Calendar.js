@@ -16,7 +16,8 @@ const Calendar = props => {
     people,
     sitting,
     handlePeopleChange,
-    handleSittingChange
+    handleSittingChange,
+    submitting
   } = props;
 
   for (let i = minPartySize; i <= maxPartySize; i++) {
@@ -44,7 +45,7 @@ const Calendar = props => {
         <option disabled defaultValue>Sitting</option>
         {services.map(svc => <option key={svc.ServiceId} value={svc.ServiceId}>{svc.Name}</option>)}
       </Field>
-      <button type="submit" disabled={!selectedDay || !people || !sitting}>
+      <button type="submit" disabled={!selectedDay || !people || !sitting || submitting}>
         Search Times
       </button>
     </form>

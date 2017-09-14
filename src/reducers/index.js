@@ -5,6 +5,7 @@ import restaurant from './restaurant';
 import availability from './availability';
 import timeSlot from './timeSlot';
 import termsAgreed from './termsAgreed';
+import booking from './booking';
 import {reducer as formReducer} from 'redux-form';
 
 export default combineReducers({
@@ -14,5 +15,6 @@ export default combineReducers({
   availability,
   timeSlot,
   termsAgreed,
+  booking,
   form: formReducer
 });

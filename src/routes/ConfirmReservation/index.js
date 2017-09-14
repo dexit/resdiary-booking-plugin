@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import moment from 'moment';
 import {setTerms} from '../../actions';
+import ProposedReservation from '../../components/ProposedReservation';
 
 const ConfirmReservation = ({timeSlot, people, setTerms, termsAgreed}) => {
 
@@ -12,12 +12,7 @@ const ConfirmReservation = ({timeSlot, people, setTerms, termsAgreed}) => {
   return (
     <section id="confirm-reservation">
       <div>
-        <ul id="proposed-reservation">
-          <li id="date">{moment(timeSlot.time).format('dddd Do MMMM YYYY')}</li>
-          <li id="people"><span>{people}</span> people</li>
-          <li id="time"><span>{moment(timeSlot.time).format('HH mm')}</span>HRS</li>
-          <li id="area">{timeSlot.area.name}</li>
-        </ul>
+        <ProposedReservation timeSlot={timeSlot} people={people}/>
         <div className="text-container">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip

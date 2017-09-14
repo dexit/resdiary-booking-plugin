@@ -54,6 +54,29 @@ class ResDiary {
     return Areas.map((area, i) => ({...area, ...areaData[i].data.data}));
   }
 
+  async createBooking({}) {
+    const reqData = {
+      method: 'POST',
+      url: `/Restaurant/${this.restauarant}/BookingWithStripeToken`,
+      data: {
+        ChannelCode: 'ONLINE',
+        VisitDate: "2017-09-12T21:18:39",
+        VisitTime: "00:00:00.1234567",
+        PartySize: 1,
+        // SpecialRequests: "sample string 2",
+        Customer: {
+          FirstName: "sample string 3",
+          Surname: "sample string 4",
+          Phone: "sample string 6",
+          Email: "sample string 7",
+        }
+      }
+    };
+    const {data: {data}} = await axios.post(this.api, qs.stringify(reqData));
+
+    return data;
+  }
+
 }
 
 export default new ResDiary();

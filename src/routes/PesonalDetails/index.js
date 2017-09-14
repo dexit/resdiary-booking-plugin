@@ -1,19 +1,24 @@
 import React from 'react';
+import ProposedReservation from '../../components/ProposedReservation';
+import PersonalDetailsForm from './PersonalDetailsForm';
+import {connect} from 'react-redux';
+import {createBooking} from '../../actions';
 
-const PersonalDetails = props => {
+const PersonalDetails = ({timeSlot, people, createBooking}) => {
+
   return (
     <section id="personal-details">
-      <div>
-        <input type="text" placeholder="First Name"/>
-        <input type="text" placeholder="Last Name"/>
-        <input type="email" placeholder="Email Address"/>
-        <input type="tel" placeholder="Telephone Number"/>
-      </div>
-      <div>
-        <textarea></textarea>
-      </div>
+      <ProposedReservation timeSlot={timeSlot} people={people}/>
+      <PersonalDetailsForm createBooking={createBooking}/>
     </section>
   );
 };
+//remove onsubmit
+const mapStateToProps = state => {
+  return {
+    people: state.form.reservationDetails.values.people,
+    timeSlot: state.timeSlot
+  };
+};
 
-export default PersonalDetails;
+export default connect(mapStateToProps, {createBooking})(PersonalDetails);

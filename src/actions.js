@@ -1,5 +1,7 @@
 import ResDiary from './services/ResDiary';
+import {submit} from 'redux-form';
 import {
+  CREATE_BOOKING,
   GET_AVAILABILITY,
   GET_CLOSED_DATES,
   GET_RESTAURANT_SETUP,
@@ -70,3 +72,24 @@ export const setTimeSlot = (timeSlot) => dispatch => {
 export const setTerms = (checked) => dispatch => {
   dispatch({type: SET_TERMS, payload: checked});
 };
+
+export const createBooking = (data) => {
+
+  return dispatch => {
+
+    dispatch({type: HIDE_ERROR});
+
+    return dispatch({
+      type: CREATE_BOOKING,
+      payload: ResDiary.createBooking(data)
+    })
+      .then(() => this.props.history.push('/reservations/card-details'))
+      .catch(err => {
+        dispatch({type: SHOW_ERROR});
+
+        console.log(err);
+      });
+  }
+};
+
+export const remoteSubmit = () => dispatch => dispatch(submit('personalDetails'));
