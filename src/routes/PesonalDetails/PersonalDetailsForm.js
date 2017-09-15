@@ -1,10 +1,10 @@
 import React from 'react';
-import {Field, Form, reduxForm} from 'redux-form'
+import {Field, reduxForm} from 'redux-form'
 
-const PersonalDetailsForm = ({handleSubmit, createBooking}) => {
+const PersonalDetailsForm = () => {
 
   return (
-    <Form id="personal-details-form" onSubmit={handleSubmit(createBooking)}>
+    <form id="personal-details-form">
       <div>
         <Field name="firstName" type="text" component="input"/>
         <Field name="lastName" type="text" component="input"/>
@@ -14,7 +14,7 @@ const PersonalDetailsForm = ({handleSubmit, createBooking}) => {
       <div>
         <Field name="specialRequests" component="textarea"/>
       </div>
-    </Form>
+    </form>
   );
 };
 

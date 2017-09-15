@@ -54,25 +54,34 @@ class ResDiary {
     return Areas.map((area, i) => ({...area, ...areaData[i].data.data}));
   }
 
-  async createBooking({}) {
+  async createBooking({timeSlot, people, firstName, lastName, tel, email, specialRequests, stripeToken}) {
+
     const reqData = {
       method: 'POST',
       url: `/Restaurant/${this.restauarant}/BookingWithStripeToken`,
       data: {
         ChannelCode: 'ONLINE',
-        VisitDate: "2017-09-12T21:18:39",
-        VisitTime: "00:00:00.1234567",
-        PartySize: 1,
-        // SpecialRequests: "sample string 2",
+        VisitDate: timeSlot.time,
+        VisitTime: timeSlot.time.split('T')[1].slice(0, -1),
+        PartySize: people,
+        SpecialRequests: specialRequests,
+        AreaID: timeSlot.area.id,
         Customer: {
-          FirstName: "sample string 3",
-          Surname: "sample string 4",
-          Phone: "sample string 6",
-          Email: "sample string 7",
+          FirstName: firstName,
+          Surname: lastName,
+          Mobile: tel,
+          Email: email
+        },
+        StripeToken: stripeToken
         }
       }
-    };
+    ;
+
     const {data: {data}} = await axios.post(this.api, qs.stringify(reqData));
+
+    if (data.Status !== 'Success') {
+      throw new Error(data.Status);
+    }
 
     return data;
   }

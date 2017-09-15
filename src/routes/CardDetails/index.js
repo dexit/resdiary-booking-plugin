@@ -1,24 +1,50 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {Elements, StripeProvider} from 'react-stripe-elements';
+import StripeForm from './StripeForm';
+import {connect} from 'react-redux';
+import {createBooking, getStripeToken, paymentDetailsVaild} from '../../actions';
 
-const CardDetails = props => {
-  return (
-    <section id="card-details">
-      <div>
-        <input type="text" placeholder="Name on card"/>
-        <input type="number" placeholder="Card number"/>
-        <input type="number" placeholder="Security code"/>
-        <input type="tel" placeholder="Telephone Number"/>
-      </div>
-      <div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-          officia deserunt mollit anim id est laborum.
-        </p>
-      </div>
-    </section>
-  );
+class CardDetails extends Component {
+
+  componentWillReceiveProps(nextProps) {
+    // if (!this.props.booking.complete && nextProps.booking.complete) {
+    //   this.props.history.push('/reservations/reservation-confirmed');
+    // }
+
+    if (!Object.keys(this.props.booking.stripe).length && Object.keys(nextProps.booking.stripe).length) {
+      const data = {
+        ...this.props.reservationDetails,
+        ...this.props.personalDetails,
+        timeSlot: this.props.timeSlot,
+        stripeToken: nextProps.stripeToken
+      };
+      this.props.createBooking(data);
+    }
+  }
+
+//pk_test_OKWxyW0ySXJeBE3XQW8r0TN9
+  render() {
+    return (
+      <StripeProvider apiKey="pk_test_PBhW0eCN4VmbnK3mW7TmoNRs">
+        <Elements>
+          <StripeForm
+            paymentDetailsVaild={this.props.paymentDetailsVaild}
+            getStripeToken={this.props.getStripeToken}
+          />
+        </Elements>
+      </StripeProvider>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    booking: state.booking,
+    timeSlot: state.timeSlot,
+    personalDetails: state.form.personalDetails.values,
+    reservationDetails: state.form.reservationDetails.values,
+    stripeToken: state.booking.stripe.id
+  };
 };
 
-export default CardDetails;
+export default connect(mapStateToProps, {paymentDetailsVaild, getStripeToken, createBooking})(CardDetails);

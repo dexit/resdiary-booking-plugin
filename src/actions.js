@@ -1,7 +1,8 @@
 import ResDiary from './services/ResDiary';
-import {submit} from 'redux-form';
 import {
   CREATE_BOOKING,
+  CREATE_BOOKING_PAYMENT_VALID,
+  CREATE_BOOKING_STRIPE_TOKEN,
   GET_AVAILABILITY,
   GET_CLOSED_DATES,
   GET_RESTAURANT_SETUP,
@@ -21,12 +22,9 @@ export const getClosedDates = () => {
       type: GET_CLOSED_DATES,
       payload: ResDiary.getClosedDates()
     })
-      .catch(err => {
-        dispatch({type: SHOW_ERROR});
+      .catch(err => dispatch({type: SHOW_ERROR, payload: err}));
 
-        console.log(err);
-      });
-  }
+  };
 };
 
 export const getRestaurantSetup = () => {
@@ -39,12 +37,9 @@ export const getRestaurantSetup = () => {
       type: GET_RESTAURANT_SETUP,
       payload: ResDiary.getRestaurantSetup()
     })
-      .catch(err => {
-        dispatch({type: SHOW_ERROR});
+      .catch(err => dispatch({type: SHOW_ERROR, payload: err}));
 
-        console.log(err);
-      });
-  }
+  };
 };
 
 export const getAvailability = (data) => {
@@ -57,12 +52,9 @@ export const getAvailability = (data) => {
       type: GET_AVAILABILITY,
       payload: ResDiary.getAvailability(data)
     })
-      .catch(err => {
-        dispatch({type: SHOW_ERROR});
+      .catch(err => dispatch({type: SHOW_ERROR, payload: err}));
 
-        console.log(err);
-      });
-  }
+  };
 };
 
 export const setTimeSlot = (timeSlot) => dispatch => {
@@ -83,13 +75,28 @@ export const createBooking = (data) => {
       type: CREATE_BOOKING,
       payload: ResDiary.createBooking(data)
     })
-      .then(() => this.props.history.push('/reservations/card-details'))
-      .catch(err => {
-        dispatch({type: SHOW_ERROR});
-
-        console.log(err);
-      });
-  }
+      .catch(err => dispatch({type: SHOW_ERROR, payload: err.message}));
+  };
 };
 
-export const remoteSubmit = () => dispatch => dispatch(submit('personalDetails'));
+export const paymentDetailsVaild = (isValid) => dispatch => {
+  return dispatch({type: CREATE_BOOKING_PAYMENT_VALID, payload: isValid});
+};
+
+export const getStripeToken = (stripe) => {
+
+  return dispatch => {
+
+    dispatch({type: HIDE_ERROR});
+
+    return dispatch({
+      type: CREATE_BOOKING_STRIPE_TOKEN,
+      payload: stripe.createToken()
+        .then(res => {
+          if (res.error) throw err;
+          return res.token;
+        })
+    })
+      .catch(err => dispatch({type: SHOW_ERROR, payload: err.message}));
+  };
+};

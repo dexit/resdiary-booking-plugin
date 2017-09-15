@@ -1,23 +1,31 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ProposedReservation from '../../components/ProposedReservation';
 import PersonalDetailsForm from './PersonalDetailsForm';
 import {connect} from 'react-redux';
 import {createBooking} from '../../actions';
 
-const PersonalDetails = ({timeSlot, people, createBooking}) => {
+class PersonalDetails extends Component {
 
-  return (
-    <section id="personal-details">
-      <ProposedReservation timeSlot={timeSlot} people={people}/>
-      <PersonalDetailsForm createBooking={createBooking}/>
-    </section>
-  );
-};
-//remove onsubmit
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <section id="personal-details">
+        <ProposedReservation timeSlot={this.props.timeSlot} people={this.props.people}/>
+        <PersonalDetailsForm/>
+      </section>
+    );
+  }
+
+
+}
+
 const mapStateToProps = state => {
   return {
     people: state.form.reservationDetails.values.people,
-    timeSlot: state.timeSlot
+    timeSlot: state.timeSlot,
   };
 };
 

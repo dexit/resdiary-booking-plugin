@@ -2,9 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {Link, Route} from 'react-router-dom';
-import {remoteSubmit} from '../actions'
 
-const Footer = ({error, location, timeSlot, termsAgreed, personalDetailsForm, remoteSubmit}) => {
+const Footer = ({error, location, timeSlot, termsAgreed, personalDetailsForm, paymentValid, bookingPending}) => {
   const nextRoutes = [
     ['/reservations/reservation-details', '/reservations/confirm-reservation'],
     ['/reservations/confirm-reservation', '/reservations/personal-details'],
@@ -14,11 +13,18 @@ const Footer = ({error, location, timeSlot, termsAgreed, personalDetailsForm, re
   const nextRouteMap = new Map(nextRoutes);
   const nextLink = nextRouteMap.get(location.pathname);
   const isDisabled = () => {
+
+    if (bookingPending) {
+      return true;
+    }
+
     switch (nextLink) {
       case '/reservations/confirm-reservation':
-        return !timeSlot;
+        return !timeSlot.time;
       case '/reservations/personal-details':
         return !termsAgreed;
+      case '/reservations/reservation-confirmed':
+        return !paymentValid;
       default:
         return false;
     }
@@ -31,11 +37,8 @@ const Footer = ({error, location, timeSlot, termsAgreed, personalDetailsForm, re
   const formValid = () => {
     if (nextLink === '/reservations/card-details') {
       const values = personalDetailsForm.values;
-      if (!values) return;
 
-      for (let value of Object.keys(values)) {
-        if (!values[value]) return;
-      }
+      if (!values || Object.keys(values).length < 4) return;
 
       if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
         return;
@@ -49,9 +52,9 @@ const Footer = ({error, location, timeSlot, termsAgreed, personalDetailsForm, re
       return;
     }
 
-    if (nextLink === '/reservations/card-details') {
+    if (nextLink === '/reservations/reservation-confirmed') {
       e.preventDefault();
-      remoteSubmit();
+      document.getElementById('stripe-form').click();
     }
 
   };
@@ -68,7 +71,11 @@ const Footer = ({error, location, timeSlot, termsAgreed, personalDetailsForm, re
         >
           {linkText()}
         </Link>
-        {error && <p id="error-message">Oops! There has been an error.</p>}
+        {error.error &&
+        <p id="error-message">
+          Oops! There has been an error.
+          <span id="error-description">{error.message}</span>
+        </p>}
       </footer>
     )
   };
@@ -78,12 +85,13 @@ const Footer = ({error, location, timeSlot, termsAgreed, personalDetailsForm, re
 
 const mapStateToProps = state => {
   return {
-    error: state.error.error,
-    timeSlot: state.timeSlot.time,
+    error: state.error,
+    timeSlot: state.timeSlot,
     termsAgreed: state.termsAgreed,
-    personalDetailsForm: state.form.personalDetails
+    personalDetailsForm: state.form.personalDetails,
+    bookingPending: state.booking.pending,
+    paymentValid: state.booking.paymentValid
   };
 };
 
-export default withRouter(connect(mapStateToProps, {remoteSubmit})(Footer));
-{/*<span id="error-description"></span>*/}
+export default withRouter(connect(mapStateToProps)(Footer));
