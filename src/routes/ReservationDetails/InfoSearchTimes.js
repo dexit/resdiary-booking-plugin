@@ -2,7 +2,8 @@ import React from 'react';
 import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
 import moment from 'moment';
 
-const InfoSearchTimes = ({tabIndex, handleTabSelect, availability, handleTimeSlotClick}) => {
+const InfoSearchTimes = ({tabIndex, handleTabSelect, availability, handleTimeSlotClick, unavailableText}) => {
+
   return (
     <Tabs selectedIndex={tabIndex} onSelect={handleTabSelect}>
       <TabList>
@@ -22,18 +23,21 @@ const InfoSearchTimes = ({tabIndex, handleTabSelect, availability, handleTimeSlo
           {availability.map((area, i) => (
             <div key={`available-times-${i}`}>
               <dt>{area.Name}</dt>
-              <dd>
-                {area.TimeSlots.map((slot, i) => (
-                  <button
-                    type="button"
-                    value={JSON.stringify({time: slot.TimeSlot, area: {id: area.Id, name: area.Name}})}
-                    key={`time-slot-${i}`}
-                    onClick={handleTimeSlotClick}
-                  >
-                    {moment(slot.TimeSlot).format('HH mm')}
-                  </button>
-                ))}
-              </dd>
+              {area.TimeSlots.length ?
+               <dd>
+                 {area.TimeSlots.map((slot, i) => (
+                   <button
+                     type="button"
+                     value={JSON.stringify({time: slot.TimeSlot, area: {id: area.Id, name: area.Name}})}
+                     key={`time-slot-${i}`}
+                     onClick={handleTimeSlotClick}
+                   >
+                     {moment.utc(slot.TimeSlot).format('HH mm')}
+                   </button>
+                 ))}
+               </dd>
+                : <dd className="unavailable">{unavailableText}</dd>
+              }
             </div>
           ))}
         </dl>

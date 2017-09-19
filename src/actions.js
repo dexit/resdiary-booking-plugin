@@ -1,16 +1,29 @@
 import ResDiary from './services/ResDiary';
+import {initialize, reset} from 'redux-form'
 import {
   CREATE_BOOKING,
   CREATE_BOOKING_PAYMENT_VALID,
   CREATE_BOOKING_STRIPE_TOKEN,
   GET_AVAILABILITY,
+  GET_BOOKING,
   GET_CLOSED_DATES,
   GET_RESTAURANT_SETUP,
   HIDE_ERROR,
+  PAGE_NUMBER,
+  RESET_AVAILABILITY,
+  RESET_INITIAL_FORM_STATE,
+  RESET_TIMESLOT,
+  SET_AMEND_BOOKING,
+  SET_INITIAL_FORM_STATE,
   SET_TERMS,
   SET_TIMESLOT,
-  SHOW_ERROR
+  SHOW_ERROR,
+  UPDATE_BOOKING
 } from './constants';
+
+const handleErr = dispatch => {
+  return err => dispatch({type: SHOW_ERROR, payload: err.message || err});
+};
 
 export const getClosedDates = () => {
 
@@ -22,7 +35,7 @@ export const getClosedDates = () => {
       type: GET_CLOSED_DATES,
       payload: ResDiary.getClosedDates()
     })
-      .catch(err => dispatch({type: SHOW_ERROR, payload: err}));
+      .catch(handleErr(dispatch));
 
   };
 };
@@ -37,12 +50,12 @@ export const getRestaurantSetup = () => {
       type: GET_RESTAURANT_SETUP,
       payload: ResDiary.getRestaurantSetup()
     })
-      .catch(err => dispatch({type: SHOW_ERROR, payload: err}));
+      .catch(handleErr(dispatch));
 
   };
 };
 
-export const getAvailability = (data) => {
+export const getAvailability = (data, service) => {
 
   return dispatch => {
 
@@ -50,9 +63,10 @@ export const getAvailability = (data) => {
 
     return dispatch({
       type: GET_AVAILABILITY,
-      payload: ResDiary.getAvailability(data)
+      payload: ResDiary.getAvailability(data),
+      meta: {service}
     })
-      .catch(err => dispatch({type: SHOW_ERROR, payload: err}));
+      .catch(handleErr(dispatch));
 
   };
 };
@@ -75,7 +89,7 @@ export const createBooking = (data) => {
       type: CREATE_BOOKING,
       payload: ResDiary.createBooking(data)
     })
-      .catch(err => dispatch({type: SHOW_ERROR, payload: err.message}));
+      .catch(handleErr(dispatch));
   };
 };
 
@@ -97,6 +111,66 @@ export const getStripeToken = (stripe) => {
           return res.token;
         })
     })
-      .catch(err => dispatch({type: SHOW_ERROR, payload: err.message}));
+      .catch(handleErr(dispatch));
   };
+};
+
+export const setPage = (page) => dispatch => {
+  dispatch({type: PAGE_NUMBER, payload: page});
+};
+
+export const setAmendBooking = (amendBooking) => dispatch => {
+  dispatch({type: SET_AMEND_BOOKING, payload: amendBooking});
+};
+
+export const getBooking = (data) => {
+
+  return dispatch => {
+
+    dispatch({type: HIDE_ERROR});
+
+    return dispatch({
+      type: GET_BOOKING,
+      payload: ResDiary.getBooking(data)
+    })
+      .catch(handleErr(dispatch));
+  };
+};
+
+export const setInitialFormState = (initialValues) => dispatch => {
+  dispatch({type: SET_INITIAL_FORM_STATE, payload: initialValues});
+};
+
+export const resetInitialFormState = () => dispatch => {
+  dispatch({type: RESET_INITIAL_FORM_STATE})
+};
+
+export const resetAvailability = () => dispatch => {
+  dispatch({type: RESET_AVAILABILITY})
+};
+
+export const reInitForm = (formName) => dispatch => {
+  dispatch(initialize(formName));
+};
+
+export const updateBooking = (data) => {
+
+  return dispatch => {
+
+    dispatch({type: HIDE_ERROR});
+
+    return dispatch({
+      type: UPDATE_BOOKING,
+      payload: ResDiary.updateBooking(data)
+    })
+      .catch(handleErr(dispatch));
+  };
+};
+
+export const resetForm = (formName) => dispatch => {
+  dispatch(reset(formName));
+};
+
+export const resetTimeSlot = () => dispatch => {
+  dispatch({type: RESET_TIMESLOT});
 };

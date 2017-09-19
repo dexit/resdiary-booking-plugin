@@ -1,9 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
-import {Link, Route} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {createBooking, updateBooking} from '../actions';
 
-const Footer = ({error, location, timeSlot, termsAgreed, personalDetailsForm, paymentValid, bookingPending}) => {
+const Footer = props => {
+  const {
+    error,
+    location,
+    page,
+    timeSlot,
+    termsAgreed,
+    personalDetailsForm,
+    paymentValid,
+    bookingPending,
+    bookingAmending,
+    bookingComplete,
+    createBooking,
+    updateBooking,
+    reservationDetails,
+    booking
+  } = props;
   const nextRoutes = [
     ['/reservations/reservation-details', '/reservations/confirm-reservation'],
     ['/reservations/confirm-reservation', '/reservations/personal-details'],
@@ -30,9 +47,12 @@ const Footer = ({error, location, timeSlot, termsAgreed, personalDetailsForm, pa
     }
   };
   const linkText = () => {
-    const showNext = ['/reservations/confirm-reservation', '/reservations/personal-details'];
+    const nextPaths = ['/reservations/confirm-reservation', '/reservations/personal-details'];
+    if (nextPaths.includes(nextLink) && !bookingAmending) {
+      return 'Next'
+    }
+    return 'Confirm'
 
-    return showNext.includes(nextLink) ? 'Next' : 'Confirm'
   };
   const formValid = () => {
     if (nextLink === '/reservations/card-details') {
@@ -47,8 +67,20 @@ const Footer = ({error, location, timeSlot, termsAgreed, personalDetailsForm, pa
     return true;
   };
   const handleClick = (e) => {
+    console.log('wwww');
     if (isDisabled() || !formValid()) {
       e.preventDefault();
+      return;
+    }
+
+    if (bookingAmending) {
+      const data = {
+        ...reservationDetails.values,
+        timeSlot,
+        bookingRef: booking.Booking.Reference
+      };
+      e.preventDefault();
+      updateBooking(data);
       return;
     }
 
@@ -57,31 +89,50 @@ const Footer = ({error, location, timeSlot, termsAgreed, personalDetailsForm, pa
       document.getElementById('stripe-form').click();
     }
 
+    if (nextLink === '/reservations/card-details') {
+      const data = {
+        ...reservationDetails.values,
+        ...personalDetailsForm.values,
+        timeSlot
+      };
+      e.preventDefault();
+      console.log('eeee');
+      // document.getElementById('personal-details-form').blur();
+      createBooking(data);
+    }
+
+  };
+  const hideFooter = () => {
+    const hideForRoute = ['/reservations/amend-booking', '/reservations/your-reservation'];
+    return bookingComplete || !page || hideForRoute.includes(location.pathname);
   };
 
-  const Footer = () => {
-    return (
-      <footer>
-        <button id="prev-button" type="button">Previous</button>
-        <Link
-          id="next-button"
-          className={isDisabled() || !formValid() ? "disabled" : null}
-          to={nextLink}
-          onClick={handleClick}
-        >
-          {linkText()}
-        </Link>
-        {error.error &&
-        <p id="error-message">
-          Oops! There has been an error.
-          <span id="error-description">{error.message}</span>
-        </p>}
-      </footer>
-    )
-  };
-
-  return <Route path="/reservations/(.*)" component={Footer}/>;
+  return hideFooter() ? null : (
+    <footer>
+      <Link
+        id="prev-button"
+        to='/reservations/reservation-details'
+        className={page === 1 ? 'button-hidden' : 'button-visible'}
+      >
+        Change date
+      </Link>
+      <Link
+        id="next-button"
+        className={isDisabled() || !formValid() ? "disabled" : null}
+        to={nextLink || ''}
+        onClick={handleClick}
+      >
+        {linkText()}
+      </Link>
+      {error.error &&
+      <p id="error-message">
+        Oops! There has been an error.
+        <span id="error-description">{error.message}</span>
+      </p>}
+    </footer>
+  )
 };
+
 
 const mapStateToProps = state => {
   return {
@@ -90,8 +141,14 @@ const mapStateToProps = state => {
     termsAgreed: state.termsAgreed,
     personalDetailsForm: state.form.personalDetails,
     bookingPending: state.booking.pending,
-    paymentValid: state.booking.paymentValid
+    bookingComplete: state.booking.complete,
+    bookingAmending: state.booking.amending,
+    booking: state.booking,
+    paymentValid: state.booking.paymentValid,
+    reservationDetails: state.form.reservationDetails,
+    stripe: state.booking.stripe,
+    page: state.page
   };
 };
 
-export default withRouter(connect(mapStateToProps)(Footer));
+export default withRouter(connect(mapStateToProps, {createBooking, updateBooking})(Footer));

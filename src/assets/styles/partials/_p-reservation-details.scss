@@ -101,6 +101,10 @@
   dd {
     margin: -5px;
 
+    &.unavailable {
+      margin: 0;
+    }
+
     button {
       margin: 5px;
     }

@@ -1,25 +1,38 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getAvailability, setTimeSlot} from '../../actions';
+import {getAvailability, setPage, setTimeSlot} from '../../actions';
 import moment from 'moment';
 import Calendar from './Calendar';
 import InfoSearchTimes from './InfoSearchTimes';
+import CustomEvent from 'custom-event';
+import {withRouter} from 'react-router';
 
 class ReservationDetails extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      selectedDay: null,
-      peopleValue: null,
-      sittingValue: null,
-      tabIndex: 0
+      selectedDay: (Object.keys(this.props.booking).length && new Date(this.props.booking.VisitDate)) || (this.props.timeSlot && new Date(this.props.timeSlot)) || null,
+      peopleValue: (Object.keys(this.props.booking).length && this.props.booking.PartySize) || null,
+      sittingValue: (this.props.reservationDetails && this.props.reservationDetails.values && this.props.reservationDetails.values.sitting) || null,
+      tabIndex: this.props.availability.length ? 1 : 0,
+      resetForm: !Object.keys(this.props.booking).length
     };
+    this.maxPartySizeModal;
   }
+
+  componentWillMount() {
+    this.props.setPage(1);
+  }
+
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.availability.length) {
       this.setState({tabIndex: 1})
+    }
+
+    if (nextProps.bookingComplete) {
+      this.props.history.push('/reservations/reservation-confirmed');
     }
   }
 
@@ -46,11 +59,19 @@ class ReservationDetails extends Component {
       PartySize: parseInt(this.state.peopleValue),
       Areas: this.props.Areas
     };
+    if (this.props.booking && this.props.booking.Id) {
+      data.BookingId = this.props.booking.Id;
+    }
     this.props.setTimeSlot({time: ''});
-    this.props.getAvailability(data);
+    this.props.getAvailability(data, parseInt(this.state.sittingValue));
   };
 
   handlePeopleChange = e => {
+    if (e.currentTarget.value === 'maxPartySizeModal') {
+      const event = new CustomEvent('resdiary:maxPartySizeModal');
+      this.maxPartySizeModal.dispatchEvent(event);
+      return;
+    }
     this.setState({peopleValue: e.currentTarget.value});
   };
 
@@ -66,7 +87,7 @@ class ReservationDetails extends Component {
 
   render() {
     return (
-      <section id="reservation-details">
+      <section id="reservation-details" ref={ref => this.maxPartySizeModal = ref}>
         <Calendar
           handleDayClick={this.handleDayClick}
           disabledDays={this.disabledDays()}
@@ -81,12 +102,15 @@ class ReservationDetails extends Component {
           handleSittingChange={this.handleSittingChange}
           people={this.state.peopleValue}
           sitting={this.state.sittingValue}
+          maxPartySizeModal={this.props.maxPartySizeModal}
+          resetForm={this.state.resetForm}
         />
         <InfoSearchTimes
           handleTabSelect={this.handleTabSelect}
           availability={this.props.availability}
           tabIndex={this.state.tabIndex}
           handleTimeSlotClick={this.handleTimeSlotClick}
+          unavailableText={this.props.unavailableText}
         />
       </section>
     );
@@ -102,7 +126,12 @@ const mapStateToProps = state => {
     services: state.restaurant.Services || [],
     Areas: state.restaurant.Areas,
     availability: state.availability,
+    unavailableText: state.restaurant.NoAvailabilityText,
+    booking: state.booking.Booking,
+    bookingComplete: state.booking.complete,
+    reservationDetails: state.form.reservationDetails,
+    timeSlot: state.timeSlot.time
   };
 };
 
-export default connect(mapStateToProps, {getAvailability, setTimeSlot})(ReservationDetails);
+export default withRouter(connect(mapStateToProps, {getAvailability, setTimeSlot, setPage})(ReservationDetails));

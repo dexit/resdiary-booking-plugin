@@ -46,7 +46,8 @@ class ResDiary {
     }
 
     for (let area of Areas) {
-      apiCalls.push(axios.post(this.api, qs.stringify({...reqData, AreaID: area.Id})));
+      reqData.data.AreaId = area.Id;
+      apiCalls.push(axios.post(this.api, qs.stringify({...reqData})));
     }
 
     const areaData = await Promise.all(apiCalls);
@@ -62,7 +63,7 @@ class ResDiary {
       data: {
         ChannelCode: 'ONLINE',
         VisitDate: timeSlot.time,
-        VisitTime: timeSlot.time.split('T')[1].slice(0, -1),
+        VisitTime: timeSlot.time.split('T')[1].split('Z')[0],
         PartySize: people,
         SpecialRequests: specialRequests,
         AreaID: timeSlot.area.id,
@@ -79,7 +80,39 @@ class ResDiary {
 
     const {data: {data}} = await axios.post(this.api, qs.stringify(reqData));
 
-    if (data.Status !== 'Success') {
+    if (!['Success', 'CreditCardRequired'].includes(data.Status)) {
+      throw new Error(data.Status);
+    }
+
+    return data;
+  }
+
+  async getBooking(bookingRef) {
+    const reqData = {
+      method: 'GET',
+      url: `/Restaurant/${this.restauarant}/Booking/${bookingRef}`
+    };
+    const {data: {data}} = await axios.post(this.api, qs.stringify(reqData));
+
+    return data;
+  }
+
+  async updateBooking({timeSlot, people, bookingRef}) {
+
+    const reqData = {
+      method: 'PUT',
+      url: `/Restaurant/${this.restauarant}/Booking/${bookingRef}`,
+      data: {
+        VisitDate: timeSlot.time,
+        VisitTime: timeSlot.time.split('T')[1].split('Z')[0],
+        PartySize: people,
+        AreaID: timeSlot.area.id
+      }
+    };
+
+    const {data: {data}} = await axios.post(this.api, qs.stringify(reqData));
+
+    if (!['Success', 'CreditCardRequired'].includes(data.Status)) {
       throw new Error(data.Status);
     }
 

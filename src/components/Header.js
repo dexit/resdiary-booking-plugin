@@ -1,23 +1,30 @@
 import React from 'react';
-import {Route, Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
+import ProgressBar from './ProgressBar';
 
-const ProgressBar = props => (
-  <ul id="progress-bar">
-    <li>
-      <button type="button"></button>
-    </li>
-    <li>
-      <button type="button" disabled></button>
-    </li>
-  </ul>
-);
+const newBookingHeadings = [
+  'Make A Reservation',
+  'Make A Reservation',
+  'Your Reservation Time',
+  'Your Details',
+  'Card Details',
+  'Reservation Confirmation'
+];
+const amendBookingHeadings = [
+  'Make A Reservation',
+  'Change The Date & Time',
+  'Manage Your Reservation',
+  'Your Reservation',
+  '',
+  'Reservation Confirmation'
+];
 
-const Header = props => {
+const Header = ({page, amendBooking}) => {
   return (
     <header>
-      <h1 className="header-title">Make a reservation</h1>
-      <p>You're just a minute away from booking your table at the Empress!</p>
-      <Route path="/reservations/(.*)" component={ProgressBar}/>
+      <h1 className="header-title">{amendBooking ? amendBookingHeadings[page] : newBookingHeadings[page]}</h1>
+      {!page && <p>You're just a minute away from booking your table at the Empress!</p>}
+      {!amendBooking && <Route path="/reservations/(.*)" render={() => <ProgressBar page={page}/>}/>}
     </header>
   );
 };

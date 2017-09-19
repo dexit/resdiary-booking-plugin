@@ -1,30 +1,45 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import ProposedReservation from '../../components/ProposedReservation';
+import {setPage, setTerms} from '../../actions';
 
-const ReservationConfirmed = props => {
-  return (
-    <section id="confirm-reservation">
-      <div>
-        <ul id="proposed-reservation">
-          <li id="date">Tuesday 12th February 2018</li>
-          <li id="people"><span>22</span> people</li>
-          <li id="time"><span>18:00</span>HRS</li>
-          <li id="area">Pub Table</li>
-        </ul>
-        <div className="text-container">
-          <dl id="booking-reference">
-            <dt>Booking Reference Number:</dt>
-            <dd>B2344</dd>
-          </dl>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.
-          </p>
+class ReservationConfirmed extends Component {
+
+  componentWillMount() {
+    this.props.setPage(5);
+  }
+
+  render() {
+    const {people, timeSlot, bookingRef} = this.props;
+
+    return (
+      <section id="confirm-reservation">
+        <div>
+          <ProposedReservation timeSlot={timeSlot} people={people}/>
+          <div className="text-container">
+            <dl id="booking-reference">
+              <dt>Booking Reference Number</dt>
+              <dd>{bookingRef}</dd>
+            </dl>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+              ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+              deserunt mollit anim id est laborum.
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
+  }
 };
 
-export default ReservationConfirmed;
+const mapStateToProps = state => {
+  return {
+    people: state.form.reservationDetails.values.people,
+    timeSlot: state.timeSlot,
+    bookingRef: state.booking.Booking.Reference
+  };
+};
+
+export default connect(mapStateToProps, {setTerms, setPage})(ReservationConfirmed);

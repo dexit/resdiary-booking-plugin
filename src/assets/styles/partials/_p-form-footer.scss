@@ -25,6 +25,14 @@
   }
 }
 
+.button-hidden {
+  visibility: hidden;
+}
+
+.button-visible {
+  visibility: visible;
+}
+
 #prev-button {
   @include breakpoint ($tablet-medium) {
     margin-right: 30px;

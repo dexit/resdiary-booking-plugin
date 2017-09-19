@@ -33,10 +33,11 @@ class ResDiaryBookingPlugin extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Header/>
+          <Header page={this.props.page} amendBooking={this.props.amendBooking}/>
           <Switch>
             <Route exact path='/reservations' component={BookingOptions}/>
-            <Route path='/reservations/reservation-details' component={ReservationDetails}/>
+            <Route path='/reservations/reservation-details'
+                   render={() => <ReservationDetails maxPartySizeModal={this.props.maxPartySizeModal}/>}/>
             <Route path='/reservations/confirm-reservation' component={ConfirmReservation}/>
             <Route path='/reservations/personal-details' component={PersonalDetails}/>
             <Route path='/reservations/card-details' component={CardDetails}/>
@@ -51,4 +52,6 @@ class ResDiaryBookingPlugin extends Component {
   }
 }
 
-export default connect(null, {getClosedDates, getRestaurantSetup})(ResDiaryBookingPlugin);
+const mapStateToProps = state => ({page: state.page, amendBooking: state.booking.amending});
+
+export default connect(mapStateToProps, {getClosedDates, getRestaurantSetup})(ResDiaryBookingPlugin);

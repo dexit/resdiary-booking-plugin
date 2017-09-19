@@ -35,13 +35,15 @@
 @import 'partials/p-form-footer';
 
 #amend-reservation,
-#confirm-reservation {
+#confirm-reservation,
+#personal-details {
   display: flex;
   justify-content: center;
   padding: 5% 0;
 
   > div {
     max-width: 600px;
+    flex: 1
   }
 }
 
@@ -80,7 +82,7 @@
 }
 
 #card-details,
-#personal-details {
+#personal-details-form {
   @include breakpoint ($tablet-medium) {
     display: flex;
     justify-content: space-between;
@@ -216,4 +218,10 @@
     position: absolute;
     right: 0;
   }
+}
+
+#terms-modal {
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
 }

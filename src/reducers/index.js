@@ -6,9 +6,13 @@ import availability from './availability';
 import timeSlot from './timeSlot';
 import termsAgreed from './termsAgreed';
 import booking from './booking';
+import page from './page';
+import initialFormState from './initialFormState';
 import {reducer as formReducer} from 'redux-form';
 
 export default combineReducers({
+  page,
+  initialFormState,
   restaurant,
   calendar,
   error,
