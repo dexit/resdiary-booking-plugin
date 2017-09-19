@@ -10,8 +10,12 @@ class ResDiary {
 	private static function checkUrl( $method, $url ) {
 		$url_list = array(
 			'GET'  => array( 'ClosedDates', 'Setup' ),
-			'POST' => array( 'AvailabilitySearch' )
+			'POST' => array( 'AvailabilitySearch', 'BookingWithStripeToken' )
 		);
+
+		if ( strpos( $url, 'Booking' ) !== false && ( $method === 'GET' || $method === 'PUT' ) ) {
+			return true;
+		}
 
 		preg_match( '/([^\/]+$)/', $url, $resource );
 
@@ -98,11 +102,21 @@ class ResDiary {
 					'body'    => json_encode( $body )
 				) );
 
-			} else {
+			} elseif ( $data['method'] === 'GET' ) {
 				$url      = $body ? $data['url'] . '?' . http_build_query( $body ) : $data['url'];
 				$response = wp_remote_get( self::$api . $url, array(
 					'headers' => $headers
 				) );
+
+			} elseif ( $data['method'] === 'PUT' ) {
+				$response = wp_remote_request(
+					self::$api . $data['url'],
+					array(
+						'method'  => 'PUT',
+						'headers' => $headers,
+						'body'    => json_encode( $body )
+					)
+				);
 			}
 
 			self::handleResponse( $response, $data );
