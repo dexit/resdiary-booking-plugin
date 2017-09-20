@@ -47,8 +47,9 @@ class ConfirmReservation extends Component {
                                                                    onClick={this.dispatchTerms}>here</span>
             </p>
             <p>
-              <input type="checkbox" name="terms" value="agree" onChange={this.handleChange} checked={termsAgreed}/>
-              <label htmlFor="terms">I accept the Terms and Conditions</label>
+              <label>
+              <input type="checkbox" name="terms" value="agree" onChange={this.handleChange} checked={termsAgreed}/> I accept the Terms and Conditions
+              </label>
             </p>
           </div>
         </div>
