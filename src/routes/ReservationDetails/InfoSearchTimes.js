@@ -26,14 +26,14 @@ const InfoSearchTimes = ({tabIndex, handleTabSelect, availability, handleTimeSlo
               {area.TimeSlots.length ?
                <dd>
                  {area.TimeSlots.map((slot, i) => (
-                   <button
-                     type="button"
-                     value={JSON.stringify({time: slot.TimeSlot, area: {id: area.Id, name: area.Name}})}
-                     key={`time-slot-${i}`}
-                     onClick={handleTimeSlotClick}
-                   >
-                     {moment.utc(slot.TimeSlot).format('HH mm')}
-                   </button>
+                   <label for="{JSON.stringify({time: slot.TimeSlot, area: {id: area.Id, name: area.Name}})}">
+                    <input
+                      type="radio"
+                      name="time"
+                      value={JSON.stringify({time: slot.TimeSlot, area: {id: area.Id, name: area.Name}})}
+                      key={`time-slot-${i}`} />
+                      {moment.utc(slot.TimeSlot).format('HH mm')}
+                  </label>
                  ))}
                </dd>
                 : <dd className="unavailable">{unavailableText}</dd>
