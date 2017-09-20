@@ -6,13 +6,13 @@ const PersonalDetailsForm = () => {
   return (
     <form id="personal-details-form">
       <div>
-        <Field name="firstName" type="text" component="input"/>
-        <Field name="lastName" type="text" component="input"/>
-        <Field name="email" type="text" component="input"/>
-        <Field name="tel" type="text" component="input"/>
+        <Field name="firstName" type="text" component="input" placeholder="First Name"/>
+        <Field name="lastName" type="text" component="input" placeholder="Last Name"/>
+        <Field name="email" type="text" component="input" placeholder="Email Address"/>
+        <Field name="tel" type="text" component="input" placeholder="Telephone Number"/>
       </div>
       <div>
-        <Field name="specialRequests" component="textarea"/>
+        <Field name="specialRequests" component="textarea" placeholder="Special Requests"/>
       </div>
     </form>
   );
