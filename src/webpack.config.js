@@ -14,7 +14,7 @@ const config = {
   plugins: debug ? [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
   ] : [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
@@ -38,7 +38,7 @@ const config = {
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.(s?)css$/,
         use:
           [
             {
@@ -77,8 +77,7 @@ const config = {
               loader: 'sass-resources-loader',
               options: {
                 resources: [
-                  './node_modules/breakpoint-sass/stylesheets/_breakpoint.scss',
-
+                  './node_modules/breakpoint-sass/stylesheets/_breakpoint.scss'
                 ]
               }
             },
@@ -89,11 +88,22 @@ const config = {
         use: {
           loader: 'file-loader'
         }
+      },
+      {
+        test: /\.modernizrrc.js$/,
+        loader: 'modernizr-loader'
+      },
+      {
+        test: /\.modernizrrc(\.json)?$/,
+        loader: 'modernizr-loader!json-loader'
       }
     ]
   },
   resolve: {
-    modules: [__dirname, 'node_modules']
+    modules: [__dirname, 'node_modules'],
+    alias: {
+      modernizr$: '.modernizrrc'
+    }
   }
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
 import moment from 'moment';
 
-const InfoSearchTimes = ({tabIndex, handleTabSelect, availability, handleTimeSlotClick, unavailableText}) => {
+const InfoSearchTimes = ({tabIndex, handleTabSelect, availability, handleTimeSlotClick, unavailableText, timeSlot}) => {
 
   return (
     <Tabs selectedIndex={tabIndex} onSelect={handleTabSelect}>
@@ -27,6 +27,7 @@ const InfoSearchTimes = ({tabIndex, handleTabSelect, availability, handleTimeSlo
                <dd>
                  {area.TimeSlots.map((slot, i) => (
                    <button
+                     className={timeSlot === slot.TimeSlot ? 'selected' : null}
                      type="button"
                      value={JSON.stringify({time: slot.TimeSlot, area: {id: area.Id, name: area.Name}})}
                      key={`time-slot-${i}`}

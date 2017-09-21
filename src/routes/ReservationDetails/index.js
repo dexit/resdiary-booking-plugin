@@ -4,8 +4,8 @@ import {getAvailability, setPage, setTimeSlot} from '../../actions';
 import moment from 'moment';
 import Calendar from './Calendar';
 import InfoSearchTimes from './InfoSearchTimes';
-import CustomEvent from 'custom-event';
 import {withRouter} from 'react-router';
+import CustomEvent from 'custom-event';
 
 class ReservationDetails extends Component {
 
@@ -67,16 +67,18 @@ class ReservationDetails extends Component {
   };
 
   handlePeopleChange = e => {
-    if (e.currentTarget.value === 'maxPartySizeModal') {
+    const value = e.currentTarget ? e.currentTarget.value : e;
+    if (value === 'maxPartySizeModal') {
       const event = new CustomEvent('resdiary:maxPartySizeModal');
       this.maxPartySizeModal.dispatchEvent(event);
       return;
     }
-    this.setState({peopleValue: e.currentTarget.value});
+    this.setState({peopleValue: value});
   };
 
   handleSittingChange = e => {
-    this.setState({sittingValue: e.currentTarget.value});
+    const value = e.currentTarget ? e.currentTarget.value : e;
+    this.setState({sittingValue: value});
   };
 
   handleTabSelect = tabIndex => this.setState({tabIndex});
@@ -111,6 +113,7 @@ class ReservationDetails extends Component {
           tabIndex={this.state.tabIndex}
           handleTimeSlotClick={this.handleTimeSlotClick}
           unavailableText={this.props.unavailableText}
+          timeSlot={this.props.timeSlot}
         />
       </section>
     );
