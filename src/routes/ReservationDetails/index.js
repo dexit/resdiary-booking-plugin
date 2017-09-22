@@ -133,7 +133,7 @@ const mapStateToProps = state => {
     booking: state.booking.Booking,
     bookingComplete: state.booking.complete,
     reservationDetails: state.form.reservationDetails,
-    timeSlot: state.timeSlot.time
+    timeSlot: state.timeSlot
   };
 };
 

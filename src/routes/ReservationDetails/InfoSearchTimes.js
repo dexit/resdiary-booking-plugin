@@ -27,7 +27,7 @@ const InfoSearchTimes = ({tabIndex, handleTabSelect, availability, handleTimeSlo
                <dd>
                  {area.TimeSlots.map((slot, i) => (
                    <button
-                     className={timeSlot === slot.TimeSlot ? 'selected' : null}
+                     className={timeSlot.time === slot.TimeSlot && timeSlot.area.id === area.Id ? 'selected' : null}
                      type="button"
                      value={JSON.stringify({time: slot.TimeSlot, area: {id: area.Id, name: area.Name}})}
                      key={`time-slot-${i}`}
