@@ -67,7 +67,6 @@ const Footer = props => {
     return true;
   };
   const handleClick = (e) => {
-    console.log('wwww');
     if (isDisabled() || !formValid()) {
       e.preventDefault();
       return;
@@ -96,8 +95,6 @@ const Footer = props => {
         timeSlot
       };
       e.preventDefault();
-      console.log('eeee');
-      // document.getElementById('personal-details-form').blur();
       createBooking(data);
     }
 

@@ -13,12 +13,19 @@ class ResDiary {
 			'POST' => array( 'AvailabilitySearch', 'BookingWithStripeToken' )
 		);
 
+		//any GET or PUT for Booking endpoints
 		if ( strpos( $url, 'Booking' ) !== false && ( $method === 'GET' || $method === 'PUT' ) ) {
+			return true;
+		}
+
+		//Restaurant/$name
+		if ( count( explode( '/', explode( self::$api, $url )[0] ) ) === 3 ) {
 			return true;
 		}
 
 		preg_match( '/([^\/]+$)/', $url, $resource );
 
+		//restricted to $url_list
 		if ( isset( $url_list[ $method ] ) && in_array( $resource[0], $url_list[ $method ] ) ) {
 			return true;
 		}
