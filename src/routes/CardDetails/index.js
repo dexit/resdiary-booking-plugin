@@ -36,6 +36,7 @@ class CardDetails extends Component {
             paymentDetailsVaild={this.props.paymentDetailsVaild}
             getStripeToken={this.props.getStripeToken}
             stripeKey={this.props.stripeKey}
+            paymentValid={this.props.paymentValid}
           />
         </Elements>
       </StripeProvider>
@@ -50,7 +51,8 @@ const mapStateToProps = state => {
     reservationDetails: state.form.reservationDetails.values,
     timeSlot: state.timeSlot,
     stripe: state.booking.stripe,
-    bookingComplete: state.booking.complete
+    bookingComplete: state.booking.complete,
+    paymentValid: state.booking.paymentValid
   };
 };
 

@@ -1,17 +1,67 @@
 import React, {Component} from 'react';
-import {CardElement, injectStripe} from 'react-stripe-elements';
+import {
+  CardCVCElement,
+  CardExpiryElement,
+  CardNumberElement,
+  injectStripe,
+  PostalCodeElement
+} from 'react-stripe-elements';
 
 class StripeForm extends Component {
 
+  static style = {
+    base: {
+      iconColor: '#666EE8',
+      color: '#31325F',
+      lineHeight: '40px',
+      fontWeight: 300,
+      fontFamily: `'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif`,
+      fontSize: '15px',
+      '::placeholder': {
+        color: '#868686',
+      }
+    }
+  };
+
   handleClick = () => this.props.getStripeToken(this.props.stripe);
-  handleChange = e => this.props.paymentDetailsVaild(e.complete);
+  handleChange = e => {
+    setTimeout(() => {
+      if (this.stripeCardNumber._complete && this.stripeCardExpiry._complete && this.stripeCvc._complete && this.stripeCardPostcode._complete) {
+        this.props.paymentDetailsVaild(true);
+      } else {
+        if (this.props.paymentValid) {
+          this.props.paymentDetailsVaild(false);
+        }
+      }
+    });
+  };
+
 
   render() {
     return (
       <section id="card-details">
         <div>
           <form id="stripe-form" onClick={this.handleClick}>
-            <CardElement onChange={this.handleChange}/>
+            <CardNumberElement
+              elementRef={ref => this.stripeCardNumber = ref}
+              style={StripeForm.style}
+              onChange={this.handleChange}
+            />
+            <CardExpiryElement
+              elementRef={ref => this.stripeCardExpiry = ref}
+              style={StripeForm.style}
+              onChange={this.handleChange}
+            />
+            <CardCVCElement
+              elementRef={ref => this.stripeCvc = ref}
+              style={StripeForm.style}
+              onChange={this.handleChange}
+            />
+            <PostalCodeElement
+              elementRef={ref => this.stripeCardPostcode = ref}
+              style={StripeForm.style}
+              onChange={this.handleChange}
+            />
           </form>
         </div>
         <div>
@@ -25,7 +75,7 @@ class StripeForm extends Component {
       </section>
     );
   }
-};
+}
 
 
 export default injectStripe(StripeForm);

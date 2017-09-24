@@ -22,7 +22,7 @@ const config = {
         NODE_ENV: JSON.stringify('production')
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({mangle: false, sourcemap: false}),
+    new webpack.optimize.UglifyJsPlugin({sourcemap: false}),
   ],
   module: {
     rules: [

@@ -7,14 +7,11 @@ import Modernizr from 'modernizr';
 
 class Calendar extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      peopleSelect: [],
-      servicesSelect: [],
-      isTouch: Modernizr.touchevents
-    };
-  }
+  state = {
+    peopleSelect: [],
+    servicesSelect: [],
+    isTouch: Modernizr.touchevents
+  };
 
   componentWillMount() {
     if (this.props.minPartySize) {
