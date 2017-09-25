@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {setPage, setTerms} from '../../actions';
 import ProposedReservation from '../../components/ProposedReservation';
 import CustomEvent from 'custom-event';
+import {ConfirmReservationText} from 'textTemplates';
 
 class ConfirmReservation extends Component {
 
@@ -37,18 +38,14 @@ class ConfirmReservation extends Component {
         <div>
           <ProposedReservation timeSlot={timeSlot} people={people}/>
           <div className="text-container">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-              deserunt mollit anim id est laborum.
-            </p>
+            <ConfirmReservationText/>
             <p>*Please read our booking Terms and Conditions <span id="terms-modal" ref={ref => this.termsModal = ref}
                                                                    onClick={this.dispatchTerms}>here</span>
             </p>
             <p>
               <label>
-              <input type="checkbox" name="terms" value="agree" onChange={this.handleChange} checked={termsAgreed}/> I accept the Terms and Conditions
+                <input type="checkbox" name="terms" value="agree" onChange={this.handleChange} checked={termsAgreed}/> I
+                accept the Terms and Conditions
               </label>
             </p>
           </div>

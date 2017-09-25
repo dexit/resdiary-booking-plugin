@@ -1,6 +1,7 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
 import ProgressBar from './ProgressBar';
+import {HeaderText} from 'textTemplates';
 
 const newBookingHeadings = [
   'Make A Reservation',
@@ -23,7 +24,7 @@ const Header = ({page, amendBooking}) => {
   return (
     <header>
       <h1 className="header-title">{amendBooking ? amendBookingHeadings[page] : newBookingHeadings[page]}</h1>
-      {!page && <p>You're just a minute away from booking your table at the Empress!</p>}
+      {!page && <HeaderText/>}
       {!amendBooking && <Route path="/reservations/(.*)" render={() => <ProgressBar page={page}/>}/>}
     </header>
   );
