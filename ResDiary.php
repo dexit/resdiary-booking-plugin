@@ -18,11 +18,6 @@ class ResDiary {
 			return true;
 		}
 
-		//Restaurant/$name
-		if ( count( explode( '/', explode( self::$api, $url )[0] ) ) === 3 ) {
-			return true;
-		}
-
 		preg_match( '/([^\/]+$)/', $url, $resource );
 
 		//restricted to $url_list
