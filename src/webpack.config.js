@@ -114,18 +114,10 @@ if (debug) {
     proxy: {
       '/wp-admin/admin-ajax': {
         target: {
-          host: 'incipio',
-          protocol: 'https:',
-          port: 443
-        },
-        changeOrigin: true,
-        secure: false
-      },
-      '/proxy': {
-        target: {
-          host: 'incipio',
-          protocol: 'https:',
-          port: 443
+          //match host to alias of localhost
+          host: 'incipio.local',
+          protocol: 'http:',
+          port: 80
         },
         changeOrigin: true,
         secure: false
