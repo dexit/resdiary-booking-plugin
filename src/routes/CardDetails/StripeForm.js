@@ -46,21 +46,25 @@ class StripeForm extends Component {
               elementRef={ref => this.stripeCardNumber = ref}
               style={StripeForm.style}
               onChange={this.handleChange}
+              placeholder="Card Number"
             />
             <CardExpiryElement
               elementRef={ref => this.stripeCardExpiry = ref}
               style={StripeForm.style}
               onChange={this.handleChange}
+              placeholder="Expiration Date"
             />
             <CardCVCElement
               elementRef={ref => this.stripeCvc = ref}
               style={StripeForm.style}
               onChange={this.handleChange}
+              placeholder="Security Code"
             />
             <PostalCodeElement
               elementRef={ref => this.stripeCardPostcode = ref}
               style={StripeForm.style}
               onChange={this.handleChange}
+              placeholder="Postal Code"
             />
           </form>
         </div>
