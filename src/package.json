@@ -44,6 +44,7 @@
     "css-loader": "^0.28.7",
     "cssnano": "^3.10.0",
     "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.30.1",
     "modernizr": "^3.5.0",
     "modernizr-loader": "^1.0.1",
     "node-sass": "^4.5.3",

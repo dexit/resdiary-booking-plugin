@@ -7,12 +7,6 @@ import {ConfirmReservationText} from 'textTemplates';
 
 class ConfirmReservation extends Component {
 
-  constructor(props) {
-    super(props);
-    this.termsModal;
-  }
-
-
   componentWillMount() {
     this.props.setPage(2);
   }
@@ -27,7 +21,7 @@ class ConfirmReservation extends Component {
         terms: this.props.terms
       }
     });
-    this.termsModal.dispatchEvent(event);
+    document.getElementById('resdiary-reservations').dispatchEvent(event);
   };
 
   render() {
@@ -39,8 +33,8 @@ class ConfirmReservation extends Component {
           <ProposedReservation timeSlot={timeSlot} people={people}/>
           <div className="text-container">
             <ConfirmReservationText/>
-            <p>*Please read our booking Terms and Conditions <span id="terms-modal" ref={ref => this.termsModal = ref}
-                                                                   onClick={this.dispatchTerms}>here</span>
+            <p>*Please read our booking Terms and Conditions
+              <span id="terms-modal" onClick={this.dispatchTerms}> here</span>
             </p>
             <p>
               <label>

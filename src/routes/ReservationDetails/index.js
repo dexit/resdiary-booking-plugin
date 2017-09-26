@@ -16,8 +16,7 @@ class ReservationDetails extends Component {
     tabIndex: this.props.availability.length ? 1 : 0,
     resetForm: !Object.keys(this.props.booking).length
   };
-  maxPartySizeModal;
-  
+
   componentWillMount() {
     this.props.setPage(1);
   }
@@ -67,7 +66,7 @@ class ReservationDetails extends Component {
     const value = e.currentTarget ? e.currentTarget.value : e;
     if (value === 'maxPartySizeModal') {
       const event = new CustomEvent('resdiary:maxPartySizeModal');
-      this.maxPartySizeModal.dispatchEvent(event);
+      document.getElementById('resdiary-reservations').dispatchEvent(event);
       return;
     }
     this.setState({peopleValue: value});
@@ -86,7 +85,7 @@ class ReservationDetails extends Component {
 
   render() {
     return (
-      <section id="reservation-details" ref={ref => this.maxPartySizeModal = ref}>
+      <section id="reservation-details">
         <Calendar
           handleDayClick={this.handleDayClick}
           disabledDays={this.disabledDays()}

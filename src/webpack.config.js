@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const debug = process.env.NODE_ENV !== 'production';
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (env) => {
   const config = {
@@ -17,6 +18,10 @@ module.exports = (env) => {
       new webpack.NoEmitOnErrorsPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NamedModulesPlugin(),
+      new HtmlWebpackPlugin({
+        template: 'index.ejs',
+        filename: 'index.html'
+      })
     ] : [
       new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.DefinePlugin({
@@ -123,6 +128,10 @@ module.exports = (env) => {
             port: 80
           },
           changeOrigin: true,
+          secure: false
+        },
+        '/resdiary-booking-plugin.min.js': {
+          target: `/resdiary-booking-plugin-${env.client}.min.js`,
           secure: false
         }
       },
