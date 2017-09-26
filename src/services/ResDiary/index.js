@@ -12,10 +12,6 @@ class ResDiary {
     this.restauarant = restaurant;
   }
 
-  formatDescData(data) {
-    return data.split('##').map(text => ({text: text.replace(/<br\/>/g, '')}));
-  }
-
   async getClosedDates() {
     const reqData = {
       method: 'GET',
@@ -27,24 +23,14 @@ class ResDiary {
   }
 
   async getRestaurantSetup() {
-    const setupReqData = {
+    const reqData = {
       method: 'GET',
       url: `/Restaurant/${this.restauarant}/Setup`,
       data: {date: new Date(), channelCode: 'ONLINE'}
     };
-    const resReqData = {
-      method: 'GET',
-      url: `/Restaurant/${this.restauarant}`,
-    };
-    const apiCalls = [
-      axios.post(this.api, qs.stringify(setupReqData)),
-      axios.post(this.api, qs.stringify(resReqData))
-    ];
-    const restaurant = await Promise.all(apiCalls);
+    const {data: {data}} = await axios.post(this.api, qs.stringify(reqData));
 
-    restaurant[0].data.data.Description = this.formatDescData(restaurant[1].data.data.Description);
-
-    return restaurant[0].data.data;
+    return data;
   }
 
   async getAvailability({VisitDate, PartySize, BookingId, Areas}) {
