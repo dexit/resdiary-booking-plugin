@@ -42,7 +42,8 @@ class ResDiary {
 	private static function fetchToken() {
 		$response = wp_remote_post( self::$token_url, array(
 			'headers' => array( 'Content-type' => 'application/json;charset=utf-8' ),
-			'body'    => json_encode( array( 'Username' => self::$username, 'Password' => self::$password ) )
+			'body'    => json_encode( array( 'Username' => self::$username, 'Password' => self::$password ) ),
+			'timeout' => 10
 		) );
 
 		if ( is_wp_error( $response ) ) {
@@ -101,13 +102,15 @@ class ResDiary {
 
 				$response = wp_remote_post( self::$api . $data['url'], array(
 					'headers' => $headers,
-					'body'    => json_encode( $body )
+					'body'    => json_encode( $body ),
+					'timeout' => 10
 				) );
 
 			} elseif ( $data['method'] === 'GET' ) {
 				$url      = $body ? $data['url'] . '?' . http_build_query( $body ) : $data['url'];
 				$response = wp_remote_get( self::$api . $url, array(
-					'headers' => $headers
+					'headers' => $headers,
+					'timeout' => 10
 				) );
 
 			} elseif ( $data['method'] === 'PUT' ) {
@@ -116,7 +119,8 @@ class ResDiary {
 					array(
 						'method'  => 'PUT',
 						'headers' => $headers,
-						'body'    => json_encode( $body )
+						'body'    => json_encode( $body ),
+						'timeout' => 10
 					)
 				);
 			}
