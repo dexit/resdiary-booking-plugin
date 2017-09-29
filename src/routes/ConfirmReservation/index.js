@@ -34,7 +34,7 @@ class ConfirmReservation extends Component {
           <div className="text-container">
             <ConfirmReservationText/>
             <p>*Please read our booking Terms and Conditions
-              <span id="terms-modal" onClick={this.dispatchTerms}> here</span>
+              <button id="terms-button" onClick={this.dispatchTerms}> here</button>
             </p>
             <p>
               <label>
