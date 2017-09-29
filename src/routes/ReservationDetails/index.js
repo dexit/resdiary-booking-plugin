@@ -10,8 +10,8 @@ import CustomEvent from 'custom-event';
 class ReservationDetails extends Component {
 
   state = {
-    selectedDay: (Object.keys(this.props.booking).length && new Date(this.props.booking.VisitDate)) || (this.props.timeSlot && new Date(this.props.timeSlot)) || null,
-    peopleValue: (Object.keys(this.props.booking).length && this.props.booking.PartySize) || null,
+    selectedDay: (this.props.booking.VisitDate && new Date(this.props.booking.VisitDate)) || (this.props.timeSlot.time && new Date(this.props.timeSlot.time)) || null,
+    peopleValue: (this.props.booking.PartySize && this.props.booking.PartySize) || null,
     sittingValue: (this.props.reservationDetails && this.props.reservationDetails.values && this.props.reservationDetails.values.sitting) || null,
     tabIndex: this.props.availability.length ? 1 : 0,
     resetForm: !Object.keys(this.props.booking).length
