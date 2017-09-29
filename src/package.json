@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack",
-    "dev:prince": "webpack-dev-server --env.client prince"
+    "dev:prince": "webpack-dev-server --env.client prince",
+    "build:prince": "cross-env NODE_ENV=production webpack --env.client prince"
   },
   "author": "Liam Neville",
   "license": "ISC",
