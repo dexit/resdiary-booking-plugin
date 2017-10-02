@@ -6,7 +6,7 @@ export const HeaderText = () => (
 
 export const UsualInfoText = () => (
   <div>
-    <p><strong>See Information on our seating areas above.</strong><svg viewBox="0 0 188.5 306"><polygon points="71 153 188.5 35.5 153 0 0 153 153 306 188.5 270.5 "/></svg></p>
+    <p id="seating-areas-info"><strong>See Information on our seating areas above.</strong><i class="fa fa-long-arrow-right" aria-hidden="true"></i></p>
     <p><strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
       grab one of our many walk-in spaces. Alternatively, we do often receive cancellations on the day, please email us
       at <a href='mailto:contact@theprincelondon.com'>contact@theprincelondon.com</a> and we will do our best to find
