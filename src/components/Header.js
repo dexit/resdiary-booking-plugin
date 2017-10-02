@@ -6,7 +6,7 @@ import {HeaderText} from 'textTemplates';
 const newBookingHeadings = [
   'Make A Reservation',
   'Make A Reservation',
-  'Your Reservation Time',
+  'Your Reservation',
   'Your Details',
   'Card Details',
   'Reservation Confirmation'
@@ -31,6 +31,3 @@ const Header = ({page, amendBooking}) => {
 };
 
 export default Header;
-
-
-

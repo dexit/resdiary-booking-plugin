@@ -6,6 +6,7 @@ export const HeaderText = () => (
 
 export const UsualInfoText = () => (
   <div>
+    <p><strong>See Information on our seating areas above.</strong><svg viewBox="0 0 188.5 306"><polygon points="71 153 188.5 35.5 153 0 0 153 153 306 188.5 270.5 "/></svg></p>
     <p><strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
       grab one of our many walk-in spaces. Alternatively, we do often receive cancellations on the day, please email us
       at <a href='mailto:contact@theprincelondon.com'>contact@theprincelondon.com</a> and we will do our best to find
@@ -25,17 +26,19 @@ export const ConfirmReservationText = () => (
 );
 
 export const CardDetailsText = () => (
-  <div>
+  <div id="card-details-text">
+    <p id="booking-conditions">Booking Conditions</p>
     <p>REST ASSURED WE ARE NOT CHARGING YOUR CARD.</p>
     <p>We are only taking card details to secure your reservation with us.</p>
     <p>If all of your party attend then no problemo and nothing will be charged to your card. If you are going to cancel
       then you need to give us notice (at least 72 hours)</p>
     <p>You will only be charged £5 per person if the following happens:</p>
     <ul>
-      <li>You cancel within the 72 hours of your booking</li>
-      <li>You don’t show up at all</li>
-      <li>Less than 50% of your party attends</li>
+      <li><p>You cancel within the 72 hours of your booking></p></li>
+      <li><p>You don’t show up at all</p></li>
+      <li><p>Less than 50% of your party attends</p></li>
     </ul>
+    <p id="agree-to-terms">By proceeding with this reservation I agree to the booking terms above.</p>
   </div>
 );
 
