@@ -8,6 +8,7 @@ class CardDetails extends Component {
 
   componentWillMount() {
     this.props.setPage(4);
+    scroll(0, 0);
   }
 
 

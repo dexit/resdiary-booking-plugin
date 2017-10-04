@@ -8,6 +8,7 @@ class ReservationConfirmed extends Component {
 
   componentWillMount() {
     this.props.setPage(5);
+    scroll(0, 0);
   }
 
   render() {

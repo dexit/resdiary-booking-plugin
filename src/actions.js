@@ -123,7 +123,7 @@ export const setAmendBooking = (amendBooking) => dispatch => {
   dispatch({type: SET_AMEND_BOOKING, payload: amendBooking});
 };
 
-export const getBooking = (data) => {
+export const getBooking = (data, allowBookingUpdate) => {
 
   return dispatch => {
 
@@ -131,9 +131,15 @@ export const getBooking = (data) => {
 
     return dispatch({
       type: GET_BOOKING,
-      payload: ResDiary.getBooking(data)
+      payload: ResDiary.getBooking(data, allowBookingUpdate)
     })
-      .catch(handleErr(dispatch));
+      .catch(err => {
+        if (err.response && err.response.status === 404) {
+          dispatch({type: SHOW_ERROR, payload: 'Booking not found!'})
+        } else {
+          dispatch({type: SHOW_ERROR, payload: err.message || err})
+        }
+      });
   };
 };
 

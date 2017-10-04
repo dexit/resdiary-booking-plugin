@@ -8,6 +8,7 @@ class PersonalDetails extends Component {
 
   componentWillMount() {
     this.props.setPage(3);
+    scroll(0, 0);
   }
 
 

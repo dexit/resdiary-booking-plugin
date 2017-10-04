@@ -9,6 +9,7 @@ class YourReservation extends Component {
   componentWillMount() {
     this.props.setPage(3);
     this.props.setInitialFormState({people: this.props.booking.PartySize});
+    scroll(0, 0);
   }
 
 

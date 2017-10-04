@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
 import {getBooking, setAmendBooking, setPage} from '../../actions';
 
 class AmendBooking extends Component {
@@ -8,6 +9,7 @@ class AmendBooking extends Component {
   componentWillMount() {
     this.props.setPage(2);
     this.props.setAmendBooking(true);
+    scroll(0, 0);
   }
 
 
@@ -19,7 +21,7 @@ class AmendBooking extends Component {
 
   submitBookingRef = data => {
     if (!Object.keys(data).length) return;
-    this.props.getBooking(data.bookingReference);
+    this.props.getBooking(data.bookingReference, this.props.allowBookingUpdate);
   };
 
   render() {
@@ -47,7 +49,7 @@ const mapStateToProps = state => {
   };
 };
 
-AmendBooking = connect(mapStateToProps, {getBooking, setAmendBooking, setPage})(AmendBooking);
+AmendBooking = withRouter(connect(mapStateToProps, {getBooking, setAmendBooking, setPage})(AmendBooking));
 
 export default reduxForm({
   form: 'amendbooking',

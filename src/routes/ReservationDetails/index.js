@@ -19,6 +19,7 @@ class ReservationDetails extends Component {
 
   componentWillMount() {
     this.props.setPage(1);
+    scroll(0, 0);
   }
 
 
