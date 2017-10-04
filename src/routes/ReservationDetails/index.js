@@ -56,11 +56,16 @@ class ReservationDetails extends Component {
       PartySize: parseInt(this.state.peopleValue),
       Areas: this.props.Areas
     };
+    const service = typeof this.state.sittingValue === 'string' ?
+                    this.props.services.filter(svc => svc.Name === this.state.sittingValue).pop().ServiceId :
+                    this.state.sittingValue;
+
     if (this.props.booking && this.props.booking.Id) {
       data.BookingId = this.props.booking.Id;
     }
+
     this.props.setTimeSlot({time: ''});
-    this.props.getAvailability(data, parseInt(this.state.sittingValue));
+    this.props.getAvailability(data, parseInt(service));
   };
 
   handlePeopleChange = e => {

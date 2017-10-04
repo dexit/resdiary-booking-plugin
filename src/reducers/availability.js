@@ -4,7 +4,7 @@ const availability = (state = [], {type, payload, meta}) => {
 
   switch (type) {
     case GET_AVAILABILITY_FULFILLED:
-      for (let area of  payload) {
+      for (let area of payload) {
         area.TimeSlots = area.TimeSlots.filter(ts => ts.ServiceId === meta.service);
       }
       return payload;
