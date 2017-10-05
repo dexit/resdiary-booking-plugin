@@ -15,7 +15,7 @@ export const UsualInfoText = () => (
       you a table.</p>
     <p><strong>Times:</strong> We have two sittings – 11am until 5pm and 5:30pm until close.</p>
     <p><strong>Kids:</strong> We welcome children with open arms!</p>
-    <p><strong>Groups of 30+:</strong> We do accommodate groups of 30 or more. <br/>
+    <p><strong>Groups of 50+:</strong> We do accommodate groups of 50 or more. <br/>
       Please email <a href='mailto:contact@theprincelondon.com'>contact@theprincelondon.com</a>
     </p>
     <p>For private hirse of the venue please visit our <strong><a href="/private-hire" rel="noopener noreferrer" target="_blank">private hire page.</a></strong></p>
