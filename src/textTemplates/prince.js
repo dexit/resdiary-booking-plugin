@@ -30,10 +30,10 @@ export const ConfirmReservationText = () => (
 export const CardDetailsText = () => (
   <div id="card-details-text">
     <p id="booking-conditions">Booking Conditions</p>
-    <p>REST ASSURED WE ARE NOT CHARGING YOUR CARD.</p>
+    <p>Rest assured we are NOT charging this card!</p>
     <p>We are only taking card details to secure your reservation with us.</p>
     <p>If all of your party attend then no problemo and nothing will be charged to your card. If you are going to cancel
-      then you need to give us notice (at least 72 hours)</p>
+      then you need to give us notice (at least 72 hours before the date of your reservation).</p>
     <p>You will only be charged £5 per person if the following happens:</p>
     <ul>
       <li><p>You cancel within the 72 hours of your booking</p></li>
