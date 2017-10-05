@@ -1,0 +1,101 @@
+
+#card-details {
+  form {
+    font-family: $lucida;
+    font-size: 15px;
+    margin: 20px 0;
+    width: 400px;
+  }
+
+  // * {
+  //   font-family: 'Helvetica Neue', Helvetica;
+  //   font-size: 15px;
+  //   font-variant: normal;
+  //   margin: 0;
+  //   padding: 0;
+  // }
+
+  // html {
+  //   height: 100%;
+  // }
+  //
+  // body {
+  //   background: transparent;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   min-height: 100%;
+  // }
+
+
+  .group {
+    background: transparent;
+  }
+
+  label {
+    color: #8898aa;
+    display: flex;
+    flex-direction: row;
+    font-weight: 300;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 20px;
+    position: relative;
+  }
+
+  .ElementaApp input {
+    border-bottom: 2px solid #bdbdbd;
+  }
+
+  .field {
+    background: transparent;
+    border: 0;
+    color: #31325f;
+    // padding-right: 10px;
+    // padding-left: 10px;
+    cursor: text;
+    flex: 1;
+    font-weight: 300;
+    outline: none;
+  }
+
+  .field::-webkit-input-placeholder {
+    color: #868686;
+  }
+
+  .field::-moz-placeholder {
+    color: #868686;
+  }
+
+  .outcome {
+    float: left;
+    min-height: 24px;
+    padding-top: 8px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .success,
+  .error {
+    display: none;
+    font-size: 13px;
+  }
+
+  .success.visible,
+  .error.visible {
+    display: inline;
+  }
+
+  .error {
+    color: #e4584c;
+  }
+
+  .success {
+    color: #666ee8;
+  }
+
+  .success .token {
+    font-size: 13px;
+    font-weight: 500;
+  }
+}

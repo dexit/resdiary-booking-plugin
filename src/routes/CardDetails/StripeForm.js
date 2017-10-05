@@ -17,7 +17,7 @@ class StripeForm extends Component {
       lineHeight: '40px',
       fontWeight: 300,
       fontFamily: `'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif`,
-      fontSize: '15px',
+      fontSize: '17px',
       '::placeholder': {
         color: '#868686',
       }
