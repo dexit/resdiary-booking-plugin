@@ -6,7 +6,9 @@ export const HeaderText = () => (
 
 export const UsualInfoText = () => (
   <div>
-    <p id="seating-areas-info"><strong>See Information on our seating areas above.</strong></p>
+    <p id="seating-areas-info"><strong>See Information on our seating areas above.</strong><i
+      className="fa fa-long-arrow-right" aria-hidden="true"></i>
+    </p>
     <p><strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
       grab one of our many walk-in spaces. Alternatively, we do often receive cancellations on the day, please email us
       at <a href='mailto:contact@theprincelondon.com'>contact@theprincelondon.com</a> and we will do our best to find
@@ -16,7 +18,7 @@ export const UsualInfoText = () => (
     <p><strong>Groups of 30+:</strong> We do accommodate groups of 30 or more. <br/>
       Please email <a href='mailto:contact@theprincelondon.com'>contact@theprincelondon.com</a>
     </p>
-    <p>For private hire of the venue please visit our <strong>private hire page.</strong></p>
+    <p>For private hirse of the venue please visit our <strong>private hire page.</strong></p>
   </div>
 );
 

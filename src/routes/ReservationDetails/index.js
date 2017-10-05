@@ -11,7 +11,7 @@ class ReservationDetails extends Component {
 
   state = {
     selectedDay: (this.props.booking.VisitDate && new Date(this.props.booking.VisitDate)) || (this.props.timeSlot.time && new Date(this.props.timeSlot.time)) || null,
-    peopleValue: (this.props.booking.PartySize && this.props.booking.PartySize) || null,
+    peopleValue: (this.props.booking.PartySize && this.props.booking.PartySize) || (this.props.reservationDetails && this.props.reservationDetails.values && this.props.reservationDetails.values.people) || null,
     sittingValue: (this.props.reservationDetails && this.props.reservationDetails.values && this.props.reservationDetails.values.sitting) || null,
     tabIndex: this.props.availability.length ? 1 : 0,
     resetForm: !Object.keys(this.props.booking).length
@@ -19,6 +19,7 @@ class ReservationDetails extends Component {
 
   componentWillMount() {
     this.props.setPage(1);
+    scroll(0, 0);
   }
 
 
@@ -55,11 +56,16 @@ class ReservationDetails extends Component {
       PartySize: parseInt(this.state.peopleValue),
       Areas: this.props.Areas
     };
+    const service = typeof this.state.sittingValue === 'string' ?
+                    this.props.services.filter(svc => svc.Name === this.state.sittingValue).pop().ServiceId :
+                    this.state.sittingValue;
+
     if (this.props.booking && this.props.booking.Id) {
       data.BookingId = this.props.booking.Id;
     }
+
     this.props.setTimeSlot({time: ''});
-    this.props.getAvailability(data, parseInt(this.state.sittingValue));
+    this.props.getAvailability(data, parseInt(service));
   };
 
   handlePeopleChange = e => {

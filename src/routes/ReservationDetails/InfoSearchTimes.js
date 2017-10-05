@@ -9,7 +9,9 @@ const InfoSearchTimes = ({tabIndex, handleTabSelect, availability, handleTimeSlo
     <Tabs selectedIndex={tabIndex} onSelect={handleTabSelect}>
       <TabList>
         <Tab>Useful Info</Tab>
-        <Tab disabled={!availability.length}>Available Times</Tab>
+        <Tab disabled={!availability.length} style={{cursor: availability.length ? 'pointer' : 'default'}}>
+          Available Times
+        </Tab>
       </TabList>
       <TabPanel id="info">
         <UsualInfoText/>

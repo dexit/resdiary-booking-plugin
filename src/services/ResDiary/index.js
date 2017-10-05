@@ -1,5 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
+import moment from 'moment';
 
 class ResDiary {
 
@@ -87,12 +88,16 @@ class ResDiary {
     return data;
   }
 
-  async getBooking(bookingRef) {
+  async getBooking(bookingRef, allowBookingUpdate) {
     const reqData = {
       method: 'GET',
       url: `/Restaurant/${this.restauarant}/Booking/${bookingRef}`
     };
     const {data: {data}} = await axios.post(this.api, qs.stringify(reqData));
+
+    if (moment.utc(data.VisitDate).diff(moment.utc(), 'days') < parseInt(allowBookingUpdate)) {
+      throw new Error(`Can't update booking, please call restaurant.`);
+    }
 
     return data;
   }

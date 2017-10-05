@@ -19,7 +19,9 @@ const Footer = props => {
     createBooking,
     updateBooking,
     reservationDetails,
-    booking
+    booking,
+    history,
+    stripe
   } = props;
   const nextRoutes = [
     ['/reservations/reservation-details', '/reservations/confirm-reservation'],
@@ -89,18 +91,22 @@ const Footer = props => {
     }
 
     if (nextLink === '/reservations/card-details') {
-      const data = {
-        ...reservationDetails.values,
-        ...personalDetailsForm.values,
-        timeSlot
-      };
-      e.preventDefault();
-      createBooking(data);
+      if (stripe) {
+        history.push('/reservations/card-details');
+      } else {
+        const data = {
+          ...reservationDetails.values,
+          ...personalDetailsForm.values,
+          timeSlot
+        };
+        e.preventDefault();
+        createBooking(data);
+      }
     }
 
   };
   const hideFooter = () => {
-    const hideForRoute = ['/reservations/amend-booking', '/reservations/your-reservation'];
+    const hideForRoute = [/*'/reservations/amend-booking',*/ '/reservations/your-reservation'];
     return bookingComplete || !page || hideForRoute.includes(location.pathname);
   };
 
@@ -109,13 +115,14 @@ const Footer = props => {
       <Link
         id="prev-button"
         to='/reservations/reservation-details'
-        className={page === 1 ? 'button-hidden' : 'button-visible'}
+        className={(page === 1) || location.pathname === '/reservations/amend-booking' ? 'button-hidden' : 'button-visible'}
       >
         Change date
       </Link>
       <Link
         id="next-button"
-        className={isDisabled() || !formValid() ? "disabled" : null}
+        className={(isDisabled() || !formValid() ? 'disabled' : '') +
+        (location.pathname === '/reservations/amend-booking' ? ' button-hidden' : ' button-visible')}
         to={nextLink || ''}
         onClick={handleClick}
       >
@@ -143,7 +150,7 @@ const mapStateToProps = state => {
     booking: state.booking,
     paymentValid: state.booking.paymentValid,
     reservationDetails: state.form.reservationDetails,
-    stripe: state.booking.stripe,
+    stripe: state.booking.stripeKey,
     page: state.page
   };
 };

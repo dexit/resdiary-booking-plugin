@@ -21,6 +21,7 @@ class BookingOptions extends Component {
     this.props.resetTimeSlot();
     this.props.reInitForm('reservationDetails', this.props.initialFormState);
     this.props.resetForm('reservationDetails');
+    scroll(0, 0);
   }
 
   render() {

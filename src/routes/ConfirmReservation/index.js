@@ -9,6 +9,7 @@ class ConfirmReservation extends Component {
 
   componentWillMount() {
     this.props.setPage(2);
+    scroll(0, 0);
   }
 
   handleChange = e => {
