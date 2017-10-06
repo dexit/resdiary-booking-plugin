@@ -19,7 +19,7 @@ class StripeForm extends Component {
       fontFamily: `'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif`,
       fontSize: '17px',
       '::placeholder': {
-        color: '#868686',
+        color: '#000000',
       }
     }
   };
