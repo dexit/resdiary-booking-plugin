@@ -18,7 +18,7 @@ export const UsualInfoText = () => (
     <p><strong>Groups of 50+:</strong> We do accommodate groups of 50 or more. <br/>
       Please email <a href='mailto:contact@theprincelondon.com'>contact@theprincelondon.com</a>
     </p>
-    <p>For private hirse of the venue please visit our <strong><a href="/private-hire" rel="noopener noreferrer" target="_blank">private hire page.</a></strong></p>
+    <p>For private hires of the venue please visit our <strong><a href="/private-hire" rel="noopener noreferrer" target="_blank">private hire page.</a></strong></p>
   </div>
 );
 
