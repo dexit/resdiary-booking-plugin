@@ -2,7 +2,7 @@ import {RESET_INITIAL_FORM_STATE, SET_INITIAL_FORM_STATE} from '../constants';
 
 const initialState = {
   people: 'No. of people',
-  sitting: ''
+  sitting: 'Lunch/Dinner'
 };
 
 const initialFormState = (state = initialState, {type, payload}) => {
