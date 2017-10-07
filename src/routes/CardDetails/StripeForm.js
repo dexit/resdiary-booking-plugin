@@ -12,14 +12,16 @@ class StripeForm extends Component {
 
   static style = {
     base: {
-      iconColor: '#666EE8',
-      color: '#31325F',
-      lineHeight: '40px',
-      fontWeight: 300,
-      fontFamily: `'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif`,
+      iconColor: `#666EE8`,
+      color: `#31325F`,
+      lineHeight: `1.15`,
+      fontWeight: `normal`,
+      fontFamily: `Lucida, Helvetica, Arial, sans-serif`,
       fontSize: '17px',
+      borderBottom: `2px solid #bdbdbd`,
+      padding: `12px 0`,
       '::placeholder': {
-        color: '#000000',
+        color: `#757575`,
       }
     }
   };
