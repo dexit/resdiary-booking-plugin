@@ -56,9 +56,14 @@ class ReservationDetails extends Component {
       PartySize: parseInt(this.state.peopleValue),
       Areas: this.props.Areas
     };
-    const service = typeof this.state.sittingValue === 'string' ?
-                    this.props.services.filter(svc => svc.Name === this.state.sittingValue).pop().ServiceId :
-                    this.state.sittingValue;
+    const serviceToNumber = Number(this.state.sittingValue);
+    let service;
+
+    if (typeof this.state.sittingValue === 'string' && Number.isNaN(serviceToNumber)) {
+      service = this.props.services.filter(svc => svc.Name === this.state.sittingValue).pop().ServiceId;
+    } else {
+      service = serviceToNumber;
+    }
 
     if (this.props.booking && this.props.booking.Id) {
       data.BookingId = this.props.booking.Id;
