@@ -107,7 +107,7 @@ export const getStripeToken = (stripe) => {
       type: CREATE_BOOKING_STRIPE_TOKEN,
       payload: stripe.createToken()
         .then(res => {
-          if (res.error) throw err;
+          if (res.error) throw res.error;
           return res.token;
         })
     })
