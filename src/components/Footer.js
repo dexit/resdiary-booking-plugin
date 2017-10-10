@@ -87,7 +87,7 @@ const Footer = props => {
 
     if (nextLink === '/reservations/reservation-confirmed') {
       e.preventDefault();
-      document.getElementById('stripe-form').click();
+      document.getElementById('stripe-form-submit').click();
     }
 
     if (nextLink === '/reservations/card-details') {
@@ -106,7 +106,7 @@ const Footer = props => {
 
   };
   const hideFooter = () => {
-    const hideForRoute = [/*'/reservations/amend-booking',*/ '/reservations/your-reservation'];
+    const hideForRoute = ['/reservations/your-reservation'];
     return bookingComplete || !page || hideForRoute.includes(location.pathname);
   };
 

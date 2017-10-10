@@ -93,7 +93,7 @@ export const createBooking = (data) => {
   };
 };
 
-export const paymentDetailsVaild = (isValid) => dispatch => {
+export const paymentDetailsValid = (isValid) => dispatch => {
   return dispatch({type: CREATE_BOOKING_PAYMENT_VALID, payload: isValid});
 };
 

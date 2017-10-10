@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import StripeForm from './StripeForm';
 import {connect} from 'react-redux';
-import {createBooking, getStripeToken, paymentDetailsVaild, setPage} from '../../actions';
+import {createBooking, getStripeToken, paymentDetailsValid, setPage} from '../../actions';
 
 class CardDetails extends Component {
 
@@ -34,7 +34,7 @@ class CardDetails extends Component {
       <StripeProvider apiKey={this.props.stripeKey}>
         <Elements>
           <StripeForm
-            paymentDetailsVaild={this.props.paymentDetailsVaild}
+            paymentDetailsValid={this.props.paymentDetailsValid}
             getStripeToken={this.props.getStripeToken}
             stripeKey={this.props.stripeKey}
             paymentValid={this.props.paymentValid}
@@ -57,4 +57,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {paymentDetailsVaild, getStripeToken, createBooking, setPage})(CardDetails);
+export default connect(mapStateToProps, {paymentDetailsValid, getStripeToken, createBooking, setPage})(CardDetails);
