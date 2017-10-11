@@ -27,9 +27,11 @@ class ReservationDetails extends Component {
     if (nextProps.availability.length) {
       this.setState({tabIndex: 1})
     }
-
-    if (nextProps.bookingComplete) {
+    if (!this.props.bookingComplete && nextProps.bookingComplete) {
       this.props.history.push('/reservations/reservation-confirmed');
+    }
+    if (!this.props.stripeKey && nextProps.stripeKey) {
+      this.props.history.push('/reservations/card-details');
     }
   }
 
@@ -140,7 +142,8 @@ const mapStateToProps = state => {
     booking: state.booking.Booking,
     bookingComplete: state.booking.complete,
     reservationDetails: state.form.reservationDetails,
-    timeSlot: state.timeSlot
+    timeSlot: state.timeSlot,
+    stripeKey: state.booking.stripeKey,
   };
 };
 

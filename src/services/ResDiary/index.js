@@ -111,13 +111,30 @@ class ResDiary {
         VisitDate: timeSlot.time,
         VisitTime: timeSlot.time.split('T')[1].split('Z')[0],
         PartySize: people,
-        AreaID: timeSlot.area.id
+        AreaID: timeSlot.area.id,
       }
     };
 
     const {data: {data}} = await axios.post(this.api, qs.stringify(reqData));
 
     if (!['Success', 'CreditCardRequired'].includes(data.Status)) {
+      throw new Error(data.Status);
+    }
+
+    return data;
+  }
+
+  async confirmBooking({bookingRef, stripeToken}) {
+
+    const reqData = {
+      method: 'POST',
+      url: `/Restaurant/${this.restauarant}/Booking/${bookingRef}/Confirm?stripeToken=${stripeToken}`,
+      data: {}
+    };
+
+    const {data: {data}} = await axios.post(this.api, qs.stringify(reqData));
+
+    if (!['Success'].includes(data.Status)) {
       throw new Error(data.Status);
     }
 

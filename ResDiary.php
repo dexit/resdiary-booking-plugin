@@ -10,7 +10,7 @@ class ResDiary {
 	private static function checkUrl( $method, $url ) {
 		$url_list = array(
 			'GET'  => array( 'ClosedDates', 'Setup' ),
-			'POST' => array( 'AvailabilitySearch', 'BookingWithStripeToken' )
+			'POST' => array( 'AvailabilitySearch', 'BookingWithStripeToken', 'Confirm' )
 		);
 
 		//any GET or PUT for Booking endpoints
@@ -21,7 +21,8 @@ class ResDiary {
 		preg_match( '/([^\/]+$)/', $url, $resource );
 
 		//restricted to $url_list
-		if ( isset( $url_list[ $method ] ) && in_array( $resource[0], $url_list[ $method ] ) ) {
+		if ( isset( $url_list[ $method ] ) &&
+		     ( in_array( $resource[0], $url_list[ $method ] ) || in_array( explode( '?', $resource[0] )[0], $url_list[ $method ] ) ) ) {
 			return true;
 		}
 

@@ -1,6 +1,7 @@
 import ResDiary from './services/ResDiary';
 import {initialize, reset} from 'redux-form'
 import {
+  CONFIRM_BOOKING,
   CREATE_BOOKING,
   CREATE_BOOKING_PAYMENT_VALID,
   CREATE_BOOKING_STRIPE_TOKEN,
@@ -168,6 +169,20 @@ export const updateBooking = (data) => {
     return dispatch({
       type: UPDATE_BOOKING,
       payload: ResDiary.updateBooking(data)
+    })
+      .catch(handleErr(dispatch));
+  };
+};
+
+export const confirmBooking = (data) => {
+
+  return dispatch => {
+
+    dispatch({type: HIDE_ERROR});
+
+    return dispatch({
+      type: CONFIRM_BOOKING,
+      payload: ResDiary.confirmBooking(data)
     })
       .catch(handleErr(dispatch));
   };

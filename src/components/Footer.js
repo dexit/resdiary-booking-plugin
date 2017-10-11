@@ -21,7 +21,8 @@ const Footer = props => {
     reservationDetails,
     booking,
     history,
-    stripe
+    stripe,
+    confirmingBooking
   } = props;
   const nextRoutes = [
     ['/reservations/reservation-details', '/reservations/confirm-reservation'],
@@ -50,7 +51,7 @@ const Footer = props => {
   };
   const linkText = () => {
     const nextPaths = ['/reservations/confirm-reservation', '/reservations/personal-details'];
-    if (nextPaths.includes(nextLink) && !bookingAmending) {
+    if (nextPaths.includes(nextLink)) {
       return 'Next'
     }
     return 'Confirm'
@@ -74,7 +75,7 @@ const Footer = props => {
       return;
     }
 
-    if (bookingAmending) {
+    if (bookingAmending && !confirmingBooking) {
       const data = {
         ...reservationDetails.values,
         timeSlot,
@@ -147,6 +148,7 @@ const mapStateToProps = state => {
     bookingPending: state.booking.pending,
     bookingComplete: state.booking.complete,
     bookingAmending: state.booking.amending,
+    confirmingBooking: state.booking.confirmingBooking,
     booking: state.booking,
     paymentValid: state.booking.paymentValid,
     reservationDetails: state.form.reservationDetails,

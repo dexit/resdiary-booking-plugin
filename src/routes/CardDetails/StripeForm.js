@@ -78,5 +78,4 @@ class StripeForm extends Component {
   }
 }
 
-
 export default injectStripe(StripeForm);
