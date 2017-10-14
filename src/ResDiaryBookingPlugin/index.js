@@ -42,8 +42,7 @@ class ResDiaryBookingPlugin extends Component {
             <Route path='/reservations/personal-details' component={PersonalDetails}/>
             <Route path='/reservations/card-details' component={CardDetails}/>
             <Route path='/reservations/reservation-confirmed' component={ReservationConfirmed}/>
-            <Route path='/reservations/amend-booking'
-                   render={() => <AmendBooking allowBookingUpdate={this.props.allowBookingUpdate}/>}/>
+            <Route path='/reservations/amend-booking' component={AmendBooking}/>
             <Route path='/reservations/your-reservation' component={YourReservation}/>
           </Switch>
           <Footer/>
