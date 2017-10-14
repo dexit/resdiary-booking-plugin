@@ -49,7 +49,7 @@ export const ReservationConfirmedText = () => (
     <p>Please keep an eye out for your booking confirmation email and further communication about this reservation.</p>
     <p>Be sure to check your junk folder as we know it can end up in there sometimes!</p>
     <p>Please please let us know if you need to cancel your reservation, simply email us at <a
-      href="mailto:contact@theprincelondon.com">contact@theempresslondon.com</a> or manage your booking using your
+      href="mailto:contact@theprincelondon.com">contact@theprincelondon.com</a> or manage your booking using your
       reference number <a href="/reservations">here</a></p>
     <p>Although this system is automated, we are humans and we’re here to help! You can contact us on the email address
       above anytime. </p>
