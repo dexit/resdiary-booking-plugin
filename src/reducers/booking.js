@@ -1,4 +1,5 @@
 import {
+  CHANGE_DATE_CLICKED,
   CONFIRM_BOOKING_FULFILLED,
   CONFIRM_BOOKING_PENDING,
   CONFIRM_BOOKING_REJECTED,
@@ -60,7 +61,7 @@ const booking = (state = initialState, {type, payload}) => {
       if (payload.Status === 'CreditCardRequired') {
         return {...state, pending: false, stripeKey: payload.StripePublishableKey, confirmingBooking: true};
       }
-      return {...state, pending: false, ...payload};
+      return {...state, pending: false, complete: true, ...payload};
     case UPDATE_BOOKING_REJECTED:
       return {...state, pending: false};
     case CONFIRM_BOOKING_PENDING:
@@ -69,6 +70,8 @@ const booking = (state = initialState, {type, payload}) => {
       return {...state, pending: false, complete: true, confirmingBooking: false, ...payload};
     case CONFIRM_BOOKING_REJECTED:
       return {...state, pending: false, confirmingBooking: false};
+    case CHANGE_DATE_CLICKED:
+      return {...state, pending: false, confirmingBooking: false, stripeKey: ''};
     case SET_AMEND_BOOKING:
       if (!payload) {
         return {...state, Booking: {}, amending: payload};

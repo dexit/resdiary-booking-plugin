@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getAvailability, setPage, setTimeSlot} from '../../actions';
+import {changeDateClicked, getAvailability, setPage, setTimeSlot} from '../../actions';
 import moment from 'moment';
 import Calendar from './Calendar';
 import InfoSearchTimes from './InfoSearchTimes';
@@ -20,6 +20,7 @@ class ReservationDetails extends Component {
   componentWillMount() {
     this.props.setPage(1);
     scroll(0, 0);
+    this.props.changeDateClicked();
   }
 
 
@@ -147,4 +148,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, {getAvailability, setTimeSlot, setPage})(ReservationDetails));
+export default withRouter(connect(mapStateToProps, {
+  getAvailability,
+  setTimeSlot,
+  setPage,
+  changeDateClicked
+})(ReservationDetails));

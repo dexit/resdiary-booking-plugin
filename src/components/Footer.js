@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
-import {createBooking, updateBooking} from '../actions';
+import {changeDateClicked, createBooking, updateBooking} from '../actions';
 
 const Footer = props => {
   const {
@@ -22,7 +22,8 @@ const Footer = props => {
     booking,
     history,
     stripe,
-    confirmingBooking
+    confirmingBooking,
+    changeDateClicked
   } = props;
   const nextRoutes = [
     ['/reservations/reservation-details', '/reservations/confirm-reservation'],
@@ -117,6 +118,7 @@ const Footer = props => {
         id="prev-button"
         to='/reservations/reservation-details'
         className={(page === 1) || location.pathname === '/reservations/amend-booking' ? 'button-hidden' : 'button-visible'}
+        onClick={changeDateClicked}
       >
         Change date
       </Link>
@@ -157,4 +159,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, {createBooking, updateBooking})(Footer));
+export default withRouter(connect(mapStateToProps, {createBooking, updateBooking, changeDateClicked})(Footer));

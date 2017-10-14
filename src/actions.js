@@ -1,6 +1,7 @@
 import ResDiary from './services/ResDiary';
 import {initialize, reset} from 'redux-form'
 import {
+  CHANGE_DATE_CLICKED,
   CONFIRM_BOOKING,
   CREATE_BOOKING,
   CREATE_BOOKING_PAYMENT_VALID,
@@ -194,4 +195,8 @@ export const resetForm = (formName) => dispatch => {
 
 export const resetTimeSlot = () => dispatch => {
   dispatch({type: RESET_TIMESLOT});
+};
+
+export const changeDateClicked = () => dispatch => {
+  dispatch({type: CHANGE_DATE_CLICKED})
 };
