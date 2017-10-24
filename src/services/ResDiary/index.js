@@ -87,7 +87,7 @@ class ResDiary {
     return data;
   }
 
-  async getBooking(bookingRef, allowBookingUpdate) {
+  async getBooking(bookingRef) {
     const reqData = {
       method: 'GET',
       url: `/Restaurant/${this.restauarant}/Booking/${bookingRef}`

@@ -62,9 +62,14 @@ const Footer = props => {
     if (nextLink === '/reservations/card-details') {
       const values = personalDetailsForm.values;
 
-      if (!values || Object.keys(values).length < 4) return;
+      if (!values) return;
 
-      if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+      if (!values.email
+        || !values.firstName
+        || !values.lastName
+        || !values.tel
+        || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+        || values.email !== values.confirmEmail) {
         return;
       }
     }

@@ -125,7 +125,7 @@ export const setAmendBooking = (amendBooking) => dispatch => {
   dispatch({type: SET_AMEND_BOOKING, payload: amendBooking});
 };
 
-export const getBooking = (data, allowBookingUpdate) => {
+export const getBooking = (data) => {
 
   return dispatch => {
 
@@ -133,7 +133,7 @@ export const getBooking = (data, allowBookingUpdate) => {
 
     return dispatch({
       type: GET_BOOKING,
-      payload: ResDiary.getBooking(data, allowBookingUpdate)
+      payload: ResDiary.getBooking(data)
     })
       .catch(err => {
         if (err.response && err.response.status === 404) {
