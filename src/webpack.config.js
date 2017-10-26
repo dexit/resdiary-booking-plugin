@@ -140,7 +140,10 @@ module.exports = (env) => {
       historyApiFallback: true
     };
 
-    config.entry.unshift('react-hot-loader/patch');
+    config.entry.unshift('babel-polyfill', 'react-hot-loader/patch');
+
+  } else {
+    config.entry.unshift('babel-polyfill');
   }
 
   return config;
