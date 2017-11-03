@@ -16,6 +16,9 @@ class PersonalDetails extends Component {
     if (!this.props.stripeKey && nextProps.stripeKey) {
       this.props.history.push('/reservations/card-details');
     }
+    if (!this.props.bookingComplete && nextProps.bookingComplete) {
+      this.props.history.push('/reservations/reservation-confirmed');
+    }
   }
 
   render() {
@@ -36,7 +39,8 @@ const mapStateToProps = state => {
   return {
     people: state.form.reservationDetails.values.people,
     timeSlot: state.timeSlot,
-    stripeKey: state.booking.stripeKey
+    stripeKey: state.booking.stripeKey,
+    bookingComplete: state.booking.complete
   };
 };
 

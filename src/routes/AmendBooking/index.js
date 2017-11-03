@@ -21,7 +21,7 @@ class AmendBooking extends Component {
 
   submitBookingRef = data => {
     if (!Object.keys(data).length) return;
-    this.props.getBooking(data.bookingReference, this.props.allowBookingUpdate);
+    this.props.getBooking(data.bookingReference);
   };
 
   render() {

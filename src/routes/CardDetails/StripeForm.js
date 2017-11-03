@@ -12,26 +12,26 @@ class StripeForm extends Component {
 
   static style = {
     base: {
-      iconColor: '#666EE8',
-      color: '#31325F',
-      lineHeight: '40px',
-      fontWeight: 300,
-      fontFamily: `'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif`,
-      fontSize: '17px',
+      iconColor: `#666EE8`,
       '::placeholder': {
-        color: '#000000',
+        color: `#757575`,
       }
     }
   };
 
-  handleClick = () => this.props.getStripeToken(this.props.stripe);
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (!this.props.paymentValid) return;
+    this.props.getStripeToken(this.props.stripe);
+  };
+
   handleChange = e => {
     setTimeout(() => {
       if (this.stripeCardNumber._complete && this.stripeCardExpiry._complete && this.stripeCvc._complete && this.stripeCardPostcode._complete) {
-        this.props.paymentDetailsVaild(true);
+        this.props.paymentDetailsValid(true);
       } else {
         if (this.props.paymentValid) {
-          this.props.paymentDetailsVaild(false);
+          this.props.paymentDetailsValid(false);
         }
       }
     });
@@ -42,7 +42,7 @@ class StripeForm extends Component {
     return (
       <section id="card-details">
         <div>
-          <form id="stripe-form" onClick={this.handleClick}>
+          <form id="stripe-form" onSubmit={this.handleSubmit}>
             <CardNumberElement
               elementRef={ref => this.stripeCardNumber = ref}
               style={StripeForm.style}
@@ -67,6 +67,7 @@ class StripeForm extends Component {
               onChange={this.handleChange}
               placeholder="Postal Code"
             />
+            <button id='stripe-form-submit' type='submit' style={{display: 'none'}}/>
           </form>
         </div>
         <div>
@@ -76,6 +77,5 @@ class StripeForm extends Component {
     );
   }
 }
-
 
 export default injectStripe(StripeForm);

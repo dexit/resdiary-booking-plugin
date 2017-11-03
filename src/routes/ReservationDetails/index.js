@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getAvailability, setPage, setTimeSlot} from '../../actions';
+import {changeDateClicked, getAvailability, setPage, setTimeSlot} from '../../actions';
 import moment from 'moment';
 import Calendar from './Calendar';
 import InfoSearchTimes from './InfoSearchTimes';
@@ -20,6 +20,7 @@ class ReservationDetails extends Component {
   componentWillMount() {
     this.props.setPage(1);
     scroll(0, 0);
+    this.props.changeDateClicked();
   }
 
 
@@ -27,9 +28,11 @@ class ReservationDetails extends Component {
     if (nextProps.availability.length) {
       this.setState({tabIndex: 1})
     }
-
-    if (nextProps.bookingComplete) {
+    if (!this.props.bookingComplete && nextProps.bookingComplete) {
       this.props.history.push('/reservations/reservation-confirmed');
+    }
+    if (!this.props.stripeKey && nextProps.stripeKey) {
+      this.props.history.push('/reservations/card-details');
     }
   }
 
@@ -56,9 +59,14 @@ class ReservationDetails extends Component {
       PartySize: parseInt(this.state.peopleValue),
       Areas: this.props.Areas
     };
-    const service = typeof this.state.sittingValue === 'string' ?
-                    this.props.services.filter(svc => svc.Name === this.state.sittingValue).pop().ServiceId :
-                    this.state.sittingValue;
+    const serviceToNumber = Number(this.state.sittingValue);
+    let service;
+
+    if (typeof this.state.sittingValue === 'string' && Number.isNaN(serviceToNumber)) {
+      service = this.props.services.filter(svc => svc.Name === this.state.sittingValue).pop().ServiceId;
+    } else {
+      service = serviceToNumber;
+    }
 
     if (this.props.booking && this.props.booking.Id) {
       data.BookingId = this.props.booking.Id;
@@ -135,8 +143,14 @@ const mapStateToProps = state => {
     booking: state.booking.Booking,
     bookingComplete: state.booking.complete,
     reservationDetails: state.form.reservationDetails,
-    timeSlot: state.timeSlot
+    timeSlot: state.timeSlot,
+    stripeKey: state.booking.stripeKey,
   };
 };
 
-export default withRouter(connect(mapStateToProps, {getAvailability, setTimeSlot, setPage})(ReservationDetails));
+export default withRouter(connect(mapStateToProps, {
+  getAvailability,
+  setTimeSlot,
+  setPage,
+  changeDateClicked
+})(ReservationDetails));

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
-import {createBooking, updateBooking} from '../actions';
+import {changeDateClicked, createBooking, updateBooking} from '../actions';
 
 const Footer = props => {
   const {
@@ -21,7 +21,9 @@ const Footer = props => {
     reservationDetails,
     booking,
     history,
-    stripe
+    stripe,
+    confirmingBooking,
+    changeDateClicked
   } = props;
   const nextRoutes = [
     ['/reservations/reservation-details', '/reservations/confirm-reservation'],
@@ -50,7 +52,7 @@ const Footer = props => {
   };
   const linkText = () => {
     const nextPaths = ['/reservations/confirm-reservation', '/reservations/personal-details'];
-    if (nextPaths.includes(nextLink) && !bookingAmending) {
+    if (nextPaths.includes(nextLink)) {
       return 'Next'
     }
     return 'Confirm'
@@ -60,9 +62,14 @@ const Footer = props => {
     if (nextLink === '/reservations/card-details') {
       const values = personalDetailsForm.values;
 
-      if (!values || Object.keys(values).length < 4) return;
+      if (!values) return;
 
-      if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+      if (!values.email
+        || !values.firstName
+        || !values.lastName
+        || !values.tel
+        || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+        || values.email !== values.confirmEmail) {
         return;
       }
     }
@@ -74,7 +81,7 @@ const Footer = props => {
       return;
     }
 
-    if (bookingAmending) {
+    if (bookingAmending && !confirmingBooking) {
       const data = {
         ...reservationDetails.values,
         timeSlot,
@@ -87,7 +94,7 @@ const Footer = props => {
 
     if (nextLink === '/reservations/reservation-confirmed') {
       e.preventDefault();
-      document.getElementById('stripe-form').click();
+      document.getElementById('stripe-form-submit').click();
     }
 
     if (nextLink === '/reservations/card-details') {
@@ -106,7 +113,7 @@ const Footer = props => {
 
   };
   const hideFooter = () => {
-    const hideForRoute = [/*'/reservations/amend-booking',*/ '/reservations/your-reservation'];
+    const hideForRoute = ['/reservations/your-reservation'];
     return bookingComplete || !page || hideForRoute.includes(location.pathname);
   };
 
@@ -116,6 +123,7 @@ const Footer = props => {
         id="prev-button"
         to='/reservations/reservation-details'
         className={(page === 1) || location.pathname === '/reservations/amend-booking' ? 'button-hidden' : 'button-visible'}
+        onClick={changeDateClicked}
       >
         Change date
       </Link>
@@ -147,6 +155,7 @@ const mapStateToProps = state => {
     bookingPending: state.booking.pending,
     bookingComplete: state.booking.complete,
     bookingAmending: state.booking.amending,
+    confirmingBooking: state.booking.confirmingBooking,
     booking: state.booking,
     paymentValid: state.booking.paymentValid,
     reservationDetails: state.form.reservationDetails,
@@ -155,4 +164,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, {createBooking, updateBooking})(Footer));
+export default withRouter(connect(mapStateToProps, {createBooking, updateBooking, changeDateClicked})(Footer));

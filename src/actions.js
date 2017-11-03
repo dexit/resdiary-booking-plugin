@@ -1,6 +1,8 @@
 import ResDiary from './services/ResDiary';
 import {initialize, reset} from 'redux-form'
 import {
+  CHANGE_DATE_CLICKED,
+  CONFIRM_BOOKING,
   CREATE_BOOKING,
   CREATE_BOOKING_PAYMENT_VALID,
   CREATE_BOOKING_STRIPE_TOKEN,
@@ -93,7 +95,7 @@ export const createBooking = (data) => {
   };
 };
 
-export const paymentDetailsVaild = (isValid) => dispatch => {
+export const paymentDetailsValid = (isValid) => dispatch => {
   return dispatch({type: CREATE_BOOKING_PAYMENT_VALID, payload: isValid});
 };
 
@@ -107,7 +109,7 @@ export const getStripeToken = (stripe) => {
       type: CREATE_BOOKING_STRIPE_TOKEN,
       payload: stripe.createToken()
         .then(res => {
-          if (res.error) throw err;
+          if (res.error) throw res.error;
           return res.token;
         })
     })
@@ -123,7 +125,7 @@ export const setAmendBooking = (amendBooking) => dispatch => {
   dispatch({type: SET_AMEND_BOOKING, payload: amendBooking});
 };
 
-export const getBooking = (data, allowBookingUpdate) => {
+export const getBooking = (data) => {
 
   return dispatch => {
 
@@ -131,7 +133,7 @@ export const getBooking = (data, allowBookingUpdate) => {
 
     return dispatch({
       type: GET_BOOKING,
-      payload: ResDiary.getBooking(data, allowBookingUpdate)
+      payload: ResDiary.getBooking(data)
     })
       .catch(err => {
         if (err.response && err.response.status === 404) {
@@ -173,10 +175,28 @@ export const updateBooking = (data) => {
   };
 };
 
+export const confirmBooking = (data) => {
+
+  return dispatch => {
+
+    dispatch({type: HIDE_ERROR});
+
+    return dispatch({
+      type: CONFIRM_BOOKING,
+      payload: ResDiary.confirmBooking(data)
+    })
+      .catch(handleErr(dispatch));
+  };
+};
+
 export const resetForm = (formName) => dispatch => {
   dispatch(reset(formName));
 };
 
 export const resetTimeSlot = () => dispatch => {
   dispatch({type: RESET_TIMESLOT});
+};
+
+export const changeDateClicked = () => dispatch => {
+  dispatch({type: CHANGE_DATE_CLICKED})
 };
