@@ -7,7 +7,9 @@
     "dev": "webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack",
     "dev:prince": "webpack-dev-server --env.client prince",
-    "build:prince": "cross-env NODE_ENV=production webpack --env.client prince"
+    "build:prince": "cross-env NODE_ENV=production webpack --env.client prince",
+    "dev:feast": "webpack-dev-server --env.client feast",
+    "build:feast": "cross-env NODE_ENV=production webpack --env.client feast"
   },
   "author": "Liam Neville",
   "license": "ISC",
