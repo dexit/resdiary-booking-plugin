@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const HeaderText = () => (
-  <p>You're just a minute away from booking your table at The Prince!</p>
+  <p>You're just a minute away from booking your table at Feast Bar & Kitchen</p>
 );
 
 export const UsualInfoText = () => (
