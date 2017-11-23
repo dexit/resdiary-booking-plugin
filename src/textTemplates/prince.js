@@ -14,7 +14,7 @@ export const UsualInfoText = () => (
       at <a href='mailto:contact@theprincelondon.com'>contact@theprincelondon.com</a> and we will do our best to find
       you a table.</p>
     <p><strong>Times:</strong> We have two sittings – 11am until 5pm and 5:30pm until close.</p>
-    <p><strong>Kids:</strong> We welcome children with open arms!</p>
+    <p><strong>Kids:</strong> We welcome children with open arms, however please note that on Fridays and Saturdays we kindly ask all that all under 18’s leave the site by 6pm.</p>
     <p><strong>Groups of 50+:</strong> We do accommodate groups of 50 or more. <br/>
       Please email <a href='mailto:contact@theprincelondon.com'>contact@theprincelondon.com</a>
     </p>
