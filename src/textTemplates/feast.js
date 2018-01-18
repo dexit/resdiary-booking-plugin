@@ -20,8 +20,7 @@ export const UsualInfoText = () => (
 );
 
 export const ConfirmReservationText = () => (
-  <p>*IMPORTANT INFORMATION. We will hold your reservation for 30 minutes, we kindly ask that as many of your party as
-    possible can arrive within this time</p>
+  <p>*IMPORTANT INFORMATION. We will hold your reservation for 30 minutes, we kindly ask that all your party arrives within this time. We will do our best to seat late comers but cannot guarantee entry</p>
 );
 
 export const CardDetailsText = () => (
