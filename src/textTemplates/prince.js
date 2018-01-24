@@ -13,7 +13,8 @@ export const UsualInfoText = () => (
       grab one of our many walk-in spaces. Alternatively, we do often receive cancellations on the day, please email us
       at <a href='mailto:contact@theprincelondon.com'>contact@theprincelondon.com</a> and we will do our best to find
       you a table.</p>
-    <p><strong>Times:</strong> We have two sittings – 11am until 5pm and 5:30pm until close.</p>
+    <p><strong>Times:</strong> We have two sittings – 12pm until 5pm and 5:30pm until close.</p>
+    <p><strong>Closed for refurbishment:</strong>We’ll be closed for a quick refurb from 5th March – 5th April 2018.</p>
     <p><strong>Kids:</strong> We welcome children with open arms, however please note that on Fridays and Saturdays we kindly ask all that all under 18’s leave the site by 6pm.</p>
     <p><strong>Groups of 50+:</strong> We do accommodate groups of 50 or more. <br/>
       Please email <a href='mailto:contact@theprincelondon.com'>contact@theprincelondon.com</a>
