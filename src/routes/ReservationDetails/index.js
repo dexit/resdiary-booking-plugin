@@ -47,7 +47,7 @@ class ReservationDetails extends Component {
     if (this.props.daysInAdvance) {
       return [...this.props.closedDates,
         {after: moment().add(this.props.daysInAdvance, 'days').toDate()},
-        {before: moment().add(1, 'days').toDate()}
+        {before: moment()}
       ];
     }
     return [...this.props.closedDates, {before: moment().add(1, 'days').toDate()}];
