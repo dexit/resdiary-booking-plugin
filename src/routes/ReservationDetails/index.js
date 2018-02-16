@@ -50,7 +50,7 @@ class ReservationDetails extends Component {
         {before: moment()}
       ];
     }
-    return [...this.props.closedDates, {before: moment().add(1, 'days').toDate()}];
+    return [...this.props.closedDates, {before: moment()}];
   };
 
   handleSubmit = () => {
