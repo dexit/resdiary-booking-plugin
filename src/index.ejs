@@ -3,15 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>ResDiary Booking Plugin Dev</title>
-</head>
-<body>
 
+    <% switch (htmlWebpackPlugin.options.client) {
+    case 'prince' :
+    %>
+    <link rel="stylesheet" href="https://www.theprincelondon.com/wp-content/themes/incipio/dist/styles/main.css">
+    <link rel="stylesheet" href="https://www.theprincelondon.com/wp-content/themes/the-prince/dist/styles/main.css">
+    <% break;
+
+    case 'feast' : %>
+    <link rel="stylesheet" href="https://www.feastbarandkitchen.com/wp-content/themes/incipio/dist/styles/main.css">
+    <link rel="stylesheet"
+          href="https://www.feastbarandkitchen.com/wp-content/themes/the-cornerhouse/dist/styles/main.css">
+
+    <% break;
+
+    } %>
+
+</head>
+
+<body style="display:flex;justify-content:center;align-items:center;height: 100vh;">
 <div id="resdiary-reservations"
      data-restaurant="TheEmpressatWestBromptonCrossing"
      data-max-party-size-modal="true"
 >
 </div>
-
 <script src="https://js.stripe.com/v3/"></script>
 </body>
 </html>

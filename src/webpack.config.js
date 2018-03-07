@@ -11,7 +11,7 @@ module.exports = (env) => {
     output:
       {
         path: `${__dirname.slice(0, -3)}dist/`,
-        publicPath: '/',
+        publicPath: '/reservations',
         filename: `resdiary-booking-plugin-${env.client}.min.js`,
       },
     plugins: debug ? [
@@ -20,7 +20,7 @@ module.exports = (env) => {
       new webpack.NamedModulesPlugin(),
       new HtmlWebpackPlugin({
         template: 'index.ejs',
-        filename: 'index.html'
+        client: env.client,
       })
     ] : [
       new webpack.optimize.OccurrenceOrderPlugin(),
@@ -136,7 +136,7 @@ module.exports = (env) => {
           secure: false
         }
       },
-      publicPath: '/',
+      publicPath: '/reservations',
       historyApiFallback: true
     };
 
