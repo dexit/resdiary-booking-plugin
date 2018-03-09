@@ -16,7 +16,7 @@ const PersonalDetailsForm = () => {
         <Field name="tel" type="text" component="input" placeholder="Telephone Number"/>
       </div>
       <div>
-        <Field name="specialRequests" component="textarea" placeholder="Special Requests"/>
+        <Field name="specialRequests" component="textarea" placeholder="Special Requests (ie: day bed, garden table, high chair). &#x0a;Please also tell us the reason for your visit (ie: Birthday, work summer party, etc.)"/>
       </div>
     </form>
   );
