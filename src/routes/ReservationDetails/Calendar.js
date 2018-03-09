@@ -100,7 +100,7 @@ class Calendar extends Component {
         {this.state.isTouch
           ?
          <Field name="sitting" component='select' onChange={handleSittingChange}>
-         <option disabled>Lunch/Dinner</option>
+         <option disabled>Day/Evening</option>
            {services.map(svc => <option key={svc.ServiceId} value={svc.ServiceId}>{svc.Name}</option>)}
          </Field>
           :
@@ -108,7 +108,7 @@ class Calendar extends Component {
            name="sitting"
            options={[
              {
-               label: 'Lunch\/Dinner',
+               label: 'Day\/Evening',
                value: '',
                disabled: true
              },
