@@ -13,7 +13,7 @@ export const UsualInfoText = () => (
     <p><strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and grab one of our many walk in spaces. Alternatively, we do often receive cancellations on the day, please email us at <a href='mailto:contact@theprincelondon.com'>contact@theprincelondon.com</a> and we will do our best to find you a table.</p>
     <p><strong>Times:</strong> We have two sittings – 12pm until 5pm and 4pm until close.</p>
     <p><strong>Kids:</strong> We welcome children with open arms, however please note that on Fridays and Saturdays we kindly ask all that all under 18’s leave the site by 6pm.</p>
-    <p><strong>Groups of 50+:</strong> We do accommodate groups of 50 or more. <br/>
+    <p><strong>Groups of 50+:</strong> We do accommodate groups of 50 or more.<br/>
       Please email <a href='mailto:contact@theprincelondon.com'>contact@theprincelondon.com</a>
     </p>
     <p>For private hires of the venue please visit our <strong><a href="/private-hire" rel="noopener noreferrer" target="_blank">private hire page.</a></strong></p>
