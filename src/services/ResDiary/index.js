@@ -2,7 +2,6 @@ import axios from 'axios';
 import qs from 'qs';
 
 class ResDiary {
-
   constructor() {
     this.api = '/wp-admin/admin-ajax.php?action=resdiary';
     this.restauarant;
@@ -33,6 +32,16 @@ class ResDiary {
     return data;
   }
 
+  async getCustomerCodes() {
+    const reqData = {
+      method: 'GET',
+      url: `/Restaurant/${this.restauarant}/CustomerCodes`
+    };
+    const {data: {data}} = await axios.post(this.api, qs.stringify(reqData));
+
+    return data;
+  }
+
   async getAvailability({VisitDate, PartySize, BookingId, Areas}) {
     const reqData = {
       method: 'POST',
@@ -55,8 +64,7 @@ class ResDiary {
     return Areas.map((area, i) => ({...area, ...areaData[i].data.data}));
   }
 
-  async createBooking({timeSlot, people, firstName, lastName, tel, email, specialRequests, stripeToken}) {
-
+  async createBooking({timeSlot, people, firstName, lastName, DOB, tel, email, HDYH, specialRequests, stripeToken}) {
     const reqData = {
       method: 'POST',
       url: `/Restaurant/${this.restauarant}/BookingWithStripeToken`,
@@ -74,9 +82,16 @@ class ResDiary {
           Email: email
         },
         StripeToken: stripeToken
-        }
       }
-    ;
+    };
+
+    if (DOB) {
+      reqData.data.Customer.Birthday = DOB;
+    }
+
+    if (HDYH) {
+      reqData.data.Customer.CustomerCodes = [HDYH];
+    }
 
     const {data: {data}} = await axios.post(this.api, qs.stringify(reqData));
 
@@ -102,7 +117,6 @@ class ResDiary {
   }
 
   async updateBooking({timeSlot, people, bookingRef}) {
-
     const reqData = {
       method: 'PUT',
       url: `/Restaurant/${this.restauarant}/Booking/${bookingRef}`,
@@ -110,7 +124,7 @@ class ResDiary {
         VisitDate: timeSlot.time,
         VisitTime: timeSlot.time.split('T')[1].split('Z')[0],
         PartySize: people,
-        AreaID: timeSlot.area.id,
+        AreaID: timeSlot.area.id
       }
     };
 
@@ -124,7 +138,6 @@ class ResDiary {
   }
 
   async confirmBooking({bookingRef, stripeToken}) {
-
     const reqData = {
       method: 'POST',
       url: `/Restaurant/${this.restauarant}/Booking/${bookingRef}/Confirm?stripeToken=${stripeToken}`,
@@ -139,7 +152,6 @@ class ResDiary {
 
     return data;
   }
-
 }
 
 export default new ResDiary();

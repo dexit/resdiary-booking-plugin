@@ -9,7 +9,7 @@ class ResDiary {
 
 	private static function checkUrl( $method, $url ) {
 		$url_list = array(
-			'GET'  => array( 'ClosedDates', 'Setup' ),
+			'GET'  => array( 'ClosedDates', 'Setup', 'CustomerCodes' ),
 			'POST' => array( 'AvailabilitySearch', 'BookingWithStripeToken', 'Confirm' )
 		);
 
@@ -103,7 +103,7 @@ class ResDiary {
 
 				$response = wp_remote_post( self::$api . $data['url'], array(
 					'headers' => $headers,
-					'body'    => json_encode( $body ),
+					'body'    => json_encode( $body, JSON_NUMERIC_CHECK ),
 					'timeout' => 10
 				) );
 
@@ -120,7 +120,7 @@ class ResDiary {
 					array(
 						'method'  => 'PUT',
 						'headers' => $headers,
-						'body'    => json_encode( $body ),
+						'body'    => json_encode( $body, JSON_NUMERIC_CHECK ),
 						'timeout' => 10
 					)
 				);

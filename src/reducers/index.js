@@ -8,12 +8,14 @@ import termsAgreed from './termsAgreed';
 import booking from './booking';
 import page from './page';
 import initialFormState from './initialFormState';
+import customerCodes from './customerCodes';
 import {reducer as formReducer} from 'redux-form';
 
 export default combineReducers({
   page,
   initialFormState,
   restaurant,
+  customerCodes,
   calendar,
   error,
   availability,

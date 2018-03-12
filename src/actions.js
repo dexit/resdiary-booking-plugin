@@ -1,5 +1,5 @@
 import ResDiary from './services/ResDiary';
-import {initialize, reset} from 'redux-form'
+import {initialize, reset} from 'redux-form';
 import {
   CHANGE_DATE_CLICKED,
   CONFIRM_BOOKING,
@@ -10,6 +10,7 @@ import {
   GET_BOOKING,
   GET_CLOSED_DATES,
   GET_RESTAURANT_SETUP,
+  GET_CUSTOMER_CODES,
   HIDE_ERROR,
   PAGE_NUMBER,
   RESET_AVAILABILITY,
@@ -28,168 +29,151 @@ const handleErr = dispatch => {
 };
 
 export const getClosedDates = () => {
-
   return dispatch => {
-
     dispatch({type: HIDE_ERROR});
 
     return dispatch({
       type: GET_CLOSED_DATES,
       payload: ResDiary.getClosedDates()
-    })
-      .catch(handleErr(dispatch));
-
+    }).catch(handleErr(dispatch));
   };
 };
 
 export const getRestaurantSetup = () => {
-
   return dispatch => {
-
     dispatch({type: HIDE_ERROR});
 
     return dispatch({
       type: GET_RESTAURANT_SETUP,
       payload: ResDiary.getRestaurantSetup()
-    })
-      .catch(handleErr(dispatch));
+    }).catch(handleErr(dispatch));
+  };
+};
 
+export const getCustomerCodes = () => {
+  return dispatch => {
+    dispatch({type: HIDE_ERROR});
+
+    return dispatch({
+      type: GET_CUSTOMER_CODES,
+      payload: ResDiary.getCustomerCodes()
+    }).catch(handleErr(dispatch));
   };
 };
 
 export const getAvailability = (data, service) => {
-
   return dispatch => {
-
     dispatch({type: HIDE_ERROR});
 
     return dispatch({
       type: GET_AVAILABILITY,
       payload: ResDiary.getAvailability(data),
       meta: {service}
-    })
-      .catch(handleErr(dispatch));
-
+    }).catch(handleErr(dispatch));
   };
 };
 
-export const setTimeSlot = (timeSlot) => dispatch => {
+export const setTimeSlot = timeSlot => dispatch => {
   dispatch({type: SET_TIMESLOT, payload: timeSlot});
 };
 
-export const setTerms = (checked) => dispatch => {
+export const setTerms = checked => dispatch => {
   dispatch({type: SET_TERMS, payload: checked});
 };
 
-export const createBooking = (data) => {
-
+export const createBooking = data => {
   return dispatch => {
-
     dispatch({type: HIDE_ERROR});
 
     return dispatch({
       type: CREATE_BOOKING,
       payload: ResDiary.createBooking(data)
-    })
-      .catch(handleErr(dispatch));
+    }).catch(handleErr(dispatch));
   };
 };
 
-export const paymentDetailsValid = (isValid) => dispatch => {
+export const paymentDetailsValid = isValid => dispatch => {
   return dispatch({type: CREATE_BOOKING_PAYMENT_VALID, payload: isValid});
 };
 
-export const getStripeToken = (stripe) => {
-
+export const getStripeToken = stripe => {
   return dispatch => {
-
     dispatch({type: HIDE_ERROR});
 
     return dispatch({
       type: CREATE_BOOKING_STRIPE_TOKEN,
-      payload: stripe.createToken()
-        .then(res => {
-          if (res.error) throw res.error;
-          return res.token;
-        })
-    })
-      .catch(handleErr(dispatch));
+      payload: stripe.createToken().then(res => {
+        if (res.error) throw res.error;
+        return res.token;
+      })
+    }).catch(handleErr(dispatch));
   };
 };
 
-export const setPage = (page) => dispatch => {
+export const setPage = page => dispatch => {
   dispatch({type: PAGE_NUMBER, payload: page});
 };
 
-export const setAmendBooking = (amendBooking) => dispatch => {
+export const setAmendBooking = amendBooking => dispatch => {
   dispatch({type: SET_AMEND_BOOKING, payload: amendBooking});
 };
 
-export const getBooking = (data) => {
-
+export const getBooking = data => {
   return dispatch => {
-
     dispatch({type: HIDE_ERROR});
 
     return dispatch({
       type: GET_BOOKING,
       payload: ResDiary.getBooking(data)
-    })
-      .catch(err => {
-        if (err.response && err.response.status === 404) {
-          dispatch({type: SHOW_ERROR, payload: 'Booking not found!'})
-        } else {
-          dispatch({type: SHOW_ERROR, payload: err.message || err})
-        }
-      });
+    }).catch(err => {
+      if (err.response && err.response.status === 404) {
+        dispatch({type: SHOW_ERROR, payload: 'Booking not found!'});
+      } else {
+        dispatch({type: SHOW_ERROR, payload: err.message || err});
+      }
+    });
   };
 };
 
-export const setInitialFormState = (initialValues) => dispatch => {
+export const setInitialFormState = initialValues => dispatch => {
   dispatch({type: SET_INITIAL_FORM_STATE, payload: initialValues});
 };
 
 export const resetInitialFormState = () => dispatch => {
-  dispatch({type: RESET_INITIAL_FORM_STATE})
+  dispatch({type: RESET_INITIAL_FORM_STATE});
 };
 
 export const resetAvailability = () => dispatch => {
-  dispatch({type: RESET_AVAILABILITY})
+  dispatch({type: RESET_AVAILABILITY});
 };
 
-export const reInitForm = (formName) => dispatch => {
+export const reInitForm = formName => dispatch => {
   dispatch(initialize(formName));
 };
 
-export const updateBooking = (data) => {
-
+export const updateBooking = data => {
   return dispatch => {
-
     dispatch({type: HIDE_ERROR});
 
     return dispatch({
       type: UPDATE_BOOKING,
       payload: ResDiary.updateBooking(data)
-    })
-      .catch(handleErr(dispatch));
+    }).catch(handleErr(dispatch));
   };
 };
 
-export const confirmBooking = (data) => {
-
+export const confirmBooking = data => {
   return dispatch => {
-
     dispatch({type: HIDE_ERROR});
 
     return dispatch({
       type: CONFIRM_BOOKING,
       payload: ResDiary.confirmBooking(data)
-    })
-      .catch(handleErr(dispatch));
+    }).catch(handleErr(dispatch));
   };
 };
 
-export const resetForm = (formName) => dispatch => {
+export const resetForm = formName => dispatch => {
   dispatch(reset(formName));
 };
 
@@ -198,5 +182,5 @@ export const resetTimeSlot = () => dispatch => {
 };
 
 export const changeDateClicked = () => dispatch => {
-  dispatch({type: CHANGE_DATE_CLICKED})
+  dispatch({type: CHANGE_DATE_CLICKED});
 };

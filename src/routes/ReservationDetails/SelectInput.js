@@ -6,14 +6,14 @@ export default props => {
   return (
     <Select
       {...props}
-      value={{label: props.input.value}}
+      value={props.input.value}
       onChange={value => {
-        props.input.onChange(value.label);
-        props.handleChange(value.value)
+        props.input.onChange(value);
+        props.handleChange && props.handleChange(value.value);
       }}
-      onBlur={() => props.input.onBlur(props.input.value)}
+      onBlur={() => props.input.onBlur(props.input.value.value)}
       options={props.options}
       clearable={false}
     />
-  )
+  );
 };

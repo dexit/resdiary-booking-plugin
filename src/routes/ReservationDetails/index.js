@@ -8,11 +8,22 @@ import {withRouter} from 'react-router';
 import CustomEvent from 'custom-event';
 
 class ReservationDetails extends Component {
-
   state = {
-    selectedDay: (this.props.booking.VisitDate && new Date(this.props.booking.VisitDate)) || (this.props.timeSlot.time && new Date(this.props.timeSlot.time)) || null,
-    peopleValue: (this.props.booking.PartySize && this.props.booking.PartySize) || (this.props.reservationDetails && this.props.reservationDetails.values && this.props.reservationDetails.values.people) || null,
-    sittingValue: (this.props.reservationDetails && this.props.reservationDetails.values && this.props.reservationDetails.values.sitting) || null,
+    selectedDay:
+    (this.props.booking.VisitDate && new Date(this.props.booking.VisitDate)) ||
+    (this.props.timeSlot.time && new Date(this.props.timeSlot.time)) ||
+    null,
+    peopleValue:
+    (this.props.booking.PartySize && this.props.booking.PartySize) ||
+    (this.props.reservationDetails &&
+      this.props.reservationDetails.values &&
+      this.props.reservationDetails.values.people) ||
+    null,
+    sittingValue:
+    (this.props.reservationDetails &&
+      this.props.reservationDetails.values &&
+      this.props.reservationDetails.values.sitting) ||
+    null,
     tabIndex: this.props.availability.length ? 1 : 0,
     resetForm: !Object.keys(this.props.booking).length
   };
@@ -23,10 +34,9 @@ class ReservationDetails extends Component {
     this.props.changeDateClicked();
   }
 
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.availability.length) {
-      this.setState({tabIndex: 1})
+      this.setState({tabIndex: 1});
     }
     if (!this.props.bookingComplete && nextProps.bookingComplete) {
       this.props.history.push('/reservations/reservation-confirmed');
@@ -36,7 +46,6 @@ class ReservationDetails extends Component {
     }
   }
 
-
   handleDayClick = (day, {selected, disabled}) => {
     if (disabled) return;
 
@@ -45,8 +54,13 @@ class ReservationDetails extends Component {
 
   disabledDays = () => {
     if (this.props.daysInAdvance) {
-      return [...this.props.closedDates,
-        {after: moment().add(this.props.daysInAdvance, 'days').toDate()},
+      return [
+        ...this.props.closedDates,
+        {
+          after: moment()
+            .add(this.props.daysInAdvance, 'days')
+            .toDate()
+        },
         {before: new Date()}
       ];
     }
@@ -103,7 +117,9 @@ class ReservationDetails extends Component {
         <Calendar
           handleDayClick={this.handleDayClick}
           disabledDays={this.disabledDays()}
-          toMonth={moment().add(this.props.daysInAdvance, 'days').toDate()}
+          toMonth={moment()
+            .add(this.props.daysInAdvance, 'days')
+            .toDate()}
           minPartySize={this.props.minPartySize}
           maxPartySize={this.props.maxPartySize}
           services={this.props.services}
@@ -144,13 +160,15 @@ const mapStateToProps = state => {
     bookingComplete: state.booking.complete,
     reservationDetails: state.form.reservationDetails,
     timeSlot: state.timeSlot,
-    stripeKey: state.booking.stripeKey,
+    stripeKey: state.booking.stripeKey
   };
 };
 
-export default withRouter(connect(mapStateToProps, {
-  getAvailability,
-  setTimeSlot,
-  setPage,
-  changeDateClicked
-})(ReservationDetails));
+export default withRouter(
+  connect(mapStateToProps, {
+    getAvailability,
+    setTimeSlot,
+    setPage,
+    changeDateClicked
+  })(ReservationDetails)
+);

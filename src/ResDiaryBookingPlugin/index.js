@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {string} from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import {getClosedDates, getRestaurantSetup} from '../actions';
+import {getClosedDates, getRestaurantSetup, getCustomerCodes} from '../actions';
 import {connect} from 'react-redux';
 import ResDiary from '../services/ResDiary';
 import Header from '../components/Header';
@@ -16,17 +16,18 @@ import YourReservation from '../routes/YourReservation/index';
 import Footer from '../components/Footer';
 
 class ResDiaryBookingPlugin extends Component {
-
   static propTypes = {
     restaurant: string.isRequired
   };
 
   constructor(props) {
     super(props);
-    const {restaurant, getClosedDates, getRestaurantSetup} = props;
+    const {restaurant, getClosedDates, getRestaurantSetup, getCustomerCodes} = props;
     ResDiary.setRestaurant(restaurant);
     getRestaurantSetup();
     getClosedDates();
+    //@CustomerCodes - uncomment below
+    // getCustomerCodes();
   }
 
   render() {
@@ -35,15 +36,17 @@ class ResDiaryBookingPlugin extends Component {
         <div>
           <Header page={this.props.page} amendBooking={this.props.amendBooking}/>
           <Switch>
-            <Route exact path='/reservations' component={BookingOptions}/>
-            <Route path='/reservations/reservation-details'
-                   render={() => <ReservationDetails maxPartySizeModal={this.props.maxPartySizeModal}/>}/>
-            <Route path='/reservations/confirm-reservation' component={ConfirmReservation}/>
-            <Route path='/reservations/personal-details' component={PersonalDetails}/>
-            <Route path='/reservations/card-details' component={CardDetails}/>
-            <Route path='/reservations/reservation-confirmed' component={ReservationConfirmed}/>
-            <Route path='/reservations/amend-booking' component={AmendBooking}/>
-            <Route path='/reservations/your-reservation' component={YourReservation}/>
+            <Route exact path="/reservations" component={BookingOptions}/>
+            <Route
+              path="/reservations/reservation-details"
+              render={() => <ReservationDetails maxPartySizeModal={this.props.maxPartySizeModal}/>}
+            />
+            <Route path="/reservations/confirm-reservation" component={ConfirmReservation}/>
+            <Route path="/reservations/personal-details" component={PersonalDetails}/>
+            <Route path="/reservations/card-details" component={CardDetails}/>
+            <Route path="/reservations/reservation-confirmed" component={ReservationConfirmed}/>
+            <Route path="/reservations/amend-booking" component={AmendBooking}/>
+            <Route path="/reservations/your-reservation" component={YourReservation}/>
           </Switch>
           <Footer/>
         </div>
@@ -54,4 +57,6 @@ class ResDiaryBookingPlugin extends Component {
 
 const mapStateToProps = state => ({page: state.page, amendBooking: state.booking.amending});
 
-export default connect(mapStateToProps, {getClosedDates, getRestaurantSetup})(ResDiaryBookingPlugin);
+export default connect(mapStateToProps, {getClosedDates, getRestaurantSetup, getCustomerCodes})(
+  ResDiaryBookingPlugin
+);

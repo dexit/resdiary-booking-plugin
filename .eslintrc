@@ -1,0 +1,34 @@
+{
+	"extends": [
+		"react-app",
+		"prettier",
+		"prettier/react"
+	],
+	"plugins": [
+		"prettier"
+	],
+	"rules": {
+		"prettier/prettier": "error"
+	},
+	"overrides": [
+		{
+			"files": [
+				"**/*.spec.js",
+				"test-setup.js"
+			],
+			"env": {
+				"jest": true
+			},
+			"globals": {
+				"mount": true,
+				"sandbox": true,
+				"React": true,
+				"render": true,
+				"shallow": true
+			},
+			"rules": {
+				"no-unused-expressions": "off"
+			}
+		}
+	]
+}
