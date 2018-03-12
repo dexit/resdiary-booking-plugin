@@ -66,3 +66,6 @@ front-end/environments/*.local.js
 
 # Test related
 junit.xml
+
+# Remove Dist Files as these are compiled on deployment by Deploybot.
+dist

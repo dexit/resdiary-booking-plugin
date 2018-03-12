@@ -94,7 +94,7 @@ class Calendar extends Component {
 				)}
 				{this.state.isTouch ? (
 					<Field name="sitting" component="select" onChange={handleSittingChange}>
-						<option disabled>Lunch/Dinner</option>
+						<option disabled>Day/Evening</option>
 						{services.map(svc => (
 							<option key={svc.ServiceId} value={svc.ServiceId}>
 								{svc.Name}
@@ -104,7 +104,7 @@ class Calendar extends Component {
 				) : (
 					<Field
 						name="sitting"
-						placeholder="Lunch/Dinner"
+						placeholder="Day/Evening"
 						options={services.map(svc => ({ label: svc.Name, value: svc.ServiceId }))}
 						component={SelectInput}
 						handleChange={handleSittingChange}
