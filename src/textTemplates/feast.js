@@ -76,6 +76,6 @@ export const ReservationConfirmedText = () => (
 			Although this system is automated, we are humans and we’re here to help! You can contact us on the email address
 			above anytime.{' '}
 		</p>
-		<p>We look forward to seeing your very soon!</p>
+		<p>We look forward to seeing you very soon!</p>
 	</div>
 );
