@@ -7,7 +7,8 @@ import {
 	resetInitialFormState,
 	resetTimeSlot,
 	setAmendBooking,
-	setPage
+	setPage,
+	setMarketingOptIn
 } from '../../actions';
 import { connect } from 'react-redux';
 
@@ -23,6 +24,10 @@ class BookingOptions extends Component {
 		scroll(0, 0);
 	}
 
+	handleChange = e => {
+		this.props.setMarketingOptIn(e.target.checked);
+	};
+
 	render() {
 		return (
 			<section id="make-reservation">
@@ -37,17 +42,42 @@ class BookingOptions extends Component {
 						</li>
 					</ul>
 				</div>
+				<div id="marketing-opt-in">
+					<label>
+						<div>
+							<input
+								type="checkbox"
+								name="marketingOptIn"
+								value="yes"
+								onChange={this.handleChange}
+								checked={setMarketingOptIn}
+							/>
+						</div>
+						<span>
+							By ticking this box I am happy for my details to be used to receive further information about my booking
+							and about Incipio venues. We do not share any data with third parties and are compliant with all new data
+							protection laws.
+						</span>
+					</label>
+				</div>
 			</section>
 		);
 	}
 }
 
-export default connect(state => ({ initialFormState: state.inititalFormState }), {
-	setPage,
-	setAmendBooking,
-	resetInitialFormState,
-	reInitForm,
-	resetForm,
-	resetAvailability,
-	resetTimeSlot
-})(BookingOptions);
+export default connect(
+	state => ({
+		initialFormState: state.inititalFormState,
+		marketingOptIn: state.marketingOptIn
+	}),
+	{
+		setPage,
+		setAmendBooking,
+		setMarketingOptIn,
+		resetInitialFormState,
+		reInitForm,
+		resetForm,
+		resetAvailability,
+		resetTimeSlot
+	}
+)(BookingOptions);

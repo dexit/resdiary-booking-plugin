@@ -21,7 +21,8 @@ import {
 	SET_TERMS,
 	SET_TIMESLOT,
 	SHOW_ERROR,
-	UPDATE_BOOKING
+	UPDATE_BOOKING,
+	SET_MARKETING_OPT_IN
 } from './constants';
 
 const handleErr = dispatch => {
@@ -79,6 +80,10 @@ export const setTimeSlot = timeSlot => dispatch => {
 
 export const setTerms = checked => dispatch => {
 	dispatch({ type: SET_TERMS, payload: checked });
+};
+
+export const setMarketingOptIn = checked => dispatch => {
+	dispatch({ type: SET_MARKETING_OPT_IN, payload: checked });
 };
 
 export const createBooking = data => {

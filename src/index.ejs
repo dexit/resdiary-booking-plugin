@@ -4,17 +4,29 @@
     <meta charset="UTF-8">
     <title>ResDiary Booking Plugin Dev</title>
 
+    <link rel="stylesheet" href="https://www.feastbarandkitchen.com/wp-content/themes/incipio/dist/styles/main.css">
+
+    <!-- use local styles -->
+     <!--<link rel="stylesheet" href="http://incipio/wp-content/themes/incipio/dist/styles/main.css">-->
+
     <% switch (htmlWebpackPlugin.options.client) {
-    case 'prince' :
-    %>
-    <link rel="stylesheet" href="https://www.theprincelondon.com/wp-content/themes/incipio/dist/styles/main.css">
+
+    case 'prince' : %>
+
     <link rel="stylesheet" href="https://www.theprincelondon.com/wp-content/themes/the-prince/dist/styles/main.css">
+
+    <!-- use local styles -->
+    <!--<link rel="stylesheet" href="http://incipio/wp-content/themes/the-prince/dist/styles/main.css">-->
+
     <% break;
 
     case 'feast' : %>
-    <link rel="stylesheet" href="https://www.feastbarandkitchen.com/wp-content/themes/incipio/dist/styles/main.css">
+
     <link rel="stylesheet"
           href="https://www.feastbarandkitchen.com/wp-content/themes/the-cornerhouse/dist/styles/main.css">
+
+    <!-- use local styles -->
+    <!--<link rel="stylesheet" href="http://incipio/wp-content/themes/the-cornerhouse/dist/styles/main.css">-->
 
     <% break;
 

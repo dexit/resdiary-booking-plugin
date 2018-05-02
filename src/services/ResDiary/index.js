@@ -64,7 +64,19 @@ class ResDiary {
 		return Areas.map((area, i) => ({ ...area, ...areaData[i].data.data }));
 	}
 
-	async createBooking({ timeSlot, people, firstName, lastName, DOB, tel, email, HDYH, specialRequests, stripeToken }) {
+	async createBooking({
+		timeSlot,
+		people,
+		firstName,
+		lastName,
+		DOB,
+		tel,
+		email,
+		HDYH,
+		specialRequests,
+		stripeToken,
+		marketingOptIn
+	}) {
 		const reqData = {
 			method: 'POST',
 			url: `/Restaurant/${this.restauarant}/BookingWithStripeToken`,
@@ -79,7 +91,8 @@ class ResDiary {
 					FirstName: firstName,
 					Surname: lastName,
 					Mobile: tel,
-					Email: email
+					Email: email,
+					ReceiveEmailMarketing: marketingOptIn
 				},
 				StripeToken: stripeToken
 			}

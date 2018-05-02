@@ -11,6 +11,7 @@ const Footer = props => {
 		page,
 		timeSlot,
 		termsAgreed,
+		marketingOptIn,
 		personalDetailsForm,
 		paymentValid,
 		bookingPending,
@@ -104,7 +105,8 @@ const Footer = props => {
 				const data = {
 					...reservationDetails.values,
 					...personalDetailsForm.values,
-					timeSlot
+					timeSlot,
+					marketingOptIn
 				};
 				e.preventDefault();
 				createBooking(data);
@@ -154,6 +156,7 @@ const mapStateToProps = state => {
 		error: state.error,
 		timeSlot: state.timeSlot,
 		termsAgreed: state.termsAgreed,
+		marketingOptIn: state.marketingOptIn,
 		personalDetailsForm: state.form.personalDetails,
 		bookingPending: state.booking.pending,
 		bookingComplete: state.booking.complete,
