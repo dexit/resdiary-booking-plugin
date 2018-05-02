@@ -50,7 +50,7 @@ class BookingOptions extends Component {
 								name="marketingOptIn"
 								value="yes"
 								onChange={this.handleChange}
-								checked={setMarketingOptIn}
+								checked={this.props.marketingOptIn}
 							/>
 						</div>
 						<span>
