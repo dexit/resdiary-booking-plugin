@@ -16,8 +16,6 @@ import AmendBooking from '../routes/AmendBooking';
 import YourReservation from '../routes/YourReservation/index';
 import Footer from '../components/Footer';
 
-const GA = window.__gaTracker || window.ga;
-
 class ResDiaryBookingPlugin extends Component {
 	static propTypes = {
 		restaurant: string.isRequired
@@ -37,7 +35,7 @@ class ResDiaryBookingPlugin extends Component {
 		return (
 			<BrowserRouter>
 				<div>
-					{!!GA && <AnalyticsTracker ga={GA} />}
+					{window.ga && <AnalyticsTracker />}
 					<Header page={this.props.page} amendBooking={this.props.amendBooking} />
 					<Switch>
 						<Route exact path="/reservations" component={BookingOptions} />

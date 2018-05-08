@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import { object } from 'prop-types';
+import ReactGA from 'react-ga';
+
+window.ga = window.__gaTracker;
+
+const trackerId = document
+	.querySelector('[data-cfasync]')
+	.innerText.match(/'(.*?)'/)[0]
+	.replace('ga-disable-', '');
+
+ReactGA.initialize(trackerId);
 
 class Analytics extends Component {
-	static propTypes = {
-		ga: object.isRequired
-	};
-
 	componentDidUpdate(prevProps) {
 		if (
 			this.props.location.pathname !== prevProps.location.pathname ||
@@ -18,8 +23,8 @@ class Analytics extends Component {
 
 	sendPageChange(pathname, search = '') {
 		const page = pathname + search;
-		this.props.ga.set({ page });
-		this.props.ga.pageview(page);
+		ReactGA.set({ page });
+		ReactGA.pageview(page);
 	}
 
 	render() {
