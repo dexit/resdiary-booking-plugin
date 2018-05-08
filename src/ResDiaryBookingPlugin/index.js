@@ -37,7 +37,7 @@ class ResDiaryBookingPlugin extends Component {
 		return (
 			<BrowserRouter>
 				<div>
-					{GA && <AnalyticsTracker ga={GA} />}
+					{!!GA && <AnalyticsTracker ga={GA} />}
 					<Header page={this.props.page} amendBooking={this.props.amendBooking} />
 					<Switch>
 						<Route exact path="/reservations" component={BookingOptions} />
