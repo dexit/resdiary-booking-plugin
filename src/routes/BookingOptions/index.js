@@ -43,6 +43,7 @@ class BookingOptions extends Component {
 					</ul>
 				</div>
 				<div id="marketing-opt-in">
+					<h1>Important Information</h1>
 					<label>
 						<div>
 							<input
