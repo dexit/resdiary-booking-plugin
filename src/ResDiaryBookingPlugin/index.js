@@ -5,6 +5,7 @@ import { getClosedDates, getRestaurantSetup, getCustomerCodes } from '../actions
 import { connect } from 'react-redux';
 import ResDiary from '../services/ResDiary';
 import Header from '../components/Header';
+import AnalyticsTracker from '../components/AnalyticsTracker';
 import BookingOptions from '../routes/BookingOptions';
 import ReservationDetails from '../routes/ReservationDetails';
 import ConfirmReservation from '../routes/ConfirmReservation';
@@ -34,6 +35,7 @@ class ResDiaryBookingPlugin extends Component {
 		return (
 			<BrowserRouter>
 				<div>
+					<AnalyticsTracker />
 					<Header page={this.props.page} amendBooking={this.props.amendBooking} />
 					<Switch>
 						<Route exact path="/reservations" component={BookingOptions} />
