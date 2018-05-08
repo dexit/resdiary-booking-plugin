@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import ReactGA from 'react-ga';
+import { object } from 'prop-types';
 
 class Analytics extends Component {
+	static propTypes = {
+		ga: object.isRequired
+	};
+
 	componentDidUpdate(prevProps) {
 		if (
 			this.props.location.pathname !== prevProps.location.pathname ||
@@ -14,8 +18,8 @@ class Analytics extends Component {
 
 	sendPageChange(pathname, search = '') {
 		const page = pathname + search;
-		ReactGA.set({ page });
-		ReactGA.pageview(page);
+		this.props.ga.set({ page });
+		this.props.ga.pageview(page);
 	}
 
 	render() {
