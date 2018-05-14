@@ -9,9 +9,6 @@ export const UsualInfoText = () => (
 			<i className="fa fa-long-arrow-right" aria-hidden="true" />
 		</p>
 		<p>
-			<strong>Closed for refurbishment:</strong> We’ll be closed for a quick refurb from 19th March – 11th April 2018.
-		</p>
-		<p>
 			<strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
 			grab one of our many walk in spaces. Alternatively, we do often receive cancellations on the day, please email us
 			at <a href="mailto:contact@theprincelondon.com">contact@theprincelondon.com</a> and we will do our best to find
