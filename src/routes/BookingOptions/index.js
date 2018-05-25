@@ -34,7 +34,7 @@ class BookingOptions extends Component {
 				<div>
 					<p>I would like to:</p>
 					<ul>
-						<li>
+						<li className={!this.props.marketingOptIn ? 'disabled' : ''}>
 							<Link to="/reservations/reservation-details">Make a new reservation</Link>
 						</li>
 						<li>
@@ -55,9 +55,9 @@ class BookingOptions extends Component {
 							/>
 						</div>
 						<span>
-							By ticking this box I am happy for my details to be used to receive further information about my booking
-							and about Incipio venues. We do not share any data with third parties and are compliant with all new data
-							protection laws.
+							PLEASE TICK ME! We ask that you tick this box so that we are able to use your details to proceed with your
+							reservation & contact you with information surrounding it & our venues. We do not bombard our customers
+							with emails, it is simply used to confirm your booking and infrequently share info about our venues.
 						</span>
 					</label>
 				</div>

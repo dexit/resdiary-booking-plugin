@@ -4,12 +4,14 @@ import ReactGA from 'react-ga';
 
 window.ga = window.__gaTracker;
 
-const trackerId = document
-	.querySelector('[data-cfasync]')
-	.innerText.match(/'(.*?)'/)[0]
-	.replace('ga-disable-', '');
+if (window.ga) {
+	const trackerId = document
+		.querySelector('[data-cfasync]')
+		.innerText.match(/'(.*?)'/)[0]
+		.replace('ga-disable-', '');
 
-ReactGA.initialize(trackerId);
+	ReactGA.initialize(trackerId);
+}
 
 class Analytics extends Component {
 	componentDidUpdate(prevProps) {
