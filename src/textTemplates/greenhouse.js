@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const HeaderText = () => <p>You're just a minute away from booking your table at The Prince!</p>;
+export const HeaderText = () => <p>You're just a minute away from booking your table at The Greenhouse!</p>;
 
 export const UsualInfoText = () => (
 	<div>
@@ -11,7 +11,7 @@ export const UsualInfoText = () => (
 		<p>
 			<strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
 			grab one of our many walk in spaces. Alternatively, we do often receive cancellations on the day, please email us
-			at <a href="mailto:contact@theprincelondon.com">contact@theprincelondon.com</a> and we will do our best to find
+			at <a href="mailto:contact@thegreenhouselondon.co.uk">contact@thegreenhouselondon.co.uk</a> and we will do our best to find
 			you a table.
 		</p>
 		<p>
@@ -23,7 +23,7 @@ export const UsualInfoText = () => (
 		</p>
 		<p>
 			<strong>Groups of 50+:</strong> We do accommodate groups of 50 or more.<br />
-			Please email <a href="mailto:contact@theprincelondon.com">contact@theprincelondon.com</a>
+			Please email <a href="mailto:contact@thegreenhouselondon.co.uk">contact@thegreenhouselondon.co.uk</a>
 		</p>
 		<p>
 			For private hires of the venue please visit our{' '}
@@ -74,7 +74,7 @@ export const ReservationConfirmedText = () => (
 		<p>Be sure to check your junk folder as we know it can end up in there sometimes!</p>
 		<p>
 			Please please let us know if you need to cancel your reservation, simply email us at{' '}
-			<a href="mailto:contact@theprincelondon.com">contact@theprincelondon.com</a> or manage your booking using your
+			<a href="mailto:contact@thegreenhouselondon.co.uk">contact@thegreenhouselondon.co.uk</a> or manage your booking using your
 			reference number <a href="/reservations">here</a>
 		</p>
 		<p>
