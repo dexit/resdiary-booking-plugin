@@ -10,8 +10,9 @@ export const UsualInfoText = () => (
 			at <a href="mailto:contact@feastbarandkitchen.com">contact@feastbarandkitchen.com</a> and we will do our best to
 			find you a table.
 		</p>
+		<p><strong>We take bookings up to six weeks in advance.</strong></p>
 		<p>
-			<strong>Times:</strong> We have two sittings – 11am until 5pm and 5:30pm until close.
+			<strong>Times:</strong> We have two sittings – 11am until 5pm and 5pm until close.
 		</p>
 		<p>
 			<strong>Kids:</strong> We welcome children with open arms!
