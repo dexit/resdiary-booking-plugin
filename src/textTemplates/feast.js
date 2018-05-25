@@ -12,7 +12,7 @@ export const UsualInfoText = () => (
 		</p>
 		<p><strong>We take bookings up to six weeks in advance.</strong></p>
 		<p>
-			<strong>Times:</strong> We have two sittings – 11am until 5pm and 5pm until close.
+			<strong>Times:</strong> We have two sittings – 11am until 5pm and 5:30pm until close.
 		</p>
 		<p>
 			<strong>Kids:</strong> We welcome children with open arms!
