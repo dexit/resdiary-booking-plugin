@@ -8,6 +8,7 @@ export const UsualInfoText = () => (
 			<strong>See information on the garden and pub seating areas above.</strong>
 			<i className="fa fa-long-arrow-right" aria-hidden="true" />
 		</p>
+		<p><strong>We take bookings up to six weeks in advance.</strong></p>
 		<p>
 			<strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
 			grab one of our many walk in spaces. Alternatively, we do often receive cancellations on the day, please email us
@@ -15,7 +16,7 @@ export const UsualInfoText = () => (
 			you a table.
 		</p>
 		<p>
-			<strong>Times:</strong> We have two sittings – 12pm until 5pm and 4pm until close.
+			<strong>Times:</strong> We have two sittings – 12pm until 5pm and 5pm until close.
 		</p>
 		<p>
 			<strong>Kids:</strong> We welcome children with open arms, however please note that on Fridays and Saturdays we
