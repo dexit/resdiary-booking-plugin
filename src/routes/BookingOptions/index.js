@@ -60,6 +60,11 @@ class BookingOptions extends Component {
 							with emails, it is simply used to confirm your booking and infrequently share info about our venues.
 						</span>
 					</label>
+					<div id="privacy-policy">
+						<a href="http://incipio-group.co.uk/privacy-policy" target="_blank" rel="noopener noreferrer">
+							READ OUR PRIVACY POLICY
+						</a>
+					</div>
 				</div>
 			</section>
 		);
