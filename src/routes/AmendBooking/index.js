@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { getBooking, setAmendBooking, setPage } from '../../actions';
+import { AmendBookingText } from 'textTemplates';
 
 class AmendBooking extends Component {
 	componentWillMount() {
@@ -26,11 +27,7 @@ class AmendBooking extends Component {
 		return (
 			<section id="submit-reference">
 				<div>
-					<p>
-						Please be aware that if you do edit your booking yourself this could affect the date/time and place of your
-						booking. If you would prefer us to manage any changes for you then please email{' '}
-						<a href="mailto:contact@theprincelondon.com">contact@theprincelondon.com</a>.
-					</p>
+					<AmendBookingText />
 					<p>
 						To change your reservation, please enter your booking reference number which can be found in your
 						confirmation email we sent you.

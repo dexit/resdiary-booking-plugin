@@ -11,8 +11,8 @@ export const UsualInfoText = () => (
 		<p>
 			<strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
 			grab one of our many walk in spaces. Alternatively, we do often receive cancellations on the day, please email us
-			at <a href="mailto:contact@thegreenhouselondon.co.uk">contact@thegreenhouselondon.co.uk</a> and we will do our best to find
-			you a table.
+			at <a href="mailto:contact@thegreenhouselondon.co.uk">contact@thegreenhouselondon.co.uk</a> and we will do our
+			best to find you a table.
 		</p>
 		<p>
 			<strong>Times:</strong> We have two sittings – 12pm until 5pm and 4pm until close.
@@ -74,8 +74,8 @@ export const ReservationConfirmedText = () => (
 		<p>Be sure to check your junk folder as we know it can end up in there sometimes!</p>
 		<p>
 			Please please let us know if you need to cancel your reservation, simply email us at{' '}
-			<a href="mailto:contact@thegreenhouselondon.co.uk">contact@thegreenhouselondon.co.uk</a> or manage your booking using your
-			reference number <a href="/reservations">here</a>
+			<a href="mailto:contact@thegreenhouselondon.co.uk">contact@thegreenhouselondon.co.uk</a> or manage your booking
+			using your reference number <a href="/reservations">here</a>
 		</p>
 		<p>
 			Although this system is automated, we are humans and we’re here to help! You can contact us on the email address
@@ -83,4 +83,12 @@ export const ReservationConfirmedText = () => (
 		</p>
 		<p>We look forward to seeing you very soon!</p>
 	</div>
+);
+
+export const AmendBookingText = () => (
+	<p>
+		Please be aware that if you do edit your booking yourself this could affect the date/time and place of your booking.
+		If you would prefer us to manage any changes for you then please email{' '}
+		<a href="mailto:contact@thegreenhouselondon.co.uk">contact@thegreenhouselondon.co.uk</a>.
+	</p>
 );
