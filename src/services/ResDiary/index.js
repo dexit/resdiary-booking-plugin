@@ -69,6 +69,7 @@ class ResDiary {
 		people,
 		firstName,
 		lastName,
+		company,
 		DOB,
 		tel,
 		email,
@@ -104,6 +105,10 @@ class ResDiary {
 
 		if (HDYH) {
 			reqData.data.Customer.CustomerCodes = [HDYH];
+		}
+
+		if (company) {
+			reqData.data.Customer.Company = company;
 		}
 
 		const { data: { data } } = await axios.post(this.api, qs.stringify(reqData));
