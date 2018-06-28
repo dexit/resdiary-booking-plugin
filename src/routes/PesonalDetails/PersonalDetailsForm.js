@@ -14,7 +14,7 @@ const PersonalDetailsForm = ({ customerCodes }) => {
 			<div>
 				<Field name="firstName" type="text" component="input" placeholder="First Name" />
 				<Field name="lastName" type="text" component="input" placeholder="Last Name" />
-				<Field name="company" type="text" component="input" placeholder="Company" />
+				<Field name="company" type="text" component="input" placeholder="Company Name" />
 				<Field
 					name="DOB"
 					type={Modernizr.touchevents ? 'date' : 'text'}
