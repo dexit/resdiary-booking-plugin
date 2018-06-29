@@ -10,9 +10,7 @@ export const UsualInfoText = () => (
 			at <a href="mailto:contact@feastbarandkitchen.com">contact@feastbarandkitchen.com</a> and we will do our best to
 			find you a table.
 		</p>
-		<p>
-			<strong>We take bookings up to six weeks in advance.</strong>
-		</p>
+		<p><strong>We take bookings up to six weeks in advance.</strong></p>
 		<p>
 			<strong>Times:</strong> We have two sittings – 11am until 5pm and 5:30pm until close.
 		</p>
@@ -81,12 +79,4 @@ export const ReservationConfirmedText = () => (
 		</p>
 		<p>We look forward to seeing you very soon!</p>
 	</div>
-);
-
-export const AmendBookingText = () => (
-	<p>
-		Please be aware that if you do edit your booking yourself this could affect the date/time and place of your booking.
-		If you would prefer us to manage any changes for you then please email{' '}
-		<a href="mailto:contact@feastbarandkitchen.com">contact@feastbarandkitchen.com</a>.
-	</p>
 );

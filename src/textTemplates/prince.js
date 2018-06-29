@@ -8,9 +8,7 @@ export const UsualInfoText = () => (
 			<strong>See information on the garden and pub seating areas above.</strong>
 			<i className="fa fa-long-arrow-right" aria-hidden="true" />
 		</p>
-		<p>
-			<strong>We take bookings up to six weeks in advance.</strong>
-		</p>
+		<p><strong>We take bookings up to six weeks in advance.</strong></p>
 		<p>
 			<strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
 			grab one of our many walk in spaces. Alternatively, we do often receive cancellations on the day, please email us
@@ -86,12 +84,4 @@ export const ReservationConfirmedText = () => (
 		</p>
 		<p>We look forward to seeing you very soon!</p>
 	</div>
-);
-
-export const AmendBookingText = () => (
-	<p>
-		Please be aware that if you do edit your booking yourself this could affect the date/time and place of your booking.
-		If you would prefer us to manage any changes for you then please email{' '}
-		<a href="mailto:contact@theprincelondon.com">contact@theprincelondon.com</a>.
-	</p>
 );
