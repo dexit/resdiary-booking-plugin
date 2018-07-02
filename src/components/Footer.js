@@ -59,7 +59,7 @@ const Footer = props => {
 	};
 	const formValid = () => {
 		if (nextLink === '/reservations/card-details') {
-			const { values } = personalDetailsForm;
+			const values = personalDetailsForm ? personalDetailsForm.values : null;
 
 			if (!values) return;
 
