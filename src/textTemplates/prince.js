@@ -8,9 +8,11 @@ export const UsualInfoText = () => (
 			<strong>See information on the garden and pub seating areas above.</strong>
 			<i className="fa fa-long-arrow-right" aria-hidden="true" />
 		</p>
-		<p><strong>We take bookings up to six weeks in advance.</strong></p>
 		<p>
-			<strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
+			<strong>We take bookings up to six weeks in advance.</strong>
+		</p>
+		<p>
+			<strong>Walk Ins:</strong> f due to popular demand the date you would like to reserve is fully booked, come and
 			grab one of our many walk in spaces. Alternatively, we do often receive cancellations on the day, please email us
 			at <a href="mailto:contact@theprincelondon.com">contact@theprincelondon.com</a> and we will do our best to find
 			you a table.
@@ -19,8 +21,8 @@ export const UsualInfoText = () => (
 			<strong>Times:</strong> We have two sittings – 12pm until 5pm and 5pm until close.
 		</p>
 		<p>
-			<strong>Kids:</strong> We welcome children with open arms, however please note that on Fridays and Saturdays we
-			kindly ask all that all under 18’s leave the site by 6pm.
+			<strong>Kids:</strong> We welcome children with open arms, however please note that we kindly ask all that all
+			under 18’s leave the site by 5pm.
 		</p>
 		<p>
 			<strong>Groups of 50+:</strong> We do accommodate groups of 50 or more.<br />
@@ -34,6 +36,7 @@ export const UsualInfoText = () => (
 				</a>
 			</strong>
 		</p>
+		<p>Please also note that large groups may be allocated standing space as part of their booking.</p>
 	</div>
 );
 
