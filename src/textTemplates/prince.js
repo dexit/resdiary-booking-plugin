@@ -13,9 +13,11 @@ export const UsualInfoText = () => (
 		</p>
 		<p>
 			<strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
-			grab one of our many walk in spaces. Alternatively, we do often receive cancellations on the day, please email us
-			at <a href="mailto:contact@theprincelondon.com">contact@theprincelondon.com</a> and we will do our best to find
-			you a table.
+			grab one of our many walk in spaces. Alternatively, we do often receive cancellations on the day, please{' '}
+			<a href="#" class="open-git-modal">
+				contact us
+			</a>{' '}
+			and we will do our best to find you a table.
 		</p>
 		<p>
 			<strong>Times:</strong> We have two sittings – 12pm until 5pm and 5pm until close.
@@ -26,7 +28,10 @@ export const UsualInfoText = () => (
 		</p>
 		<p>
 			<strong>Groups of 50+:</strong> We do accommodate groups of 50 or more.<br />
-			Please email <a href="mailto:contact@theprincelondon.com">contact@theprincelondon.com</a>
+			Please{' '}
+			<a href="#" class="open-git-modal">
+				Contact Us
+			</a>
 		</p>
 		<p>
 			For private hires of the venue please visit our{' '}
