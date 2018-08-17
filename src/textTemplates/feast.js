@@ -11,7 +11,10 @@ export const UsualInfoText = () => {
 			<p>
 				<strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
 				grab one of our many walk-in spaces. Alternatively, we do often receive cancellations on the day, please{' '}
-				<span onClick={openModal}>contact us </span> and we will do our best to find you a table.
+				<span className="git-popup" onClick={openModal}>
+					contact us{' '}
+				</span>{' '}
+				and we will do our best to find you a table.
 			</p>
 			<p>
 				<strong>We take bookings up to six weeks in advance.</strong>
@@ -24,7 +27,10 @@ export const UsualInfoText = () => {
 			</p>
 			<p>
 				<strong>Groups of 50+:</strong> We do accommodate groups of 50 or more. <br />
-				Please <span onClick={openModal}>contact us</span>
+				Please{' '}
+				<span className="git-popup" onClick={openModal}>
+					contact us
+				</span>
 			</p>
 			<p>
 				For private hires of the venue please visit our{' '}
