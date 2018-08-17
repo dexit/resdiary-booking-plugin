@@ -1,49 +1,49 @@
 import React from 'react';
+export const HeaderText = () => <p>`You're just a minute away from booking your table at The Prince!`</p>;
 
-export const HeaderText = () => <p>You're just a minute away from booking your table at The Prince!</p>;
+export const UsualInfoText = () => {
+	const openModal = () => {
+		document.querySelector('.open-git-modal').click();
+	};
 
-export const UsualInfoText = () => (
-	<div>
-		<p id="seating-areas-info">
-			<strong>See information on the garden and pub seating areas above.</strong>
-			<i className="fa fa-long-arrow-right" aria-hidden="true" />
-		</p>
-		<p>
-			<strong>We take bookings up to six weeks in advance.</strong>
-		</p>
-		<p>
-			<strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
-			grab one of our many walk in spaces. Alternatively, we do often receive cancellations on the day, please{' '}
-			<a href="#" class="open-git-modal">
-				contact us
-			</a>{' '}
-			and we will do our best to find you a table.
-		</p>
-		<p>
-			<strong>Times:</strong> We have two sittings – 12pm until 5pm and 5pm until close.
-		</p>
-		<p>
-			<strong>Kids:</strong> We welcome children with open arms, however please note that we kindly ask all that all
-			under 18’s leave the site by 5pm.
-		</p>
-		<p>
-			<strong>Groups of 50+:</strong> We do accommodate groups of 50 or more.<br />
-			Please{' '}
-			<a href="#" class="open-git-modal">
-				Contact Us
-			</a>
-		</p>
-		<p>
-			For private hires of the venue please visit our{' '}
-			<strong>
-				<a href="/private-hire" rel="noopener noreferrer" target="_blank">
-					private hire page.
-				</a>
-			</strong>
-		</p>
-		<p>Please also note that large groups may be allocated standing space as part of their booking.</p>
-	</div>
-);
+	return (
+		<div>
+			<p id="seating-areas-info">
+				<strong>See information on the garden and pub seating areas above.</strong>
+				<i className="fa fa-long-arrow-right" aria-hidden="true" />
+			</p>
+			<p>
+				<strong>We take bookings up to six weeks in advance.</strong>
+			</p>
+			<p>
+				<strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
+				grab one of our many walk in spaces. Alternatively, we do often receive cancellations on the day, please{' '}
+				<span onClick={openModal}>contact us </span>
+				and we will do our best to find you a table.
+			</p>
+			<p>
+				<strong>Times:</strong> We have two sittings – 12pm until 5pm and 5pm until close.
+			</p>
+			<p>
+				<strong>Kids:</strong> We welcome children with open arms, however please note that we kindly ask all that all
+				under 18’s leave the site by 5pm.
+			</p>
+			<p>
+				<strong>Groups of 50+:</strong> We do accommodate groups of 50 or more.<br />
+				Please <span onClick={openModal}>contact us</span>
+			</p>
+			<p>
+				For private hires of the venue please visit our{' '}
+				<strong>
+					<a href="/private-hire" rel="noopener noreferrer" target="_blank">
+						private hire page.
+					</a>
+				</strong>
+			</p>
+			<p>Please also note that large groups may be allocated standing space as part of their booking.</p>
+		</div>
+	);
+};
 
 export const ConfirmReservationText = () => (
 	<p>
