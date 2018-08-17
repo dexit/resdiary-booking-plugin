@@ -1,36 +1,42 @@
 import React from 'react';
-
 export const HeaderText = () => <p>You're just a minute away from booking your table at Feast Bar & Kitchen</p>;
 
-export const UsualInfoText = () => (
-	<div>
-		<p>
-			<strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
-			grab one of our many walk-in spaces. Alternatively, we do often receive cancellations on the day, please email us
-			at <a href="mailto:contact@feastbarandkitchen.com">contact@feastbarandkitchen.com</a> and we will do our best to
-			find you a table.
-		</p>
-		<p><strong>We take bookings up to six weeks in advance.</strong></p>
-		<p>
-			<strong>Times:</strong> We have two sittings – 11am until 5pm and 5:30pm until close.
-		</p>
-		<p>
-			<strong>Kids:</strong> We welcome children with open arms!
-		</p>
-		<p>
-			<strong>Groups of 50+:</strong> We do accommodate groups of 50 or more. <br />
-			Please email <a href="mailto:contact@feastbarandkitchen.com">contact@feastbarandkitchen.com</a>
-		</p>
-		<p>
-			For private hires of the venue please visit our{' '}
-			<strong>
-				<a href="/private-hire" rel="noopener noreferrer" target="_blank">
-					private hire page.
-				</a>
-			</strong>
-		</p>
-	</div>
-);
+export const UsualInfoText = () => {
+	const openModal = () => {
+		document.querySelector('.open-git-modal').click();
+	};
+
+	return (
+		<div>
+			<p>
+				<strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
+				grab one of our many walk-in spaces. Alternatively, we do often receive cancellations on the day, please{' '}
+				<span onClick={openModal}>contact us </span> and we will do our best to find you a table.
+			</p>
+			<p>
+				<strong>We take bookings up to six weeks in advance.</strong>
+			</p>
+			<p>
+				<strong>Times:</strong> We have two sittings – 11am until 5pm and 5:30pm until close.
+			</p>
+			<p>
+				<strong>Kids:</strong> We welcome children with open arms!
+			</p>
+			<p>
+				<strong>Groups of 50+:</strong> We do accommodate groups of 50 or more. <br />
+				Please <span onClick={openModal}>contact us</span>
+			</p>
+			<p>
+				For private hires of the venue please visit our{' '}
+				<strong>
+					<a href="/private-hire" rel="noopener noreferrer" target="_blank">
+						private hire page.
+					</a>
+				</strong>
+			</p>
+		</div>
+	);
+};
 
 export const ConfirmReservationText = () => (
 	<p>
