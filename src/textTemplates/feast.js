@@ -13,8 +13,8 @@ export const UsualInfoText = () => {
 				grab one of our many walk-in spaces. Alternatively, we do often receive cancellations on the day, please{' '}
 				<span className="git-popup" onClick={openModal}>
 					contact us{' '}
-				</span>{' '}
-				and we will do our best to find you a table.
+				</span>
+				{' '}and we will do our best to find you a table.
 			</p>
 			<p>
 				<strong>We take bookings up to six weeks in advance.</strong>

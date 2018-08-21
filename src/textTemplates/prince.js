@@ -19,9 +19,9 @@ export const UsualInfoText = () => {
 				<strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
 				grab one of our many walk in spaces. Alternatively, we do often receive cancellations on the day, please{' '}
 				<span className="git-popup" onClick={openModal}>
-					contact us{' '}
+					contact us
 				</span>
-				and we will do our best to find you a table.
+				{' '}and we will do our best to find you a table.
 			</p>
 			<p>
 				<strong>Times:</strong> We have two sittings – 12pm until 5pm and 5pm until close.
