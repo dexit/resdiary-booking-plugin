@@ -69,3 +69,4 @@ junit.xml
 
 # Remove Dist Files as these are compiled on deployment by Deploybot.
 dist
+/.idea/

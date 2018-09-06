@@ -1,16 +1,9 @@
 import React from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import moment from 'moment';
-import { UsualInfoText } from 'textTemplates';
+import { UsualInfoText, UnavailableText } from 'textTemplates';
 
-const InfoSearchTimes = ({
-	tabIndex,
-	handleTabSelect,
-	availability,
-	handleTimeSlotClick,
-	unavailableText,
-	timeSlot
-}) => {
+const InfoSearchTimes = ({ tabIndex, handleTabSelect, availability, handleTimeSlotClick, timeSlot }) => {
 	return (
 		<Tabs selectedIndex={tabIndex} onSelect={handleTabSelect}>
 			<TabList>
@@ -42,7 +35,7 @@ const InfoSearchTimes = ({
 									))}
 								</dd>
 							) : (
-								<dd className="unavailable">{unavailableText}</dd>
+								<UnavailableText />
 							)}
 						</div>
 					))}

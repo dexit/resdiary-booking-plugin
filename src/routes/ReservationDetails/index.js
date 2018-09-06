@@ -138,7 +138,6 @@ class ReservationDetails extends Component {
 					availability={this.props.availability}
 					tabIndex={this.state.tabIndex}
 					handleTimeSlotClick={this.handleTimeSlotClick}
-					unavailableText={this.props.unavailableText}
 					timeSlot={this.props.timeSlot}
 				/>
 			</section>
@@ -155,7 +154,6 @@ const mapStateToProps = state => {
 		services: state.restaurant.Services || [],
 		Areas: state.restaurant.Areas,
 		availability: state.availability,
-		unavailableText: state.restaurant.NoAvailabilityText,
 		booking: state.booking.Booking,
 		bookingComplete: state.booking.complete,
 		reservationDetails: state.form.reservationDetails,

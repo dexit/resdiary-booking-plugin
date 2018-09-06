@@ -1,5 +1,9 @@
 import React from 'react';
 
+const openModal = () => {
+	document.querySelector('.open-git-modal').click();
+};
+
 export const HeaderText = () => <p>You're just a minute away from booking your table at The Greenhouse!</p>;
 
 export const UsualInfoText = () => (
@@ -11,8 +15,8 @@ export const UsualInfoText = () => (
 		<p>
 			<strong>Walk Ins:</strong> If due to popular demand the date you would like to reserve is fully booked, come and
 			grab one of our many walk in spaces. Alternatively, we do often receive cancellations on the day, please email us
-			at <a href="mailto:contact@thegreenhouselondon.co.uk">contact@thegreenhouselondon.co.uk</a> and we will do our best to find
-			you a table.
+			at <a href="mailto:contact@thegreenhouselondon.co.uk">contact@thegreenhouselondon.co.uk</a> and we will do our
+			best to find you a table.
 		</p>
 		<p>
 			<strong>Times:</strong> We have two sittings – 12pm until 5pm and 4pm until close.
@@ -34,6 +38,16 @@ export const UsualInfoText = () => (
 			</strong>
 		</p>
 	</div>
+);
+
+export const UnavailableText = () => (
+	<dd className="unavailable">
+		Sadly the selection you have chosen is not available. Please do amend your date/time/area and try again or please{' '}
+		<span className="git-popup" onClick={openModal}>
+			contact us
+		</span>{' '}
+		to check alternative availability.
+	</dd>
 );
 
 export const ConfirmReservationText = () => (
@@ -74,8 +88,8 @@ export const ReservationConfirmedText = () => (
 		<p>Be sure to check your junk folder as we know it can end up in there sometimes!</p>
 		<p>
 			Please please let us know if you need to cancel your reservation, simply email us at{' '}
-			<a href="mailto:contact@thegreenhouselondon.co.uk">contact@thegreenhouselondon.co.uk</a> or manage your booking using your
-			reference number <a href="/reservations">here</a>
+			<a href="mailto:contact@thegreenhouselondon.co.uk">contact@thegreenhouselondon.co.uk</a> or manage your booking
+			using your reference number <a href="/reservations">here</a>
 		</p>
 		<p>
 			Although this system is automated, we are humans and we’re here to help! You can contact us on the email address
